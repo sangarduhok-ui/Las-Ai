@@ -2,7 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { Uploader } from "@/components/Uploader";
 import { BookOpen, Sparkles, Zap, Check, Crown, MessageCircle, FileText, Brain } from "lucide-react";
 
-const WHATSAPP_NUMBER = "9647500000000"; // placeholder — replace with real number
+const WHATSAPP_NUMBER = "9647501435868";
 const WHATSAPP_MESSAGE = encodeURIComponent(
   "Hello, I want to activate my VIP subscription for AI Study Summary.",
 );
