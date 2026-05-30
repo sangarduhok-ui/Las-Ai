@@ -1,4 +1,4 @@
-import { useCallback, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { Upload, FileText, X, Sparkles, Copy, Check, AlertCircle, Loader2 } from "lucide-react";
 
 type Summary = {
