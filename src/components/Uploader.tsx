@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useRef, useState } from "react";
-import { Upload, FileText, X, Sparkles, Copy, Check, AlertCircle, Loader2 } from "lucide-react";
+import { Upload, FileText, X, Sparkles, Copy, Check, AlertCircle, Loader2, Brain, RotateCcw } from "lucide-react";
 
 type Summary = {
   title?: string;
@@ -7,6 +7,18 @@ type Summary = {
   main_points?: string[];
   definitions?: { term: string; definition: string }[];
   dates_formulas?: string[];
+};
+
+type QuizQuestion = {
+  question: string;
+  options: string[];
+  answer_index: number;
+  explanation?: string;
+};
+
+type Quiz = {
+  title?: string;
+  questions: QuizQuestion[];
 };
 
 const MAX_BYTES = 25 * 1024 * 1024;
@@ -28,14 +40,22 @@ export function Uploader() {
   const [file, setFile] = useState<File | null>(null);
   const [dragOver, setDragOver] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [quizLoading, setQuizLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [summary, setSummary] = useState<Summary | null>(null);
+  const [quiz, setQuiz] = useState<Quiz | null>(null);
+  const [answers, setAnswers] = useState<Record<number, number>>({});
+  const [submitted, setSubmitted] = useState(false);
   const [copied, setCopied] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
+  const quizRef = useRef<HTMLDivElement>(null);
 
   const handleFile = (f: File | null) => {
     setError(null);
     setSummary(null);
+    setQuiz(null);
+    setAnswers({});
+    setSubmitted(false);
     if (!f) return;
     if (f.size > MAX_BYTES) {
       setError("قەبارەی فایل زۆرە. زۆرترین قەبارە ٢٥ مێگابایتە.");
@@ -77,19 +97,51 @@ export function Uploader() {
     }
   };
 
+  const generateQuiz = async () => {
+    if (!file) return;
+    setQuizLoading(true);
+    setError(null);
+    setQuiz(null);
+    setAnswers({});
+    setSubmitted(false);
+    try {
+      const b64 = await fileToBase64(file);
+      const res = await fetch("/api/quiz", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ fileBase64: b64, mimeType: file.type }),
+      });
+      const data = await res.json();
+      if (!res.ok) throw new Error(data?.error || "هەڵە لە سەرڤیس");
+      setQuiz(data.quiz as Quiz);
+      setTimeout(() => quizRef.current?.scrollIntoView({ behavior: "smooth", block: "start" }), 100);
+    } catch (e) {
+      setError(e instanceof Error ? e.message : "هەڵەیەک ڕوویدا");
+    } finally {
+      setQuizLoading(false);
+    }
+  };
+
   const fileRef = useRef(file);
-  const loadingRef = useRef(loading);
+  const busyRef = useRef(false);
   useEffect(() => {
     fileRef.current = file;
-    loadingRef.current = loading;
-  }, [file, loading]);
+    busyRef.current = loading || quizLoading;
+  }, [file, loading, quizLoading]);
 
   useEffect(() => {
-    const h = () => {
-      if (fileRef.current && !loadingRef.current) summarize();
+    const hSum = () => {
+      if (fileRef.current && !busyRef.current) summarize();
     };
-    window.addEventListener("trigger-summarize", h);
-    return () => window.removeEventListener("trigger-summarize", h);
+    const hQuiz = () => {
+      if (fileRef.current && !busyRef.current) generateQuiz();
+    };
+    window.addEventListener("trigger-summarize", hSum);
+    window.addEventListener("trigger-quiz", hQuiz);
+    return () => {
+      window.removeEventListener("trigger-summarize", hSum);
+      window.removeEventListener("trigger-quiz", hQuiz);
+    };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -113,6 +165,10 @@ export function Uploader() {
     setCopied(true);
     setTimeout(() => setCopied(false), 2000);
   };
+
+  const score = quiz
+    ? quiz.questions.reduce((acc, q, i) => acc + (answers[i] === q.answer_index ? 1 : 0), 0)
+    : 0;
 
   return (
     <div className="w-full max-w-3xl mx-auto">
@@ -154,6 +210,7 @@ export function Uploader() {
                   e.stopPropagation();
                   setFile(null);
                   setSummary(null);
+                  setQuiz(null);
                 }}
                 className="text-muted-foreground hover:text-destructive"
                 aria-label="سڕینەوە"
@@ -172,34 +229,58 @@ export function Uploader() {
         </div>
       </div>
 
-      <button
-        onClick={summarize}
-        disabled={!file || loading}
-        className="mt-6 w-full relative overflow-hidden rounded-2xl px-8 py-5 text-lg font-bold text-primary-foreground transition-all disabled:opacity-50 disabled:cursor-not-allowed hover:scale-[1.01]"
-        style={{ background: "var(--gradient-primary)", boxShadow: "var(--shadow-glow)" }}
-      >
-        <span className="flex items-center justify-center gap-3">
-          {loading ? (
-            <>
-              <Loader2 className="w-5 h-5 animate-spin" />
-              <span>AI خەریکی خوێندنەوەیە...</span>
-            </>
-          ) : (
-            <>
-              <Sparkles className="w-5 h-5" />
-              <span>پوختە بکە</span>
-            </>
-          )}
-        </span>
-        {loading && <span className="absolute inset-0 shimmer pointer-events-none" />}
-      </button>
+      <div className="mt-6 grid sm:grid-cols-2 gap-4">
+        <button
+          onClick={summarize}
+          disabled={!file || loading || quizLoading}
+          className="relative overflow-hidden rounded-2xl px-6 py-5 text-lg font-bold text-primary-foreground transition-all disabled:opacity-50 disabled:cursor-not-allowed hover:scale-[1.01]"
+          style={{ background: "var(--gradient-primary)", boxShadow: "var(--shadow-glow)" }}
+        >
+          <span className="flex items-center justify-center gap-3">
+            {loading ? (
+              <>
+                <Loader2 className="w-5 h-5 animate-spin" />
+                <span>پوختە...</span>
+              </>
+            ) : (
+              <>
+                <Sparkles className="w-5 h-5" />
+                <span>پوختە بکە</span>
+              </>
+            )}
+          </span>
+          {loading && <span className="absolute inset-0 shimmer pointer-events-none" />}
+        </button>
 
-      {loading && (
+        <button
+          onClick={generateQuiz}
+          disabled={!file || loading || quizLoading}
+          className="relative overflow-hidden rounded-2xl px-6 py-5 text-lg font-bold border-2 border-primary text-primary bg-background transition-all disabled:opacity-50 disabled:cursor-not-allowed hover:bg-primary/5 hover:scale-[1.01]"
+        >
+          <span className="flex items-center justify-center gap-3">
+            {quizLoading ? (
+              <>
+                <Loader2 className="w-5 h-5 animate-spin" />
+                <span>تاقیکردنەوە...</span>
+              </>
+            ) : (
+              <>
+                <Brain className="w-5 h-5" />
+                <span>تاقیکردنەوە دروست بکە</span>
+              </>
+            )}
+          </span>
+        </button>
+      </div>
+
+      {(loading || quizLoading) && (
         <div className="mt-8 flex flex-col items-center gap-4 py-8">
           <div className="w-16 h-16 rounded-full bg-primary/20 flex items-center justify-center animate-pulse-ring">
             <Sparkles className="w-7 h-7 text-primary" />
           </div>
-          <p className="text-muted-foreground">پەڕەکان دەخوێنرێنەوە و پوختە ئامادە دەکرێت...</p>
+          <p className="text-muted-foreground">
+            {quizLoading ? "پرسیارەکان ئامادە دەکرێن..." : "پەڕەکان دەخوێنرێنەوە و پوختە ئامادە دەکرێت..."}
+          </p>
         </div>
       )}
 
@@ -211,6 +292,115 @@ export function Uploader() {
             <p className="text-sm text-foreground/80 mt-1">{error}</p>
           </div>
         </div>
+      )}
+
+      {quiz && !quizLoading && (
+        <article
+          ref={quizRef}
+          className="mt-8 rounded-3xl p-6 md:p-8 border border-border"
+          style={{ background: "var(--gradient-card)", boxShadow: "var(--shadow-elegant)" }}
+        >
+          <header className="flex items-start justify-between gap-4 mb-6 pb-4 border-b border-border">
+            <div className="flex items-center gap-3">
+              <div
+                className="w-12 h-12 rounded-xl flex items-center justify-center text-primary-foreground"
+                style={{ background: "var(--gradient-primary)" }}
+              >
+                <Brain className="w-6 h-6" />
+              </div>
+              <div>
+                <h2 className="text-2xl md:text-3xl font-extrabold text-foreground">
+                  {quiz.title ?? "تاقیکردنەوە"}
+                </h2>
+                <p className="text-sm text-muted-foreground mt-1">
+                  {quiz.questions.length} پرسیار
+                </p>
+              </div>
+            </div>
+            {submitted && (
+              <div className="text-center shrink-0">
+                <div className="text-3xl font-extrabold text-primary">
+                  {score}/{quiz.questions.length}
+                </div>
+                <div className="text-xs text-muted-foreground">نمرە</div>
+              </div>
+            )}
+          </header>
+
+          <div className="space-y-6">
+            {quiz.questions.map((q, qi) => {
+              const userAns = answers[qi];
+              return (
+                <div key={qi} className="rounded-2xl bg-card/60 p-5 border border-border">
+                  <div className="flex gap-3 mb-4">
+                    <span className="shrink-0 w-8 h-8 rounded-full bg-primary text-primary-foreground font-bold flex items-center justify-center text-sm">
+                      {qi + 1}
+                    </span>
+                    <h3 className="font-bold text-base md:text-lg leading-relaxed">{q.question}</h3>
+                  </div>
+                  <div className="grid gap-2">
+                    {q.options.map((opt, oi) => {
+                      const selected = userAns === oi;
+                      const isCorrect = oi === q.answer_index;
+                      let cls = "border-border bg-background hover:border-primary/60 hover:bg-accent/20";
+                      if (submitted) {
+                        if (isCorrect) cls = "border-success bg-success/10";
+                        else if (selected && !isCorrect) cls = "border-destructive bg-destructive/10";
+                        else cls = "border-border bg-background opacity-70";
+                      } else if (selected) {
+                        cls = "border-primary bg-primary/10";
+                      }
+                      return (
+                        <button
+                          key={oi}
+                          disabled={submitted}
+                          onClick={() => setAnswers((a) => ({ ...a, [qi]: oi }))}
+                          className={`text-right rounded-xl border-2 px-4 py-3 transition-all flex items-center gap-3 ${cls} disabled:cursor-default`}
+                        >
+                          <span className="shrink-0 w-7 h-7 rounded-full border-2 border-current font-bold flex items-center justify-center text-xs">
+                            {["أ", "ب", "ج", "د"][oi] ?? oi + 1}
+                          </span>
+                          <span className="flex-1 text-sm md:text-base">{opt}</span>
+                          {submitted && isCorrect && <Check className="w-5 h-5 text-success" />}
+                          {submitted && selected && !isCorrect && <X className="w-5 h-5 text-destructive" />}
+                        </button>
+                      );
+                    })}
+                  </div>
+                  {submitted && q.explanation && (
+                    <div className="mt-3 text-sm rounded-xl bg-accent/30 p-3 leading-relaxed">
+                      <span className="font-bold">💡 ڕوونکردنەوە: </span>
+                      {q.explanation}
+                    </div>
+                  )}
+                </div>
+              );
+            })}
+          </div>
+
+          <div className="mt-6 flex flex-wrap gap-3 justify-end">
+            {!submitted ? (
+              <button
+                onClick={() => setSubmitted(true)}
+                disabled={Object.keys(answers).length < quiz.questions.length}
+                className="rounded-xl bg-primary text-primary-foreground px-6 py-3 font-bold hover:opacity-90 transition disabled:opacity-50 disabled:cursor-not-allowed"
+              >
+                پێشکەشکردنی وەڵامەکان
+              </button>
+            ) : (
+              <button
+                onClick={() => {
+                  setAnswers({});
+                  setSubmitted(false);
+                }}
+                className="flex items-center gap-2 rounded-xl border-2 border-primary text-primary px-6 py-3 font-bold hover:bg-primary/5 transition"
+              >
+                <RotateCcw className="w-4 h-4" />
+                دووبارە تاقی بکەرەوە
+              </button>
+            )}
+          </div>
+        </article>
       )}
 
       {summary && !loading && (
