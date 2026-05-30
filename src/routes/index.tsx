@@ -46,6 +46,9 @@ function Index() {
           </nav>
           <a
             href="#upload"
+            onClick={() => {
+              setTimeout(() => window.dispatchEvent(new CustomEvent("trigger-summarize")), 300);
+            }}
             className="rounded-full bg-primary text-primary-foreground px-4 py-2 text-sm font-semibold hover:opacity-90"
           >
             تاقیکردنی خۆڕایی

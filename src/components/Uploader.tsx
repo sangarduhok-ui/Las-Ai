@@ -1,4 +1,4 @@
-import { useCallback, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { Upload, FileText, X, Sparkles, Copy, Check, AlertCircle, Loader2 } from "lucide-react";
 
 type Summary = {
@@ -76,6 +76,22 @@ export function Uploader() {
       setLoading(false);
     }
   };
+
+  const fileRef = useRef(file);
+  const loadingRef = useRef(loading);
+  useEffect(() => {
+    fileRef.current = file;
+    loadingRef.current = loading;
+  }, [file, loading]);
+
+  useEffect(() => {
+    const h = () => {
+      if (fileRef.current && !loadingRef.current) summarize();
+    };
+    window.addEventListener("trigger-summarize", h);
+    return () => window.removeEventListener("trigger-summarize", h);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const summaryText = summary
     ? [
