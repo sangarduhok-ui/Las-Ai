@@ -45,10 +45,10 @@ function Index() {
             <a href="#pricing" className="hover:text-foreground transition">نرخەکان</a>
           </nav>
           <a
-            href="#pricing"
+            href="#upload"
             className="rounded-full bg-primary text-primary-foreground px-4 py-2 text-sm font-semibold hover:opacity-90"
           >
-            دەست پێبکە
+            تاقیکردنی خۆڕایی
           </a>
         </div>
       </header>
