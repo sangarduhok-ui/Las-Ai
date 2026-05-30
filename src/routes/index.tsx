@@ -44,15 +44,21 @@ function Index() {
             <a href="#upload" className="hover:text-foreground transition">پوختەکردن</a>
             <a href="#pricing" className="hover:text-foreground transition">نرخەکان</a>
           </nav>
-          <a
-            href="#upload"
-            onClick={() => {
-              setTimeout(() => window.dispatchEvent(new CustomEvent("trigger-summarize")), 300);
+          <button
+            onClick={(e) => {
+              e.preventDefault();
+              const dispatched = window.dispatchEvent(new CustomEvent("trigger-quiz"));
+              void dispatched;
+              // If no file uploaded yet, scroll user to upload section
+              setTimeout(() => {
+                const el = document.getElementById("upload");
+                el?.scrollIntoView({ behavior: "smooth", block: "start" });
+              }, 50);
             }}
             className="rounded-full bg-primary text-primary-foreground px-4 py-2 text-sm font-semibold hover:opacity-90"
           >
             تاقیکردنی خۆڕایی
-          </a>
+          </button>
         </div>
       </header>
 
