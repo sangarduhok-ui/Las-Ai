@@ -43,6 +43,7 @@ function Index() {
           <nav className="hidden md:flex items-center gap-7 text-sm font-medium text-muted-foreground">
             <a href="#features" className="hover:text-foreground transition">تایبەتمەندیەکان</a>
             <a href="#upload" className="hover:text-foreground transition">پوختەکردن</a>
+            <a href="#chat" className="hover:text-foreground transition">گفتوگۆ</a>
             <a href="#pricing" className="hover:text-foreground transition">نرخەکان</a>
           </nav>
           <button
