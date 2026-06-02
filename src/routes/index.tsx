@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Uploader } from "@/components/Uploader";
+import { ChatBox } from "@/components/ChatBox";
 import { BookOpen, Sparkles, Zap, Check, Crown, MessageCircle, FileText, Brain } from "lucide-react";
 
 const WHATSAPP_NUMBER = "9647501435868";
@@ -42,6 +43,7 @@ function Index() {
           <nav className="hidden md:flex items-center gap-7 text-sm font-medium text-muted-foreground">
             <a href="#features" className="hover:text-foreground transition">تایبەتمەندیەکان</a>
             <a href="#upload" className="hover:text-foreground transition">پوختەکردن</a>
+            <a href="#chat" className="hover:text-foreground transition">گفتوگۆ</a>
             <a href="#pricing" className="hover:text-foreground transition">نرخەکان</a>
           </nav>
           <button
@@ -98,6 +100,11 @@ function Index() {
       {/* Upload */}
       <section id="upload" className="px-4 md:px-6 pb-20">
         <Uploader />
+      </section>
+
+      {/* Chat */}
+      <section id="chat" className="px-4 md:px-6 py-20 bg-secondary/40 border-y border-border">
+        <ChatBox />
       </section>
 
       {/* Features */}
