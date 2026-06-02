@@ -102,6 +102,11 @@ function Index() {
         <Uploader />
       </section>
 
+      {/* Chat */}
+      <section id="chat" className="px-4 md:px-6 py-20 bg-secondary/40 border-y border-border">
+        <ChatBox />
+      </section>
+
       {/* Features */}
       <section id="features" className="px-4 md:px-6 py-20 bg-secondary/40 border-y border-border">
         <div className="max-w-5xl mx-auto">
