@@ -28,6 +28,16 @@ export const Route = createFileRoute("/")({
 });
 
 function Index() {
+  const [menuOpen, setMenuOpen] = useState(false);
+
+  const navLinks = [
+    { href: "#features", label: "تایبەتمەندیەکان" },
+    { href: "#upload", label: "پوختەکردن" },
+    { href: "#chat", label: "گفتوگۆ" },
+    { href: "#pricing", label: "نرخەکان" },
+    { href: "#about", label: "دەربارەی ئێمە" },
+  ];
+
   return (
     <div className="min-h-screen bg-background">
       {/* Nav */}
