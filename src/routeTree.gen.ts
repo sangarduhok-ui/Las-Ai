@@ -13,6 +13,7 @@ import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as ApiSummarizeRouteImport } from './routes/api/summarize'
 import { Route as ApiQuizRouteImport } from './routes/api/quiz'
+import { Route as ApiHumanizeRouteImport } from './routes/api/humanize'
 import { Route as ApiChatRouteImport } from './routes/api/chat'
 
 const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
@@ -35,6 +36,11 @@ const ApiQuizRoute = ApiQuizRouteImport.update({
   path: '/api/quiz',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ApiHumanizeRoute = ApiHumanizeRouteImport.update({
+  id: '/api/humanize',
+  path: '/api/humanize',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ApiChatRoute = ApiChatRouteImport.update({
   id: '/api/chat',
   path: '/api/chat',
@@ -45,6 +51,7 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/api/chat': typeof ApiChatRoute
+  '/api/humanize': typeof ApiHumanizeRoute
   '/api/quiz': typeof ApiQuizRoute
   '/api/summarize': typeof ApiSummarizeRoute
 }
@@ -52,6 +59,7 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/api/chat': typeof ApiChatRoute
+  '/api/humanize': typeof ApiHumanizeRoute
   '/api/quiz': typeof ApiQuizRoute
   '/api/summarize': typeof ApiSummarizeRoute
 }
@@ -60,19 +68,33 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/api/chat': typeof ApiChatRoute
+  '/api/humanize': typeof ApiHumanizeRoute
   '/api/quiz': typeof ApiQuizRoute
   '/api/summarize': typeof ApiSummarizeRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/sitemap.xml' | '/api/chat' | '/api/quiz' | '/api/summarize'
+  fullPaths:
+    | '/'
+    | '/sitemap.xml'
+    | '/api/chat'
+    | '/api/humanize'
+    | '/api/quiz'
+    | '/api/summarize'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/sitemap.xml' | '/api/chat' | '/api/quiz' | '/api/summarize'
+  to:
+    | '/'
+    | '/sitemap.xml'
+    | '/api/chat'
+    | '/api/humanize'
+    | '/api/quiz'
+    | '/api/summarize'
   id:
     | '__root__'
     | '/'
     | '/sitemap.xml'
     | '/api/chat'
+    | '/api/humanize'
     | '/api/quiz'
     | '/api/summarize'
   fileRoutesById: FileRoutesById
@@ -81,6 +103,7 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   ApiChatRoute: typeof ApiChatRoute
+  ApiHumanizeRoute: typeof ApiHumanizeRoute
   ApiQuizRoute: typeof ApiQuizRoute
   ApiSummarizeRoute: typeof ApiSummarizeRoute
 }
@@ -115,6 +138,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ApiQuizRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/api/humanize': {
+      id: '/api/humanize'
+      path: '/api/humanize'
+      fullPath: '/api/humanize'
+      preLoaderRoute: typeof ApiHumanizeRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/api/chat': {
       id: '/api/chat'
       path: '/api/chat'
@@ -129,9 +159,20 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
   ApiChatRoute: ApiChatRoute,
+  ApiHumanizeRoute: ApiHumanizeRoute,
   ApiQuizRoute: ApiQuizRoute,
   ApiSummarizeRoute: ApiSummarizeRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
+
+import type { getRouter } from './router.tsx'
+import type { startInstance } from './start.ts'
+declare module '@tanstack/react-start' {
+  interface Register {
+    ssr: true
+    router: Awaited<ReturnType<typeof getRouter>>
+    config: Awaited<ReturnType<typeof startInstance.getOptions>>
+  }
+}
