@@ -271,6 +271,51 @@ function Index() {
         </div>
       </section>
 
+      {/* About */}
+      <section id="about" className="px-4 md:px-6 py-20 bg-secondary/40 border-t border-border">
+        <div className="max-w-5xl mx-auto">
+          <h2 className="text-3xl md:text-4xl font-extrabold text-center mb-3">دەربارەی ئێمە</h2>
+          <p className="text-center text-muted-foreground mb-12">ئەو کەسەی لە پشتی ئەم پڕۆژەیەوەیە</p>
+
+          <div className="grid md:grid-cols-2 gap-10 items-center max-w-4xl mx-auto">
+            <div className="relative flex justify-center md:justify-end">
+              <div
+                className="absolute -inset-4 rounded-3xl opacity-40 blur-2xl"
+                style={{ background: "var(--gradient-primary)" }}
+              />
+              <div
+                className="relative rounded-3xl overflow-hidden border-4 border-card w-64 h-80 md:w-72 md:h-96"
+                style={{ boxShadow: "var(--shadow-glow)" }}
+              >
+                <img
+                  src={sangarAsset.url}
+                  alt="سەنگەر محمد حسن"
+                  className="w-full h-full object-cover"
+                  loading="lazy"
+                />
+              </div>
+            </div>
+
+            <div className="text-right">
+              <div className="inline-flex items-center gap-2 rounded-full bg-accent/60 px-3 py-1 text-xs font-semibold text-accent-foreground mb-4">
+                <GraduationCap className="w-3.5 h-3.5" />
+                <span>دامەزرێنەر</span>
+              </div>
+              <h3 className="text-2xl md:text-3xl font-extrabold mb-2">سەنگەر محمد حسن</h3>
+              <p className="text-muted-foreground font-semibold mb-5">
+                باوەرنامەی ماستەر لە زانستی بیرکاری
+              </p>
+              <p className="text-base md:text-lg leading-relaxed text-foreground/90">
+                ئامانجی من پێشخستنی خوێندنە بە یارمەتی زیرەکی دەستکرد، تاوەکو خوێندکارانی
+                کورد بتوانن بە ئاسانی و خێرایی فێربن و دەرفەتی باشتر بەدەست بهێنن.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+
+
       {/* Footer */}
       <footer className="border-t border-border py-8 px-4">
         <div className="max-w-5xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-muted-foreground">
