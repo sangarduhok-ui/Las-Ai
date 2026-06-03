@@ -156,41 +156,30 @@ function Index() {
             <>
               <h2 className="text-3xl md:text-4xl font-extrabold text-center mb-3">ئامرازەکان</h2>
               <p className="text-center text-muted-foreground mb-10">یەکێک هەڵبژێرە بۆ دەستپێکردن</p>
-              <div className="grid md:grid-cols-2 gap-6">
-                <button
-                  onClick={() => setActiveTool("summary")}
-                  className="group text-right rounded-3xl p-8 bg-card border border-border hover:border-primary/60 transition"
-                  style={{ boxShadow: "var(--shadow-elegant)" }}
-                >
-                  <div
-                    className="w-14 h-14 rounded-2xl flex items-center justify-center mb-5 text-primary-foreground group-hover:scale-110 transition"
-                    style={{ background: "var(--gradient-primary)" }}
+              <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
+                {[
+                  { id: "summary" as const, icon: FileText, title: "پوختەکردن", desc: "PDF یان وێنە بکە بە پوختە." },
+                  { id: "chat" as const, icon: MessageCircle, title: "گفتوگۆ", desc: "پرسیار بکە لە AI بە کوردی." },
+                  { id: "humanize" as const, icon: Wand2, title: "Humanize Text", desc: "نوسینی AI بکە بە مرۆیی." },
+                  { id: "ocr" as const, icon: ScanLine, title: "دەستنووس بۆ دەق", desc: "وێنەی دەستنووس بخوێنەوە." },
+                ].map((t) => (
+                  <button
+                    key={t.id}
+                    onClick={() => setActiveTool(t.id)}
+                    id={t.id === "chat" ? "chat" : undefined}
+                    className="group text-right rounded-2xl p-5 bg-card border border-border hover:border-primary/60 transition"
+                    style={{ boxShadow: "var(--shadow-elegant)" }}
                   >
-                    <FileText className="w-7 h-7" />
-                  </div>
-                  <h3 className="text-xl font-extrabold mb-2">پوختەکردن</h3>
-                  <p className="text-muted-foreground text-sm leading-relaxed">
-                    فایلی PDF یان وێنە باربکە و پوختەیەکی ڕێکوپێک وەربگرە بە کوردی.
-                  </p>
-                </button>
-
-                <button
-                  onClick={() => setActiveTool("chat")}
-                  id="chat"
-                  className="group text-right rounded-3xl p-8 bg-card border border-border hover:border-primary/60 transition"
-                  style={{ boxShadow: "var(--shadow-elegant)" }}
-                >
-                  <div
-                    className="w-14 h-14 rounded-2xl flex items-center justify-center mb-5 text-primary-foreground group-hover:scale-110 transition"
-                    style={{ background: "var(--gradient-primary)" }}
-                  >
-                    <MessageCircle className="w-7 h-7" />
-                  </div>
-                  <h3 className="text-xl font-extrabold mb-2">گفتوگۆ لەگەڵ AI</h3>
-                  <p className="text-muted-foreground text-sm leading-relaxed">
-                    پرسیار بکە و لەگەڵ زیرەکی دەستکرد بە کوردی قسە بکە.
-                  </p>
-                </button>
+                    <div
+                      className="w-11 h-11 rounded-xl flex items-center justify-center mb-3 text-primary-foreground group-hover:scale-110 transition"
+                      style={{ background: "var(--gradient-primary)" }}
+                    >
+                      <t.icon className="w-5 h-5" />
+                    </div>
+                    <h3 className="text-base font-extrabold mb-1">{t.title}</h3>
+                    <p className="text-muted-foreground text-xs leading-relaxed">{t.desc}</p>
+                  </button>
+                ))}
               </div>
             </>
           )}
@@ -204,7 +193,10 @@ function Index() {
                 <X className="w-4 h-4" />
                 گەڕانەوە بۆ ئامرازەکان
               </button>
-              {activeTool === "summary" ? <Uploader /> : <ChatBox />}
+              {activeTool === "summary" && <Uploader />}
+              {activeTool === "chat" && <ChatBox />}
+              {activeTool === "humanize" && <Humanizer />}
+              {activeTool === "ocr" && <Handwriting />}
             </div>
           )}
         </div>
