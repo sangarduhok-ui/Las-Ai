@@ -1,7 +1,9 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { useState } from "react";
 import { Uploader } from "@/components/Uploader";
 import { ChatBox } from "@/components/ChatBox";
-import { BookOpen, Sparkles, Zap, Check, Crown, MessageCircle, FileText, Brain } from "lucide-react";
+import { BookOpen, Sparkles, Zap, Check, Crown, MessageCircle, FileText, Brain, Menu, X, GraduationCap } from "lucide-react";
+import sangarAsset from "@/assets/sangar.jpg.asset.json";
 
 const WHATSAPP_NUMBER = "9647501435868";
 const WHATSAPP_MESSAGE = encodeURIComponent(
