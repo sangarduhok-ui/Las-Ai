@@ -1,7 +1,9 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { useState } from "react";
 import { Uploader } from "@/components/Uploader";
 import { ChatBox } from "@/components/ChatBox";
-import { BookOpen, Sparkles, Zap, Check, Crown, MessageCircle, FileText, Brain } from "lucide-react";
+import { BookOpen, Sparkles, Zap, Check, Crown, MessageCircle, FileText, Brain, Menu, X, GraduationCap } from "lucide-react";
+import sangarAsset from "@/assets/sangar.jpg.asset.json";
 
 const WHATSAPP_NUMBER = "9647501435868";
 const WHATSAPP_MESSAGE = encodeURIComponent(
@@ -26,6 +28,16 @@ export const Route = createFileRoute("/")({
 });
 
 function Index() {
+  const [menuOpen, setMenuOpen] = useState(false);
+
+  const navLinks = [
+    { href: "#features", label: "تایبەتمەندیەکان" },
+    { href: "#upload", label: "پوختەکردن" },
+    { href: "#chat", label: "گفتوگۆ" },
+    { href: "#pricing", label: "نرخەکان" },
+    { href: "#about", label: "دەربارەی ئێمە" },
+  ];
+
   return (
     <div className="min-h-screen bg-background">
       {/* Nav */}
@@ -41,28 +53,66 @@ function Index() {
             <span className="font-extrabold text-lg">پوختەی AI</span>
           </div>
           <nav className="hidden md:flex items-center gap-7 text-sm font-medium text-muted-foreground">
-            <a href="#features" className="hover:text-foreground transition">تایبەتمەندیەکان</a>
-            <a href="#upload" className="hover:text-foreground transition">پوختەکردن</a>
-            <a href="#chat" className="hover:text-foreground transition">گفتوگۆ</a>
-            <a href="#pricing" className="hover:text-foreground transition">نرخەکان</a>
+            {navLinks.map((l) => (
+              <a key={l.href} href={l.href} className="hover:text-foreground transition">{l.label}</a>
+            ))}
           </nav>
           <button
-            onClick={(e) => {
-              e.preventDefault();
-              const dispatched = window.dispatchEvent(new CustomEvent("trigger-quiz"));
-              void dispatched;
-              // If no file uploaded yet, scroll user to upload section
-              setTimeout(() => {
-                const el = document.getElementById("upload");
-                el?.scrollIntoView({ behavior: "smooth", block: "start" });
-              }, 50);
-            }}
-            className="rounded-full bg-primary text-primary-foreground px-4 py-2 text-sm font-semibold hover:opacity-90"
+            onClick={() => setMenuOpen(true)}
+            aria-label="کردنەوەی مینیو"
+            className="inline-flex items-center gap-2 rounded-full bg-primary text-primary-foreground px-4 py-2 text-sm font-semibold hover:opacity-90"
           >
-            تاقیکردنی خۆڕایی
+            <Menu className="w-4 h-4" />
+            مینیو
           </button>
         </div>
       </header>
+
+      {/* Slide-out menu */}
+      <div
+        className={`fixed inset-0 z-50 transition ${menuOpen ? "pointer-events-auto" : "pointer-events-none"}`}
+        aria-hidden={!menuOpen}
+      >
+        <div
+          onClick={() => setMenuOpen(false)}
+          className={`absolute inset-0 bg-black/50 transition-opacity ${menuOpen ? "opacity-100" : "opacity-0"}`}
+        />
+        <aside
+          className={`absolute top-0 right-0 h-full w-[85%] max-w-sm bg-card border-l border-border shadow-2xl p-6 flex flex-col transition-transform duration-300 ${menuOpen ? "translate-x-0" : "translate-x-full"}`}
+        >
+          <div className="flex items-center justify-between mb-8">
+            <div className="flex items-center gap-2">
+              <div className="w-9 h-9 rounded-xl flex items-center justify-center" style={{ background: "var(--gradient-primary)" }}>
+                <Brain className="w-5 h-5 text-primary-foreground" />
+              </div>
+              <span className="font-extrabold text-lg">پوختەی AI</span>
+            </div>
+            <button
+              onClick={() => setMenuOpen(false)}
+              aria-label="داخستن"
+              className="w-10 h-10 rounded-full hover:bg-secondary flex items-center justify-center"
+            >
+              <X className="w-5 h-5" />
+            </button>
+          </div>
+          <nav className="flex flex-col gap-2">
+            {navLinks.map((l) => (
+              <a
+                key={l.href}
+                href={l.href}
+                onClick={() => setMenuOpen(false)}
+                className="rounded-xl px-4 py-3 text-base font-semibold hover:bg-secondary transition text-right"
+              >
+                {l.label}
+              </a>
+            ))}
+          </nav>
+          <div className="mt-auto pt-6 text-xs text-muted-foreground text-center">
+            © {new Date().getFullYear()} پوختەی AI
+          </div>
+        </aside>
+      </div>
+
 
       {/* Hero */}
       <section className="relative overflow-hidden">
@@ -220,6 +270,51 @@ function Index() {
           </div>
         </div>
       </section>
+
+      {/* About */}
+      <section id="about" className="px-4 md:px-6 py-20 bg-secondary/40 border-t border-border">
+        <div className="max-w-5xl mx-auto">
+          <h2 className="text-3xl md:text-4xl font-extrabold text-center mb-3">دەربارەی ئێمە</h2>
+          <p className="text-center text-muted-foreground mb-12">ئەو کەسەی لە پشتی ئەم پڕۆژەیەوەیە</p>
+
+          <div className="grid md:grid-cols-2 gap-10 items-center max-w-4xl mx-auto">
+            <div className="relative flex justify-center md:justify-end">
+              <div
+                className="absolute -inset-4 rounded-3xl opacity-40 blur-2xl"
+                style={{ background: "var(--gradient-primary)" }}
+              />
+              <div
+                className="relative rounded-3xl overflow-hidden border-4 border-card w-64 h-80 md:w-72 md:h-96"
+                style={{ boxShadow: "var(--shadow-glow)" }}
+              >
+                <img
+                  src={sangarAsset.url}
+                  alt="سەنگەر محمد حسن"
+                  className="w-full h-full object-cover"
+                  loading="lazy"
+                />
+              </div>
+            </div>
+
+            <div className="text-right">
+              <div className="inline-flex items-center gap-2 rounded-full bg-accent/60 px-3 py-1 text-xs font-semibold text-accent-foreground mb-4">
+                <GraduationCap className="w-3.5 h-3.5" />
+                <span>دامەزرێنەر</span>
+              </div>
+              <h3 className="text-2xl md:text-3xl font-extrabold mb-2">سەنگەر محمد حسن</h3>
+              <p className="text-muted-foreground font-semibold mb-5">
+                باوەرنامەی ماستەر لە زانستی بیرکاری
+              </p>
+              <p className="text-base md:text-lg leading-relaxed text-foreground/90">
+                ئامانجی من پێشخستنی خوێندنە بە یارمەتی زیرەکی دەستکرد، تاوەکو خوێندکارانی
+                کورد بتوانن بە ئاسانی و خێرایی فێربن و دەرفەتی باشتر بەدەست بهێنن.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+
 
       {/* Footer */}
       <footer className="border-t border-border py-8 px-4">
