@@ -148,15 +148,67 @@ function Index() {
         </div>
       </section>
 
-      {/* Upload */}
+      {/* Tools picker */}
       <section id="upload" className="px-4 md:px-6 pb-20">
-        <Uploader />
+        <div className="max-w-5xl mx-auto">
+          {!activeTool && (
+            <>
+              <h2 className="text-3xl md:text-4xl font-extrabold text-center mb-3">ئامرازەکان</h2>
+              <p className="text-center text-muted-foreground mb-10">یەکێک هەڵبژێرە بۆ دەستپێکردن</p>
+              <div className="grid md:grid-cols-2 gap-6">
+                <button
+                  onClick={() => setActiveTool("summary")}
+                  className="group text-right rounded-3xl p-8 bg-card border border-border hover:border-primary/60 transition"
+                  style={{ boxShadow: "var(--shadow-elegant)" }}
+                >
+                  <div
+                    className="w-14 h-14 rounded-2xl flex items-center justify-center mb-5 text-primary-foreground group-hover:scale-110 transition"
+                    style={{ background: "var(--gradient-primary)" }}
+                  >
+                    <FileText className="w-7 h-7" />
+                  </div>
+                  <h3 className="text-xl font-extrabold mb-2">پوختەکردن</h3>
+                  <p className="text-muted-foreground text-sm leading-relaxed">
+                    فایلی PDF یان وێنە باربکە و پوختەیەکی ڕێکوپێک وەربگرە بە کوردی.
+                  </p>
+                </button>
+
+                <button
+                  onClick={() => setActiveTool("chat")}
+                  id="chat"
+                  className="group text-right rounded-3xl p-8 bg-card border border-border hover:border-primary/60 transition"
+                  style={{ boxShadow: "var(--shadow-elegant)" }}
+                >
+                  <div
+                    className="w-14 h-14 rounded-2xl flex items-center justify-center mb-5 text-primary-foreground group-hover:scale-110 transition"
+                    style={{ background: "var(--gradient-primary)" }}
+                  >
+                    <MessageCircle className="w-7 h-7" />
+                  </div>
+                  <h3 className="text-xl font-extrabold mb-2">گفتوگۆ لەگەڵ AI</h3>
+                  <p className="text-muted-foreground text-sm leading-relaxed">
+                    پرسیار بکە و لەگەڵ زیرەکی دەستکرد بە کوردی قسە بکە.
+                  </p>
+                </button>
+              </div>
+            </>
+          )}
+
+          {activeTool && (
+            <div>
+              <button
+                onClick={() => setActiveTool(null)}
+                className="mb-6 inline-flex items-center gap-2 rounded-full bg-secondary px-4 py-2 text-sm font-semibold hover:bg-secondary/80 transition"
+              >
+                <X className="w-4 h-4" />
+                گەڕانەوە بۆ ئامرازەکان
+              </button>
+              {activeTool === "summary" ? <Uploader /> : <ChatBox />}
+            </div>
+          )}
+        </div>
       </section>
 
-      {/* Chat */}
-      <section id="chat" className="px-4 md:px-6 py-20 bg-secondary/40 border-y border-border">
-        <ChatBox />
-      </section>
 
       {/* Features */}
       <section id="features" className="px-4 md:px-6 py-20 bg-secondary/40 border-y border-border">
