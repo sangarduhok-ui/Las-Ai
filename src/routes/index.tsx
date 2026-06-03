@@ -29,6 +29,7 @@ export const Route = createFileRoute("/")({
 
 function Index() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [activeTool, setActiveTool] = useState<null | "summary" | "chat">(null);
 
   const navLinks = [
     { href: "#features", label: "تایبەتمەندیەکان" },
