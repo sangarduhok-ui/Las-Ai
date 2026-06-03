@@ -63,10 +63,9 @@ function Index() {
           <button
             onClick={() => setMenuOpen(true)}
             aria-label="کردنەوەی مینیو"
-            className="inline-flex items-center gap-2 rounded-full bg-primary text-primary-foreground px-4 py-2 text-sm font-semibold hover:opacity-90"
+            className="inline-flex items-center justify-center w-10 h-10 rounded-full bg-primary text-primary-foreground hover:opacity-90"
           >
-            <Menu className="w-4 h-4" />
-            مینیو
+            <Menu className="w-5 h-5" />
           </button>
         </div>
       </header>
