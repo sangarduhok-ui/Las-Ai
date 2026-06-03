@@ -83,23 +83,9 @@ export interface FileRoutesById {
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths:
-    | '/'
-    | '/sitemap.xml'
-    | '/api/chat'
-    | '/api/humanize'
-    | '/api/ocr'
-    | '/api/quiz'
-    | '/api/summarize'
+  fullPaths: '/' | '/sitemap.xml' | '/api/chat' | '/api/humanize' | '/api/ocr' | '/api/quiz' | '/api/summarize'
   fileRoutesByTo: FileRoutesByTo
-  to:
-    | '/'
-    | '/sitemap.xml'
-    | '/api/chat'
-    | '/api/humanize'
-    | '/api/ocr'
-    | '/api/quiz'
-    | '/api/summarize'
+  to: '/' | '/sitemap.xml' | '/api/chat' | '/api/humanize' | '/api/ocr' | '/api/quiz' | '/api/summarize'
   id:
     | '__root__'
     | '/'
