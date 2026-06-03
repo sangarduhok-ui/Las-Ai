@@ -53,28 +53,66 @@ function Index() {
             <span className="font-extrabold text-lg">پوختەی AI</span>
           </div>
           <nav className="hidden md:flex items-center gap-7 text-sm font-medium text-muted-foreground">
-            <a href="#features" className="hover:text-foreground transition">تایبەتمەندیەکان</a>
-            <a href="#upload" className="hover:text-foreground transition">پوختەکردن</a>
-            <a href="#chat" className="hover:text-foreground transition">گفتوگۆ</a>
-            <a href="#pricing" className="hover:text-foreground transition">نرخەکان</a>
+            {navLinks.map((l) => (
+              <a key={l.href} href={l.href} className="hover:text-foreground transition">{l.label}</a>
+            ))}
           </nav>
           <button
-            onClick={(e) => {
-              e.preventDefault();
-              const dispatched = window.dispatchEvent(new CustomEvent("trigger-quiz"));
-              void dispatched;
-              // If no file uploaded yet, scroll user to upload section
-              setTimeout(() => {
-                const el = document.getElementById("upload");
-                el?.scrollIntoView({ behavior: "smooth", block: "start" });
-              }, 50);
-            }}
-            className="rounded-full bg-primary text-primary-foreground px-4 py-2 text-sm font-semibold hover:opacity-90"
+            onClick={() => setMenuOpen(true)}
+            aria-label="کردنەوەی مینیو"
+            className="inline-flex items-center gap-2 rounded-full bg-primary text-primary-foreground px-4 py-2 text-sm font-semibold hover:opacity-90"
           >
-            تاقیکردنی خۆڕایی
+            <Menu className="w-4 h-4" />
+            مینیو
           </button>
         </div>
       </header>
+
+      {/* Slide-out menu */}
+      <div
+        className={`fixed inset-0 z-50 transition ${menuOpen ? "pointer-events-auto" : "pointer-events-none"}`}
+        aria-hidden={!menuOpen}
+      >
+        <div
+          onClick={() => setMenuOpen(false)}
+          className={`absolute inset-0 bg-black/50 transition-opacity ${menuOpen ? "opacity-100" : "opacity-0"}`}
+        />
+        <aside
+          className={`absolute top-0 right-0 h-full w-[85%] max-w-sm bg-card border-l border-border shadow-2xl p-6 flex flex-col transition-transform duration-300 ${menuOpen ? "translate-x-0" : "translate-x-full"}`}
+        >
+          <div className="flex items-center justify-between mb-8">
+            <div className="flex items-center gap-2">
+              <div className="w-9 h-9 rounded-xl flex items-center justify-center" style={{ background: "var(--gradient-primary)" }}>
+                <Brain className="w-5 h-5 text-primary-foreground" />
+              </div>
+              <span className="font-extrabold text-lg">پوختەی AI</span>
+            </div>
+            <button
+              onClick={() => setMenuOpen(false)}
+              aria-label="داخستن"
+              className="w-10 h-10 rounded-full hover:bg-secondary flex items-center justify-center"
+            >
+              <X className="w-5 h-5" />
+            </button>
+          </div>
+          <nav className="flex flex-col gap-2">
+            {navLinks.map((l) => (
+              <a
+                key={l.href}
+                href={l.href}
+                onClick={() => setMenuOpen(false)}
+                className="rounded-xl px-4 py-3 text-base font-semibold hover:bg-secondary transition text-right"
+              >
+                {l.label}
+              </a>
+            ))}
+          </nav>
+          <div className="mt-auto pt-6 text-xs text-muted-foreground text-center">
+            © {new Date().getFullYear()} پوختەی AI
+          </div>
+        </aside>
+      </div>
+
 
       {/* Hero */}
       <section className="relative overflow-hidden">
