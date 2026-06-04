@@ -352,7 +352,7 @@ function Index() {
                 style={{ background: "var(--gradient-primary)" }}
               />
               <div
-                className="relative rounded-3xl overflow-hidden border-4 border-card w-64 h-80 md:w-72 md:h-96"
+                className="relative rounded-3xl overflow-hidden border-4 border-card w-44 h-56 md:w-52 md:h-64"
                 style={{ boxShadow: "var(--shadow-glow)" }}
               >
                 <img
