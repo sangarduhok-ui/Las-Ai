@@ -4,8 +4,10 @@ import { Uploader } from "@/components/Uploader";
 import { ChatBox } from "@/components/ChatBox";
 import { Humanizer } from "@/components/Humanizer";
 import { Handwriting } from "@/components/Handwriting";
-import { BookOpen, Sparkles, Zap, Check, Crown, MessageCircle, FileText, Brain, Menu, X, GraduationCap, Wand2, ScanLine } from "lucide-react";
+import { BookOpen, Sparkles, Zap, Check, Crown, MessageCircle, FileText, Brain, Menu, X, GraduationCap, Wand2, ScanLine, CalendarCheck, ListOrdered, Sigma, Volume2, ClipboardCheck, BookA, Hourglass } from "lucide-react";
 import sangarAsset from "@/assets/sangar.jpg.asset.json";
+
+type ToolId = "summary" | "chat" | "humanize" | "ocr" | "planner" | "solver" | "math2word" | "tts" | "grader" | "glossary";
 
 const WHATSAPP_NUMBER = "9647501435868";
 const WHATSAPP_MESSAGE = encodeURIComponent(
