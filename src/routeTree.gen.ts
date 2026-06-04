@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as ApiToolRouteImport } from './routes/api/tool'
 import { Route as ApiSummarizeRouteImport } from './routes/api/summarize'
 import { Route as ApiQuizRouteImport } from './routes/api/quiz'
 import { Route as ApiOcrRouteImport } from './routes/api/ocr'
@@ -25,6 +26,11 @@ const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiToolRoute = ApiToolRouteImport.update({
+  id: '/api/tool',
+  path: '/api/tool',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ApiSummarizeRoute = ApiSummarizeRouteImport.update({
@@ -61,6 +67,7 @@ export interface FileRoutesByFullPath {
   '/api/ocr': typeof ApiOcrRoute
   '/api/quiz': typeof ApiQuizRoute
   '/api/summarize': typeof ApiSummarizeRoute
+  '/api/tool': typeof ApiToolRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -70,6 +77,7 @@ export interface FileRoutesByTo {
   '/api/ocr': typeof ApiOcrRoute
   '/api/quiz': typeof ApiQuizRoute
   '/api/summarize': typeof ApiSummarizeRoute
+  '/api/tool': typeof ApiToolRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -80,6 +88,7 @@ export interface FileRoutesById {
   '/api/ocr': typeof ApiOcrRoute
   '/api/quiz': typeof ApiQuizRoute
   '/api/summarize': typeof ApiSummarizeRoute
+  '/api/tool': typeof ApiToolRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -91,6 +100,7 @@ export interface FileRouteTypes {
     | '/api/ocr'
     | '/api/quiz'
     | '/api/summarize'
+    | '/api/tool'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -100,6 +110,7 @@ export interface FileRouteTypes {
     | '/api/ocr'
     | '/api/quiz'
     | '/api/summarize'
+    | '/api/tool'
   id:
     | '__root__'
     | '/'
@@ -109,6 +120,7 @@ export interface FileRouteTypes {
     | '/api/ocr'
     | '/api/quiz'
     | '/api/summarize'
+    | '/api/tool'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -119,6 +131,7 @@ export interface RootRouteChildren {
   ApiOcrRoute: typeof ApiOcrRoute
   ApiQuizRoute: typeof ApiQuizRoute
   ApiSummarizeRoute: typeof ApiSummarizeRoute
+  ApiToolRoute: typeof ApiToolRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -135,6 +148,13 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/tool': {
+      id: '/api/tool'
+      path: '/api/tool'
+      fullPath: '/api/tool'
+      preLoaderRoute: typeof ApiToolRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/api/summarize': {
@@ -183,7 +203,18 @@ const rootRouteChildren: RootRouteChildren = {
   ApiOcrRoute: ApiOcrRoute,
   ApiQuizRoute: ApiQuizRoute,
   ApiSummarizeRoute: ApiSummarizeRoute,
+  ApiToolRoute: ApiToolRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
+
+import type { getRouter } from './router.tsx'
+import type { startInstance } from './start.ts'
+declare module '@tanstack/react-start' {
+  interface Register {
+    ssr: true
+    router: Awaited<ReturnType<typeof getRouter>>
+    config: Awaited<ReturnType<typeof startInstance.getOptions>>
+  }
+}
