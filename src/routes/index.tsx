@@ -158,27 +158,38 @@ function Index() {
             <>
               <h2 className="text-3xl md:text-4xl font-extrabold text-center mb-3">ئامرازەکان</h2>
               <p className="text-center text-muted-foreground mb-10">یەکێک هەڵبژێرە بۆ دەستپێکردن</p>
-              <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
+              <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
                 {[
-                  { id: "summary" as const, icon: FileText, title: "پوختەکردن", desc: "PDF یان وێنە بکە بە پوختە." },
-                  { id: "chat" as const, icon: MessageCircle, title: "گفتوگۆ", desc: "پرسیار بکە لە AI بە کوردی." },
-                  { id: "humanize" as const, icon: Wand2, title: "Humanize Text", desc: "نوسینی AI بکە بە مرۆیی." },
-                  { id: "ocr" as const, icon: ScanLine, title: "دەستنووس بۆ دەق", desc: "وێنەی دەستنووس بخوێنەوە." },
+                  { id: "summary" as ToolId, icon: FileText, title: "پوختەکردن", desc: "PDF یان وێنە بکە بە پوختە.", soon: false },
+                  { id: "chat" as ToolId, icon: MessageCircle, title: "گفتوگۆ", desc: "پرسیار بکە لە AI بە کوردی.", soon: false },
+                  { id: "humanize" as ToolId, icon: Wand2, title: "Humanize Text", desc: "نوسینی AI بکە بە مرۆیی.", soon: false },
+                  { id: "ocr" as ToolId, icon: ScanLine, title: "دەستنووس بۆ دەق", desc: "وێنەی دەستنووس بخوێنەوە.", soon: false },
+                  { id: "planner" as ToolId, icon: CalendarCheck, title: "AI Study Planner", desc: "پلانی خوێندنی ڕۆژانە بۆ تۆ.", soon: true },
+                  { id: "solver" as ToolId, icon: ListOrdered, title: "Step by Step Solver", desc: "چارەسەری مەسەلەکان هەنگاو بە هەنگاو.", soon: true },
+                  { id: "math2word" as ToolId, icon: Sigma, title: "Math → Word Equation", desc: "هاوکێشە بۆ Microsoft Word.", soon: true },
+                  { id: "tts" as ToolId, icon: Volume2, title: "TTS Audio Summary", desc: "پوختەی دەنگی گوێ لێ بگرە.", soon: true },
+                  { id: "grader" as ToolId, icon: ClipboardCheck, title: "Essay Report Grader", desc: "ڕاپۆرتی وانە بپێوە و نمرە بدە.", soon: true },
+                  { id: "glossary" as ToolId, icon: BookA, title: "Academic Glossary", desc: "فەرهەنگی زاراوەی زانستی.", soon: true },
                 ].map((t) => (
                   <button
                     key={t.id}
                     onClick={() => setActiveTool(t.id)}
                     id={t.id === "chat" ? "chat" : undefined}
-                    className="group text-right rounded-2xl p-5 bg-card border border-border hover:border-primary/60 transition"
+                    className="group relative text-right rounded-2xl p-4 bg-card border border-border hover:border-primary/60 transition"
                     style={{ boxShadow: "var(--shadow-elegant)" }}
                   >
+                    {t.soon && (
+                      <span className="absolute top-2 left-2 inline-flex items-center gap-1 rounded-full bg-accent/70 text-accent-foreground px-2 py-0.5 text-[10px] font-bold">
+                        <Hourglass className="w-3 h-3" /> بەم زووانە
+                      </span>
+                    )}
                     <div
-                      className="w-11 h-11 rounded-xl flex items-center justify-center mb-3 text-primary-foreground group-hover:scale-110 transition"
+                      className="w-10 h-10 rounded-xl flex items-center justify-center mb-3 text-primary-foreground group-hover:scale-110 transition"
                       style={{ background: "var(--gradient-primary)" }}
                     >
                       <t.icon className="w-5 h-5" />
                     </div>
-                    <h3 className="text-base font-extrabold mb-1">{t.title}</h3>
+                    <h3 className="text-sm font-extrabold mb-1">{t.title}</h3>
                     <p className="text-muted-foreground text-xs leading-relaxed">{t.desc}</p>
                   </button>
                 ))}
@@ -199,6 +210,15 @@ function Index() {
               {activeTool === "chat" && <ChatBox />}
               {activeTool === "humanize" && <Humanizer />}
               {activeTool === "ocr" && <Handwriting />}
+              {["planner","solver","math2word","tts","grader","glossary"].includes(activeTool) && (
+                <div className="rounded-3xl border border-border bg-card p-10 text-center" style={{ boxShadow: "var(--shadow-elegant)" }}>
+                  <div className="w-16 h-16 mx-auto rounded-2xl flex items-center justify-center mb-5 text-primary-foreground" style={{ background: "var(--gradient-primary)" }}>
+                    <Hourglass className="w-8 h-8" />
+                  </div>
+                  <h3 className="text-2xl font-extrabold mb-2">بەم زووانە دێت</h3>
+                  <p className="text-muted-foreground">ئەم ئامرازە لە ژێر کارکردندایە و بەم زووانە بەردەست دەبێت.</p>
+                </div>
+              )}
             </div>
           )}
         </div>
