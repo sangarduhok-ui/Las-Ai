@@ -402,10 +402,45 @@ function Index() {
               <p className="text-muted-foreground font-semibold mb-5">
                 باوەرنامەی ماستەر لە زانستی بیرکاری
               </p>
-              <p className="text-base md:text-lg leading-relaxed text-foreground/90">
+              <p className="text-base md:text-lg leading-relaxed text-foreground/90 mb-5">
                 ئامانجی من پێشخستنی خوێندنە بە یارمەتی زیرەکی دەستکرد، تاوەکو خوێندکارانی
                 کورد بتوانن بە ئاسانی و خێرایی فێربن و دەرفەتی باشتر بەدەست بهێنن.
               </p>
+              <a
+                href="mailto:sangarduhok@gmail.com"
+                className="inline-flex items-center gap-2 text-sm font-semibold text-primary hover:underline mb-4"
+                dir="ltr"
+              >
+                <Mail className="w-4 h-4" />
+                sangarduhok@gmail.com
+              </a>
+              <div className="flex items-center gap-3 justify-end">
+                <a
+                  href="https://www.instagram.com/sangar__98?igsh=NHgxbzY2bGQ5M2I0&utm_source=qr"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Instagram"
+                  className="w-10 h-10 rounded-full bg-card border border-border flex items-center justify-center hover:bg-primary hover:text-primary-foreground hover:border-primary transition"
+                >
+                  <Instagram className="w-5 h-5" />
+                </a>
+                <a
+                  href="https://www.facebook.com/share/1DrTW5Z1ik/?mibextid=wwXIfr"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Facebook"
+                  className="w-10 h-10 rounded-full bg-card border border-border flex items-center justify-center hover:bg-primary hover:text-primary-foreground hover:border-primary transition"
+                >
+                  <Facebook className="w-5 h-5" />
+                </a>
+                <a
+                  href="mailto:sangarduhok@gmail.com"
+                  aria-label="Email"
+                  className="w-10 h-10 rounded-full bg-card border border-border flex items-center justify-center hover:bg-primary hover:text-primary-foreground hover:border-primary transition"
+                >
+                  <Mail className="w-5 h-5" />
+                </a>
+              </div>
             </div>
           </div>
         </div>
