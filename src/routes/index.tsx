@@ -208,14 +208,45 @@ function Index() {
               {activeTool === "chat" && <ChatBox />}
               {activeTool === "humanize" && <Humanizer />}
               {activeTool === "ocr" && <Handwriting />}
-              {["planner","solver","math2word","tts","grader","glossary"].includes(activeTool) && (
-                <div className="rounded-3xl border border-border bg-card p-10 text-center" style={{ boxShadow: "var(--shadow-elegant)" }}>
-                  <div className="w-16 h-16 mx-auto rounded-2xl flex items-center justify-center mb-5 text-primary-foreground" style={{ background: "var(--gradient-primary)" }}>
-                    <Hourglass className="w-8 h-8" />
-                  </div>
-                  <h3 className="text-2xl font-extrabold mb-2">بەم زووانە دێت</h3>
-                  <p className="text-muted-foreground">ئەم ئامرازە لە ژێر کارکردندایە و بەم زووانە بەردەست دەبێت.</p>
-                </div>
+              {activeTool === "planner" && (
+                <AiTool tool="planner" title="پلانی خوێندنی AI" description="بابەت و ماوەی خوێندن بنووسە، پلانێکی ڕۆژانە وەردەگریت."
+                  placeholder="نمونە: ٧ ڕۆژ بۆ تاقیکردنەوەی کیمیا، ٣ کاتژمێر لە ڕۆژێکدا"
+                  buttonLabel="پلانم بۆ دروست بکە" />
+              )}
+              {activeTool === "solver" && (
+                <AiTool tool="solver" title="چارەسەری هەنگاو بە هەنگاو" description="هەر مەسەلەیەکی بیرکاری یان زانستی بنووسە."
+                  placeholder="نمونە: ٢x² + ٥x − ٣ = ٠ چارەسەر بکە"
+                  buttonLabel="چارەسەر بکە" />
+              )}
+              {activeTool === "math2word" && (
+                <AiTool tool="math2word" title="هاوکێشە بۆ Microsoft Word" description="هاوکێشە بنووسە بە دەست یان وەسف، فۆڕماتی Word وەردەگریت."
+                  placeholder="نمونە: integral of x squared from 0 to 1"
+                  buttonLabel="بیگۆڕە" />
+              )}
+              {activeTool === "tts" && (
+                <AiTool tool="tts" title="پوختەی دەنگی" description="دەقێک بنووسە، پوختەی کورت دەدرێتەوە و دەتوانیت گوێ لێ بگریت."
+                  placeholder="دەقی درێژەکەت لێرە بنووسە..."
+                  buttonLabel="پوختە و گوێ گرتن" withTTS />
+              )}
+              {activeTool === "grader" && (
+                <AiTool tool="grader" title="نمرەدانی ڕاپۆرت/وتار" description="ڕاپۆرت یان وتارەکەت بنووسە، نمرە و ڕاسپاردە وەردەگریت."
+                  placeholder="دەقی ڕاپۆرتەکەت لێرە دابنێ..."
+                  buttonLabel="نمرە بدە" />
+              )}
+              {activeTool === "glossary" && (
+                <AiTool tool="glossary" title="فەرهەنگی زاراوەی ئەکادیمی" description="بابەتێک یان زاراوەیەک بنووسە، لیستی زاراوە پەیوەندیدارەکان وەردەگریت."
+                  placeholder="نمونە: Calculus، Quantum Physics، Linear Algebra"
+                  buttonLabel="زاراوەکان پیشان بدە" />
+              )}
+              {activeTool === "testai" && (
+                <AiTool tool="testai" title="پشکنینی نوسینی AI" description="دەقێک دابنێ، ڕێژەی نوسینی AI پێشبینی دەکرێت."
+                  placeholder="دەقی ڤەکۆلینەوەکەت لێرە دابنێ..."
+                  buttonLabel="پشکنین بکە" />
+              )}
+              {activeTool === "testplagiarism" && (
+                <AiTool tool="testplagiarism" title="پشکنینی پلاجیاریزم" description="دەقێک دابنێ، ڕێژەی پلاجیاریزمی گومانلێکراو پێشبینی دەکرێت."
+                  placeholder="دەقی ڤەکۆلینەوەکەت لێرە دابنێ..."
+                  buttonLabel="پشکنین بکە" />
               )}
             </div>
           )}
