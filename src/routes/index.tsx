@@ -5,6 +5,7 @@ import { ChatBox } from "@/components/ChatBox";
 import { Humanizer } from "@/components/Humanizer";
 import { Handwriting } from "@/components/Handwriting";
 import { AiTool } from "@/components/AiTool";
+import { Math2Word } from "@/components/Math2Word";
 import { BookOpen, Sparkles, Zap, Check, Crown, MessageCircle, FileText, Brain, Menu, X, GraduationCap, Wand2, ScanLine, CalendarCheck, ListOrdered, Sigma, Volume2, ClipboardCheck, BookA, ShieldCheck, FileSearch, Mail, Instagram, Facebook } from "lucide-react";
 import sangarAsset from "@/assets/sangar.jpg.asset.json";
 
@@ -214,39 +215,40 @@ function Index() {
                   buttonLabel="پلانم بۆ دروست بکە" />
               )}
               {activeTool === "solver" && (
-                <AiTool tool="solver" title="چارەسەری هەنگاو بە هەنگاو" description="هەر مەسەلەیەکی بیرکاری یان زانستی بنووسە."
+                <AiTool tool="solver" title="چارەسەری هەنگاو بە هەنگاو" description="مەسەلە بنووسە یان وێنەی پرسیار دابنێ."
                   placeholder="نمونە: ٢x² + ٥x − ٣ = ٠ چارەسەر بکە"
-                  buttonLabel="چارەسەر بکە" />
+                  buttonLabel="چارەسەر بکە" withFile fileAccept="image/*,application/pdf" />
               )}
-              {activeTool === "math2word" && (
-                <AiTool tool="math2word" title="هاوکێشە بۆ Microsoft Word" description="هاوکێشە بنووسە بە دەست یان وەسف، فۆڕماتی Word وەردەگریت."
-                  placeholder="نمونە: integral of x squared from 0 to 1"
-                  buttonLabel="بیگۆڕە" />
-              )}
+              {activeTool === "math2word" && <Math2Word />}
               {activeTool === "tts" && (
-                <AiTool tool="tts" title="پوختەی دەنگی" description="دەقێک بنووسە، پوختەی کورت دەدرێتەوە و دەتوانیت گوێ لێ بگریت."
+                <AiTool tool="tts" title="پوختەی دەنگی" description="دەق بنووسە یان فایل دابنێ، پوختە و گوێ گرتن."
                   placeholder="دەقی درێژەکەت لێرە بنووسە..."
-                  buttonLabel="پوختە و گوێ گرتن" withTTS />
+                  buttonLabel="پوختە و گوێ گرتن" withTTS withFile
+                  fileAccept="image/*,application/pdf,.docx,.pptx,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/vnd.openxmlformats-officedocument.presentationml.presentation" />
               )}
               {activeTool === "grader" && (
-                <AiTool tool="grader" title="نمرەدانی ڕاپۆرت/وتار" description="ڕاپۆرت یان وتارەکەت بنووسە، نمرە و ڕاسپاردە وەردەگریت."
+                <AiTool tool="grader" title="نمرەدانی ڕاپۆرت/وتار" description="ڕاپۆرت بنووسە یان فایل دابنێ، نمرە و ڕاسپاردە وەردەگریت."
                   placeholder="دەقی ڕاپۆرتەکەت لێرە دابنێ..."
-                  buttonLabel="نمرە بدە" />
+                  buttonLabel="نمرە بدە" withFile
+                  fileAccept="image/*,application/pdf,.docx,.pptx,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/vnd.openxmlformats-officedocument.presentationml.presentation" />
               )}
               {activeTool === "glossary" && (
-                <AiTool tool="glossary" title="فەرهەنگی زاراوەی ئەکادیمی" description="بابەتێک یان زاراوەیەک بنووسە، لیستی زاراوە پەیوەندیدارەکان وەردەگریت."
+                <AiTool tool="glossary" title="فەرهەنگی زاراوەی ئەکادیمی" description="بابەت بنووسە یان فایل دابنێ، لیستی زاراوەکان وەردەگریت."
                   placeholder="نمونە: Calculus، Quantum Physics، Linear Algebra"
-                  buttonLabel="زاراوەکان پیشان بدە" />
+                  buttonLabel="زاراوەکان پیشان بدە" withFile
+                  fileAccept="image/*,application/pdf,.docx,.pptx,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/vnd.openxmlformats-officedocument.presentationml.presentation" />
               )}
               {activeTool === "testai" && (
-                <AiTool tool="testai" title="پشکنینی نوسینی AI" description="دەقێک دابنێ، ڕێژەی نوسینی AI پێشبینی دەکرێت."
+                <AiTool tool="testai" title="پشکنینی نوسینی AI" description="دەق بنووسە یان فایل دابنێ، ڕێژەی AI پێشبینی دەکرێت."
                   placeholder="دەقی ڤەکۆلینەوەکەت لێرە دابنێ..."
-                  buttonLabel="پشکنین بکە" />
+                  buttonLabel="پشکنین بکە" withFile showPercentage
+                  fileAccept="image/*,application/pdf,.docx,.pptx,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/vnd.openxmlformats-officedocument.presentationml.presentation" />
               )}
               {activeTool === "testplagiarism" && (
-                <AiTool tool="testplagiarism" title="پشکنینی پلاجیاریزم" description="دەقێک دابنێ، ڕێژەی پلاجیاریزمی گومانلێکراو پێشبینی دەکرێت."
+                <AiTool tool="testplagiarism" title="پشکنینی پلاجیاریزم" description="دەق بنووسە یان فایل دابنێ، ڕێژەی پلاجیاریزم پێشبینی دەکرێت."
                   placeholder="دەقی ڤەکۆلینەوەکەت لێرە دابنێ..."
-                  buttonLabel="پشکنین بکە" />
+                  buttonLabel="پشکنین بکە" withFile showPercentage
+                  fileAccept="image/*,application/pdf,.docx,.pptx,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/vnd.openxmlformats-officedocument.presentationml.presentation" />
               )}
             </div>
           )}
