@@ -5,6 +5,7 @@ import { ChatBox } from "@/components/ChatBox";
 import { Humanizer } from "@/components/Humanizer";
 import { Handwriting } from "@/components/Handwriting";
 import { AiTool } from "@/components/AiTool";
+import { Math2Word } from "@/components/Math2Word";
 import { BookOpen, Sparkles, Zap, Check, Crown, MessageCircle, FileText, Brain, Menu, X, GraduationCap, Wand2, ScanLine, CalendarCheck, ListOrdered, Sigma, Volume2, ClipboardCheck, BookA, ShieldCheck, FileSearch, Mail, Instagram, Facebook } from "lucide-react";
 import sangarAsset from "@/assets/sangar.jpg.asset.json";
 
