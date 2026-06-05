@@ -43,6 +43,7 @@ export function Math2Word() {
   };
 
   const downloadDocx = async () => {
+    const { Document, Packer, Paragraph, TextRun } = await import("docx");
     const lines = output.split(/\r?\n/).filter((l) => l.trim().length > 0);
     const doc = new Document({
       sections: [
