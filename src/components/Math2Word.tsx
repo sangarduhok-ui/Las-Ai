@@ -1,6 +1,5 @@
 import { useState, useRef } from "react";
 import { Sparkles, Loader2, Upload, X, Download } from "lucide-react";
-import { Document, Packer, Paragraph, TextRun } from "docx";
 
 export function Math2Word() {
   const [input, setInput] = useState("");
