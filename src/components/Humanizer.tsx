@@ -20,10 +20,10 @@ export function Humanizer() {
         body: JSON.stringify({ text: input }),
       });
       const data = await r.json();
-      if (!r.ok) throw new Error(data.error || "هەڵە");
+      if (!r.ok) throw new Error(data.error || "چەوتی");
       setOutput(data.output || "");
     } catch (e) {
-      setError(e instanceof Error ? e.message : "هەڵە");
+      setError(e instanceof Error ? e.message : "چەوتی");
     } finally {
       setLoading(false);
     }
@@ -39,7 +39,7 @@ export function Humanizer() {
     <div className="rounded-2xl bg-card border border-border p-6 md:p-8" style={{ boxShadow: "var(--shadow-elegant)" }}>
       <div className="mb-4 text-right">
         <h3 className="text-xl font-extrabold mb-1">AI Text → Humanize Text</h3>
-        <p className="text-sm text-muted-foreground">دەقی دروستکراو بە AI بنووسە، ئێمە دەیگۆڕین بۆ نوسینێکی مرۆیی سروشتی بە ئینگلیزی.</p>
+        <p className="text-sm text-muted-foreground">دەقێ ب AI دروستکری بنڤیسە، ئەم دگهۆڕینە بو نڤیسینەکا مرۆڤی یا سروشتی ب ئینگلیزی.</p>
       </div>
 
       <textarea
@@ -58,7 +58,7 @@ export function Humanizer() {
           className="inline-flex items-center gap-2 rounded-xl bg-primary text-primary-foreground px-5 py-2.5 text-sm font-semibold hover:opacity-90 disabled:opacity-50"
         >
           {loading ? <Loader2 className="w-4 h-4 animate-spin" /> : <Sparkles className="w-4 h-4" />}
-          {loading ? "گۆڕین..." : "گۆڕە بۆ مرۆیی"}
+          {loading ? "د گهۆڕینێدا..." : "بگهۆڕە بو مرۆڤی"}
         </button>
       </div>
 
@@ -69,7 +69,7 @@ export function Humanizer() {
           <div className="flex items-center justify-between mb-2">
             <button onClick={copy} className="inline-flex items-center gap-1.5 text-xs font-semibold text-muted-foreground hover:text-foreground">
               {copied ? <Check className="w-3.5 h-3.5" /> : <Copy className="w-3.5 h-3.5" />}
-              {copied ? "کۆپی کرا" : "کۆپی"}
+              {copied ? "هاتە کۆپیکرن" : "کۆپی"}
             </button>
             <span className="text-xs font-semibold text-muted-foreground">Humanized</span>
           </div>

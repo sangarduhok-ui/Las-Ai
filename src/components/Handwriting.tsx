@@ -12,11 +12,11 @@ export function Handwriting() {
   const onFile = (f: File | undefined) => {
     if (!f) return;
     if (!f.type.startsWith("image/")) {
-      setError("تەنیا وێنە قبوڵە.");
+      setError("تنێ وێنە قبوول دبیت.");
       return;
     }
     if (f.size > 8 * 1024 * 1024) {
-      setError("قەبارەی وێنە زۆرە (٨MB زۆرترین).");
+      setError("قەبارا وێنێ پر یە (پترین ٨MB).");
       return;
     }
     setError(null);
@@ -38,10 +38,10 @@ export function Handwriting() {
         body: JSON.stringify({ image: preview }),
       });
       const data = await r.json();
-      if (!r.ok) throw new Error(data.error || "هەڵە");
+      if (!r.ok) throw new Error(data.error || "چەوتی");
       setOutput(data.output || "");
     } catch (e) {
-      setError(e instanceof Error ? e.message : "هەڵە");
+      setError(e instanceof Error ? e.message : "چەوتی");
     } finally {
       setLoading(false);
     }
@@ -63,8 +63,8 @@ export function Handwriting() {
   return (
     <div className="rounded-2xl bg-card border border-border p-6 md:p-8" style={{ boxShadow: "var(--shadow-elegant)" }}>
       <div className="mb-4 text-right">
-        <h3 className="text-xl font-extrabold mb-1">گۆڕینی دەستنووس بۆ دەق</h3>
-        <p className="text-sm text-muted-foreground">وێنەی دەستنووس باربکە، ئێمە دەقەکەی بۆ دەردەهێنین.</p>
+        <h3 className="text-xl font-extrabold mb-1">گهۆڕینا دەستنڤیسی بو دەقی</h3>
+        <p className="text-sm text-muted-foreground">وێنا دەستنڤیسی ئاپلود بکە، ئەم دەقی بو تە دەردێخینین.</p>
       </div>
 
       <input ref={fileRef} type="file" accept="image/*" className="hidden" onChange={(e) => onFile(e.target.files?.[0])} />
@@ -77,7 +77,7 @@ export function Handwriting() {
           <div className="w-14 h-14 rounded-2xl flex items-center justify-center text-primary-foreground" style={{ background: "var(--gradient-primary)" }}>
             <Upload className="w-7 h-7" />
           </div>
-          <span className="font-semibold">کلیک بکە بۆ هەڵبژاردنی وێنە</span>
+          <span className="font-semibold">کلیک بکە بو هەلبژارتنا وێنێ</span>
           <span className="text-xs text-muted-foreground">PNG, JPG — تا ٨MB</span>
         </button>
       ) : (
@@ -95,7 +95,7 @@ export function Handwriting() {
               className="inline-flex items-center gap-2 rounded-xl bg-primary text-primary-foreground px-5 py-2.5 text-sm font-semibold hover:opacity-90 disabled:opacity-50"
             >
               {loading ? <Loader2 className="w-4 h-4 animate-spin" /> : <ImageIcon className="w-4 h-4" />}
-              {loading ? "خوێندنەوە..." : "دەرهێنانی دەق"}
+              {loading ? "د خواندنێدا..." : "دەرئێخستنا دەقی"}
             </button>
           </div>
         </div>
@@ -108,9 +108,9 @@ export function Handwriting() {
           <div className="flex items-center justify-between mb-2">
             <button onClick={copy} className="inline-flex items-center gap-1.5 text-xs font-semibold text-muted-foreground hover:text-foreground">
               {copied ? <Check className="w-3.5 h-3.5" /> : <Copy className="w-3.5 h-3.5" />}
-              {copied ? "کۆپی کرا" : "کۆپی"}
+              {copied ? "هاتە کۆپیکرن" : "کۆپی"}
             </button>
-            <span className="text-xs font-semibold text-muted-foreground">دەقی دەرهێنراو</span>
+            <span className="text-xs font-semibold text-muted-foreground">دەقێ دەرئێخستی</span>
           </div>
           <p className="whitespace-pre-wrap text-sm leading-relaxed text-right">{output}</p>
         </div>

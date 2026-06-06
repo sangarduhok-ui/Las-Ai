@@ -33,10 +33,10 @@ export function Math2Word() {
         body: JSON.stringify(payload),
       });
       const data = await r.json();
-      if (!r.ok) throw new Error(data.error || "هەڵە");
+      if (!r.ok) throw new Error(data.error || "چەوتی");
       setOutput((data.output || "").trim());
     } catch (e) {
-      setError(e instanceof Error ? e.message : "هەڵە");
+      setError(e instanceof Error ? e.message : "چەوتی");
     } finally {
       setLoading(false);
     }
@@ -72,14 +72,14 @@ export function Math2Word() {
   return (
     <div className="rounded-2xl bg-card border border-border p-6 md:p-8" style={{ boxShadow: "var(--shadow-elegant)" }}>
       <div className="mb-4 text-right">
-        <h3 className="text-xl font-extrabold mb-1">هاوکێشە بۆ Microsoft Word</h3>
-        <p className="text-sm text-muted-foreground">هاوکێشە بنووسە یان وێنە دابنێ، فایلێکی Word وەردەگریت کە تەنها هاوکێشەکانی تێدایە.</p>
+        <h3 className="text-xl font-extrabold mb-1">هاوکێشە بو Microsoft Word</h3>
+        <p className="text-sm text-muted-foreground">هاوکێشێ بنڤیسە یان وێنە دایننە، فایلەکێ Word وەردگری کو تنێ هاوکێشە دناڤدا هەنە.</p>
       </div>
 
       <textarea
         value={input}
         onChange={(e) => setInput(e.target.value)}
-        placeholder="نمونە: integral of x squared from 0 to 1"
+        placeholder="نموونە: integral of x squared from 0 to 1"
         className="w-full min-h-[120px] rounded-xl border border-border bg-background p-4 text-sm focus:outline-none focus:ring-2 focus:ring-primary/50 resize-y"
       />
 
@@ -98,7 +98,7 @@ export function Math2Word() {
             className="w-full rounded-xl border-2 border-dashed border-border hover:border-primary/60 p-4 flex items-center justify-center gap-2 text-sm text-muted-foreground hover:text-foreground transition"
           >
             <Upload className="w-4 h-4" />
-            وێنەی هاوکێشە دابنێ
+            وێنا هاوکێشێ دایننە
           </button>
         ) : (
           <div className="flex items-center justify-between rounded-xl bg-secondary px-4 py-3 text-sm">
@@ -117,7 +117,7 @@ export function Math2Word() {
           className="inline-flex items-center gap-2 rounded-xl bg-primary text-primary-foreground px-5 py-2.5 text-sm font-semibold hover:opacity-90 disabled:opacity-50"
         >
           {loading ? <Loader2 className="w-4 h-4 animate-spin" /> : <Sparkles className="w-4 h-4" />}
-          {loading ? "پرۆسێسکردن..." : "بیگۆڕە"}
+          {loading ? "د پڕۆسێسکرنێدا..." : "بگهۆڕە"}
         </button>
       </div>
 
@@ -131,9 +131,9 @@ export function Math2Word() {
               className="inline-flex items-center gap-2 rounded-xl bg-primary text-primary-foreground px-4 py-2 text-xs font-bold hover:opacity-90"
             >
               <Download className="w-4 h-4" />
-              دانلودی Word
+              دانلودا Word
             </button>
-            <span className="text-xs font-semibold text-muted-foreground">هاوکێشەکان</span>
+            <span className="text-xs font-semibold text-muted-foreground">هاوکێشە</span>
           </div>
           <pre dir="ltr" className="whitespace-pre-wrap text-base leading-loose font-mono">{output}</pre>
         </div>
