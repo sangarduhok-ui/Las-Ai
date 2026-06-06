@@ -58,12 +58,12 @@ export function Uploader() {
     setSubmitted(false);
     if (!f) return;
     if (f.size > MAX_BYTES) {
-      setError("قەبارەی فایل زۆرە. زۆرترین قەبارە ٢٥ مێگابایتە.");
+      setError("قەبارا فایلێ پر یە. پترین قەبارە ٢٥ مێگابایتە.");
       return;
     }
     const ok = f.type === "application/pdf" || f.type.startsWith("image/");
     if (!ok) {
-      setError("تەنیا PDF یان وێنە قبوڵە.");
+      setError("تنێ PDF یان وێنە قبوول دبیت.");
       return;
     }
     setFile(f);
@@ -88,10 +88,10 @@ export function Uploader() {
         body: JSON.stringify({ fileBase64: b64, mimeType: file.type, fileName: file.name }),
       });
       const data = await res.json();
-      if (!res.ok) throw new Error(data?.error || "هەڵە لە سەرڤیس");
+      if (!res.ok) throw new Error(data?.error || "چەوتی د سەرڤیسێدا");
       setSummary(data.summary as Summary);
     } catch (e) {
-      setError(e instanceof Error ? e.message : "هەڵەیەک ڕوویدا");
+      setError(e instanceof Error ? e.message : "چەوتیەک ڕویدا");
     } finally {
       setLoading(false);
     }
@@ -112,11 +112,11 @@ export function Uploader() {
         body: JSON.stringify({ fileBase64: b64, mimeType: file.type }),
       });
       const data = await res.json();
-      if (!res.ok) throw new Error(data?.error || "هەڵە لە سەرڤیس");
+      if (!res.ok) throw new Error(data?.error || "چەوتی د سەرڤیسێدا");
       setQuiz(data.quiz as Quiz);
       setTimeout(() => quizRef.current?.scrollIntoView({ behavior: "smooth", block: "start" }), 100);
     } catch (e) {
-      setError(e instanceof Error ? e.message : "هەڵەیەک ڕوویدا");
+      setError(e instanceof Error ? e.message : "چەوتیەک ڕویدا");
     } finally {
       setQuizLoading(false);
     }
@@ -149,13 +149,13 @@ export function Uploader() {
     ? [
         summary.title ? `📘 ${summary.title}` : "",
         "",
-        "🔹 خاڵە سەرەکیەکان:",
+        "🔹 خالێن سەرەکی:",
         ...(summary.main_points ?? []).map((p, i) => `${i + 1}. ${p}`),
         "",
-        "📖 پێناسە گرنگەکان:",
+        "📖 پێناسێن گرنگ:",
         ...(summary.definitions ?? []).map((d) => `• ${d.term}: ${d.definition}`),
         "",
-        "📅 ڕێکەوت و فۆرمولەکان:",
+        "📅 دەم و فۆرمول:",
         ...(summary.dates_formulas ?? []).map((d) => `• ${d}`),
       ].join("\n")
     : "";
@@ -213,16 +213,16 @@ export function Uploader() {
                   setQuiz(null);
                 }}
                 className="text-muted-foreground hover:text-destructive"
-                aria-label="سڕینەوە"
+                aria-label="ژێبرن"
               >
                 <X className="w-4 h-4" />
               </button>
             </div>
           ) : (
             <>
-              <h3 className="text-xl md:text-2xl font-bold">فایلەکەت ڕابکێشە یان کلیک بکە</h3>
+              <h3 className="text-xl md:text-2xl font-bold">فایلا خۆ ڕاکێشە یان کلیک بکە</h3>
               <p className="text-muted-foreground text-sm">
-                پشتگیری PDF و وێنە دەکات • زۆرترین قەبارە ٢٥ مێگابایت
+                پشتەڤانیا PDF و وێنە دکەت • پترین قەبارە ٢٥ مێگابایت
               </p>
             </>
           )}
@@ -240,12 +240,12 @@ export function Uploader() {
             {loading ? (
               <>
                 <Loader2 className="w-5 h-5 animate-spin" />
-                <span>پوختە...</span>
+                <span>د کورتکرنێدا...</span>
               </>
             ) : (
               <>
                 <Sparkles className="w-5 h-5" />
-                <span>پوختە بکە</span>
+                <span>کورتە بکە</span>
               </>
             )}
           </span>
@@ -261,12 +261,12 @@ export function Uploader() {
             {quizLoading ? (
               <>
                 <Loader2 className="w-5 h-5 animate-spin" />
-                <span>تاقیکردنەوە...</span>
+                <span>د تاقیکرنێدا...</span>
               </>
             ) : (
               <>
                 <Brain className="w-5 h-5" />
-                <span>تاقیکردنەوە دروست بکە</span>
+                <span>تاقیکرن دروست بکە</span>
               </>
             )}
           </span>
@@ -279,7 +279,7 @@ export function Uploader() {
             <Sparkles className="w-7 h-7 text-primary" />
           </div>
           <p className="text-muted-foreground">
-            {quizLoading ? "پرسیارەکان ئامادە دەکرێن..." : "پەڕەکان دەخوێنرێنەوە و پوختە ئامادە دەکرێت..."}
+            {quizLoading ? "پرسیار تێنە ئامادەکرن..." : "پەڕە تێنە خواندن و کورتە ئامادە دبیت..."}
           </p>
         </div>
       )}
@@ -288,7 +288,7 @@ export function Uploader() {
         <div className="mt-6 flex items-start gap-3 rounded-2xl border border-destructive/30 bg-destructive/10 p-5">
           <AlertCircle className="w-6 h-6 text-destructive shrink-0 mt-0.5" />
           <div>
-            <p className="font-bold text-destructive">هەڵە</p>
+            <p className="font-bold text-destructive">چەوتی</p>
             <p className="text-sm text-foreground/80 mt-1">{error}</p>
           </div>
         </div>
@@ -310,7 +310,7 @@ export function Uploader() {
               </div>
               <div>
                 <h2 className="text-2xl md:text-3xl font-extrabold text-foreground">
-                  {quiz.title ?? "تاقیکردنەوە"}
+                  {quiz.title ?? "تاقیکرن"}
                 </h2>
                 <p className="text-sm text-muted-foreground mt-1">
                   {quiz.questions.length} پرسیار
@@ -369,7 +369,7 @@ export function Uploader() {
                   </div>
                   {submitted && q.explanation && (
                     <div className="mt-3 text-sm rounded-xl bg-accent/30 p-3 leading-relaxed">
-                      <span className="font-bold">💡 ڕوونکردنەوە: </span>
+                      <span className="font-bold">💡 ڕوونکرن: </span>
                       {q.explanation}
                     </div>
                   )}
@@ -385,7 +385,7 @@ export function Uploader() {
                 disabled={Object.keys(answers).length < quiz.questions.length}
                 className="rounded-xl bg-primary text-primary-foreground px-6 py-3 font-bold hover:opacity-90 transition disabled:opacity-50 disabled:cursor-not-allowed"
               >
-                پێشکەشکردنی وەڵامەکان
+                پێشکێشکرنا بەرسڤان
               </button>
             ) : (
               <button
@@ -396,7 +396,7 @@ export function Uploader() {
                 className="flex items-center gap-2 rounded-xl border-2 border-primary text-primary px-6 py-3 font-bold hover:bg-primary/5 transition"
               >
                 <RotateCcw className="w-4 h-4" />
-                دووبارە تاقی بکەرەوە
+                دیسا تاقی بکە
               </button>
             )}
           </div>
@@ -411,22 +411,22 @@ export function Uploader() {
           <header className="flex items-start justify-between gap-4 mb-6 pb-4 border-b border-border">
             <div>
               <h2 className="text-2xl md:text-3xl font-extrabold text-foreground">
-                {summary.title ?? "پوختەی بەڵگەنامە"}
+                {summary.title ?? "کورتەیا بەلگەنامێ"}
               </h2>
-              <p className="text-sm text-muted-foreground mt-1">پوختەیەکی ئامادەکراو بۆ خوێندن</p>
+              <p className="text-sm text-muted-foreground mt-1">کورتەیەکا ئامادەکری بو خواندنێ</p>
             </div>
             <button
               onClick={copy}
               className="flex items-center gap-2 rounded-xl bg-primary text-primary-foreground px-4 py-2.5 text-sm font-semibold hover:opacity-90 transition shrink-0"
             >
               {copied ? <Check className="w-4 h-4" /> : <Copy className="w-4 h-4" />}
-              {copied ? "کۆپی کرا" : "کۆپی"}
+              {copied ? "هاتە کۆپیکرن" : "کۆپی"}
             </button>
           </header>
 
           {!!summary.main_points?.length && (
             <section className="mb-6">
-              <h3 className="text-lg font-bold mb-3 text-primary">🔹 خاڵە سەرەکیەکان</h3>
+              <h3 className="text-lg font-bold mb-3 text-primary">🔹 خالێن سەرەکی</h3>
               <ul className="space-y-2">
                 {summary.main_points.map((p, i) => (
                   <li key={i} className="flex gap-3 leading-relaxed">
@@ -440,7 +440,7 @@ export function Uploader() {
 
           {!!summary.definitions?.length && (
             <section className="mb-6">
-              <h3 className="text-lg font-bold mb-3 text-primary">📖 پێناسە گرنگەکان</h3>
+              <h3 className="text-lg font-bold mb-3 text-primary">📖 پێناسێن گرنگ</h3>
               <div className="grid gap-3">
                 {summary.definitions.map((d, i) => (
                   <div key={i} className="rounded-xl bg-secondary/60 p-4">
@@ -454,7 +454,7 @@ export function Uploader() {
 
           {!!summary.dates_formulas?.length && (
             <section>
-              <h3 className="text-lg font-bold mb-3 text-primary">📅 ڕێکەوت و فۆرمولەکان</h3>
+              <h3 className="text-lg font-bold mb-3 text-primary">📅 دەم و فۆرمول</h3>
               <ul className="space-y-2">
                 {summary.dates_formulas.map((d, i) => (
                   <li key={i} className="flex gap-3">

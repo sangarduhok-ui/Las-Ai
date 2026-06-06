@@ -20,14 +20,14 @@ const WHATSAPP_URL = `https://wa.me/${WHATSAPP_NUMBER}?text=${WHATSAPP_MESSAGE}`
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "پوختەی خوێندن بە AI — ئامرازی زیرەک بۆ خوێندکاران" },
+      { title: "کورتەیا خواندنێ ب AI — ئامرازەکێ زیرەک بو خواندکاران" },
       {
         name: "description",
         content:
-          "بەڵگەنامە و وێنەکانت بنێرە و پوختەیەکی ڕێکوپێک وەربگرە بە کوردی و ئینگلیزی بە یارمەتی زیرەکی دەستکرد.",
+          "بەلگەنامە و وێنێن خۆ دایننە و کورتەیەکا ڕێکوپێک وەربگرە ب کوردیا بادینی و ئینگلیزی ب هاریکاریا زیرەکیا دەستکرد.",
       },
-      { property: "og:title", content: "پوختەی خوێندن بە AI" },
-      { property: "og:description", content: "ئامرازێکی زیرەک بۆ پوختەکردنی کتێب و مەلزەمە." },
+      { property: "og:title", content: "کورتەیا خواندنێ ب AI" },
+      { property: "og:description", content: "ئامرازەکێ زیرەک بو کورتکرنا پەرتوک و مەلزەمان." },
     ],
   }),
   component: Index,
@@ -38,11 +38,11 @@ function Index() {
   const [activeTool, setActiveTool] = useState<null | ToolId>(null);
 
   const navLinks = [
-    { href: "#features", label: "تایبەتمەندیەکان" },
-    { href: "#upload", label: "پوختەکردن" },
-    { href: "#chat", label: "گفتوگۆ" },
-    { href: "#pricing", label: "نرخەکان" },
-    { href: "#about", label: "دەربارەی ئێمە" },
+    { href: "#features", label: "تایبەتمەندی" },
+    { href: "#upload", label: "کورتکرن" },
+    { href: "#chat", label: "ئاخفتن" },
+    { href: "#pricing", label: "بهایی" },
+    { href: "#about", label: "دەربارا مە" },
   ];
 
   return (
@@ -57,7 +57,7 @@ function Index() {
             >
               <Brain className="w-5 h-5 text-primary-foreground" />
             </div>
-            <span className="font-extrabold text-lg">پوختەی AI</span>
+            <span className="font-extrabold text-lg">کورتەیا AI</span>
           </div>
           <nav className="hidden md:flex items-center gap-7 text-sm font-medium text-muted-foreground">
             {navLinks.map((l) => (
@@ -66,7 +66,7 @@ function Index() {
           </nav>
           <button
             onClick={() => setMenuOpen(true)}
-            aria-label="کردنەوەی مینیو"
+            aria-label="ڤەکرنا مینیویێ"
             className="inline-flex items-center justify-center w-10 h-10 rounded-full bg-primary text-primary-foreground hover:opacity-90"
           >
             <Menu className="w-5 h-5" />
@@ -91,7 +91,7 @@ function Index() {
               <div className="w-9 h-9 rounded-xl flex items-center justify-center" style={{ background: "var(--gradient-primary)" }}>
                 <Brain className="w-5 h-5 text-primary-foreground" />
               </div>
-              <span className="font-extrabold text-lg">پوختەی AI</span>
+              <span className="font-extrabold text-lg">کورتەیا AI</span>
             </div>
             <button
               onClick={() => setMenuOpen(false)}
@@ -114,7 +114,7 @@ function Index() {
             ))}
           </nav>
           <div className="mt-auto pt-6 text-xs text-muted-foreground text-center">
-            © {new Date().getFullYear()} پوختەی AI
+            © {new Date().getFullYear()} کورتەیا AI
           </div>
         </aside>
       </div>
@@ -129,26 +129,26 @@ function Index() {
         <div className="relative max-w-5xl mx-auto px-4 md:px-6 pt-16 md:pt-24 pb-12 text-center">
           <div className="inline-flex items-center gap-2 rounded-full bg-accent/60 px-4 py-1.5 text-sm font-medium text-accent-foreground mb-6">
             <Sparkles className="w-4 h-4" />
-            <span>پاڵپشتیکراو لە لایەن زیرەکی دەستکرد</span>
+            <span>پشتەڤانیکری ژ لایێ زیرەکیا دەستکرد</span>
           </div>
           <h1 className="text-4xl md:text-6xl font-extrabold leading-tight tracking-tight">
-            خوێندنت{" "}
+            خواندنا خۆ{" "}
             <span
               className="bg-clip-text text-transparent"
               style={{ backgroundImage: "var(--gradient-primary)" }}
             >
-              خێراتر و ئاسانتر
+              لەزتر و ئاسانتر
             </span>{" "}
             بکە
           </h1>
           <p className="mt-6 text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">
-            PDF یان وێنەی مەلزەمەکانت دابنێ، لە چەند چرکەیەکدا پوختەیەکی ڕێکوپێک بە کوردی
-            وەردەگریت — خاڵە سەرەکیەکان، پێناسە و فۆرمولەکان.
+            PDF یان وێنێن مەلزەمێن خۆ دایننە، د چەند چرکەیەکێدا کورتەیەکا ڕێکوپێک ب کوردی
+            وەردگری — خالێن سەرەکی، پێناسە و فۆرمول.
           </p>
           <div className="mt-8 flex flex-wrap justify-center gap-3 text-sm text-muted-foreground">
             <span className="flex items-center gap-1.5"><Check className="w-4 h-4 text-success" /> کوردی و ئینگلیزی</span>
-            <span className="flex items-center gap-1.5"><Check className="w-4 h-4 text-success" /> OCR بۆ وێنە</span>
-            <span className="flex items-center gap-1.5"><Check className="w-4 h-4 text-success" /> پشتگیری PDF</span>
+            <span className="flex items-center gap-1.5"><Check className="w-4 h-4 text-success" /> OCR بو وێنە</span>
+            <span className="flex items-center gap-1.5"><Check className="w-4 h-4 text-success" /> پشتەڤانیا PDF</span>
           </div>
         </div>
       </section>
@@ -158,22 +158,22 @@ function Index() {
         <div className="max-w-5xl mx-auto">
           {!activeTool && (
             <>
-              <h2 className="text-3xl md:text-4xl font-extrabold text-center mb-3">ئامرازەکان</h2>
-              <p className="text-center text-muted-foreground mb-10">یەکێک هەڵبژێرە بۆ دەستپێکردن</p>
+              <h2 className="text-3xl md:text-4xl font-extrabold text-center mb-3">ئامرازان</h2>
+              <p className="text-center text-muted-foreground mb-10">یەکێ هەلبژێرە بو دەستپێکرنێ</p>
               <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
                 {[
-                  { id: "summary" as ToolId, icon: FileText, title: "پوختەکردن", desc: "PDF یان وێنە بکە بە پوختە." },
-                  { id: "chat" as ToolId, icon: MessageCircle, title: "گفتوگۆ", desc: "پرسیار بکە لە AI بە کوردی." },
-                  { id: "humanize" as ToolId, icon: Wand2, title: "Humanize Text", desc: "نوسینی AI بکە بە مرۆیی." },
-                  { id: "ocr" as ToolId, icon: ScanLine, title: "دەستنووس بۆ دەق", desc: "وێنەی دەستنووس بخوێنەوە." },
-                  { id: "planner" as ToolId, icon: CalendarCheck, title: "پلانی خوێندن", desc: "پلانی خوێندنی ڕۆژانە بۆ تۆ." },
-                  { id: "solver" as ToolId, icon: ListOrdered, title: "چارەسەری هەنگاو", desc: "مەسەلەکان هەنگاو بە هەنگاو." },
-                  { id: "math2word" as ToolId, icon: Sigma, title: "Math → Word", desc: "هاوکێشە بۆ Microsoft Word." },
-                  { id: "tts" as ToolId, icon: Volume2, title: "پوختەی دەنگی", desc: "پوختە و گوێ لێ بگرە." },
-                  { id: "grader" as ToolId, icon: ClipboardCheck, title: "نمرەدانی ڕاپۆرت", desc: "ڕاپۆرتت بپێوە و نمرە بدە." },
-                  { id: "glossary" as ToolId, icon: BookA, title: "فەرهەنگی زانستی", desc: "زاراوەی ئەکادیمی." },
-                  { id: "testai" as ToolId, icon: ShieldCheck, title: "Test AI", desc: "ڕێژەی نوسینی AI بپشکنە." },
-                  { id: "testplagiarism" as ToolId, icon: FileSearch, title: "Test Plagiarism", desc: "ڕێژەی پلاجیاریزم بپشکنە." },
+                  { id: "summary" as ToolId, icon: FileText, title: "کورتکرن", desc: "PDF یان وێنە بکە کورتە." },
+                  { id: "chat" as ToolId, icon: MessageCircle, title: "ئاخفتن", desc: "پرسیارێ ژ AI بکە ب کوردی." },
+                  { id: "humanize" as ToolId, icon: Wand2, title: "Humanize Text", desc: "نڤیسینا AI بکە مرۆڤی." },
+                  { id: "ocr" as ToolId, icon: ScanLine, title: "دەستنڤیس بو دەقی", desc: "وێنا دەستنڤیسی بخوینە." },
+                  { id: "planner" as ToolId, icon: CalendarCheck, title: "پلانێ خواندنێ", desc: "پلانێ خواندنا ڕۆژانە بو تە." },
+                  { id: "solver" as ToolId, icon: ListOrdered, title: "چارەسەری هەنگاڤ", desc: "مەسەلە هەنگاڤ ب هەنگاڤ." },
+                  { id: "math2word" as ToolId, icon: Sigma, title: "Math → Word", desc: "هاوکێشە بو Microsoft Word." },
+                  { id: "tts" as ToolId, icon: Volume2, title: "کورتەیا دەنگی", desc: "کورتە بکە و گوهداری بکە." },
+                  { id: "grader" as ToolId, icon: ClipboardCheck, title: "نمرەدانا ڕاپۆرتێ", desc: "ڕاپۆرتا خۆ بپێوە و نمرە بگرە." },
+                  { id: "glossary" as ToolId, icon: BookA, title: "فەرهەنگا زانستی", desc: "زاراڤێن ئەکادیمی." },
+                  { id: "testai" as ToolId, icon: ShieldCheck, title: "Test AI", desc: "ڕێژا نڤیسینا AI بپشکنە." },
+                  { id: "testplagiarism" as ToolId, icon: FileSearch, title: "Test Plagiarism", desc: "ڕێژا پلاجیاریزمێ بپشکنە." },
                 ].map((t) => (
                   <button
                     key={t.id}
@@ -203,51 +203,51 @@ function Index() {
                 className="mb-6 inline-flex items-center gap-2 rounded-full bg-secondary px-4 py-2 text-sm font-semibold hover:bg-secondary/80 transition"
               >
                 <X className="w-4 h-4" />
-                گەڕانەوە بۆ ئامرازەکان
+                ڤەگەڕان بو ئامرازان
               </button>
               {activeTool === "summary" && <Uploader />}
               {activeTool === "chat" && <ChatBox />}
               {activeTool === "humanize" && <Humanizer />}
               {activeTool === "ocr" && <Handwriting />}
               {activeTool === "planner" && (
-                <AiTool tool="planner" title="پلانی خوێندنی AI" description="بابەت و ماوەی خوێندن بنووسە، پلانێکی ڕۆژانە وەردەگریت."
-                  placeholder="نمونە: ٧ ڕۆژ بۆ تاقیکردنەوەی کیمیا، ٣ کاتژمێر لە ڕۆژێکدا"
-                  buttonLabel="پلانم بۆ دروست بکە" />
+                <AiTool tool="planner" title="پلانێ خواندنا AI" description="بابەت و دەمێ خواندنێ بنڤیسە، پلانەکێ ڕۆژانە وەردگری."
+                  placeholder="نموونە: ٧ ڕۆژ بو تاقیکرنا کیمیایێ، ٣ کاتژمێر د ڕۆژەکێدا"
+                  buttonLabel="پلانێ من بو دروست بکە" />
               )}
               {activeTool === "solver" && (
-                <AiTool tool="solver" title="چارەسەری هەنگاو بە هەنگاو" description="مەسەلە بنووسە یان وێنەی پرسیار دابنێ."
-                  placeholder="نمونە: ٢x² + ٥x − ٣ = ٠ چارەسەر بکە"
+                <AiTool tool="solver" title="چارەسەرکرن هەنگاڤ ب هەنگاڤ" description="مەسەلێ بنڤیسە یان وێنا پرسیارێ دایننە."
+                  placeholder="نموونە: ٢x² + ٥x − ٣ = ٠ چارەسەر بکە"
                   buttonLabel="چارەسەر بکە" withFile fileAccept="image/*,application/pdf" />
               )}
               {activeTool === "math2word" && <Math2Word />}
               {activeTool === "tts" && (
-                <AiTool tool="tts" title="پوختەی دەنگی" description="دەق بنووسە یان فایل دابنێ، پوختە و گوێ گرتن."
-                  placeholder="دەقی درێژەکەت لێرە بنووسە..."
-                  buttonLabel="پوختە و گوێ گرتن" withTTS withFile
+                <AiTool tool="tts" title="کورتەیا دەنگی" description="دەقی بنڤیسە یان فایلی دایننە، کورتە و گوهداری."
+                  placeholder="دەقێ خۆ یێ درێژ ل ڤێرێ بنڤیسە..."
+                  buttonLabel="کورتە و گوهداری" withTTS withFile
                   fileAccept="image/*,application/pdf,.docx,.pptx,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/vnd.openxmlformats-officedocument.presentationml.presentation" />
               )}
               {activeTool === "grader" && (
-                <AiTool tool="grader" title="نمرەدانی ڕاپۆرت/وتار" description="ڕاپۆرت بنووسە یان فایل دابنێ، نمرە و ڕاسپاردە وەردەگریت."
-                  placeholder="دەقی ڕاپۆرتەکەت لێرە دابنێ..."
+                <AiTool tool="grader" title="نمرەدانا ڕاپۆرت/وتارێ" description="ڕاپۆرتی بنڤیسە یان فایلی دایننە، نمرە و ڕاسپاردە وەردگری."
+                  placeholder="دەقێ ڕاپۆرتا خۆ ل ڤێرێ دایننە..."
                   buttonLabel="نمرە بدە" withFile
                   fileAccept="image/*,application/pdf,.docx,.pptx,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/vnd.openxmlformats-officedocument.presentationml.presentation" />
               )}
               {activeTool === "glossary" && (
-                <AiTool tool="glossary" title="فەرهەنگی زاراوەی ئەکادیمی" description="بابەت بنووسە یان فایل دابنێ، لیستی زاراوەکان وەردەگریت."
-                  placeholder="نمونە: Calculus، Quantum Physics، Linear Algebra"
-                  buttonLabel="زاراوەکان پیشان بدە" withFile
+                <AiTool tool="glossary" title="فەرهەنگا زاراڤێن ئەکادیمی" description="بابەتی بنڤیسە یان فایلی دایننە، لیستا زاراڤان وەردگری."
+                  placeholder="نموونە: Calculus، Quantum Physics، Linear Algebra"
+                  buttonLabel="زاراڤان نیشان بدە" withFile
                   fileAccept="image/*,application/pdf,.docx,.pptx,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/vnd.openxmlformats-officedocument.presentationml.presentation" />
               )}
               {activeTool === "testai" && (
-                <AiTool tool="testai" title="پشکنینی نوسینی AI" description="دەق بنووسە یان فایل دابنێ، ڕێژەی AI پێشبینی دەکرێت."
-                  placeholder="دەقی ڤەکۆلینەوەکەت لێرە دابنێ..."
-                  buttonLabel="پشکنین بکە" withFile showPercentage
+                <AiTool tool="testai" title="پشکنینا نڤیسینا AI" description="دەقی بنڤیسە یان فایلی دایننە، ڕێژا AI تێ پێشبینیکرن."
+                  placeholder="دەقێ ڤەکولینا خۆ ل ڤێرێ دایننە..."
+                  buttonLabel="پشکنینێ بکە" withFile showPercentage
                   fileAccept="image/*,application/pdf,.docx,.pptx,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/vnd.openxmlformats-officedocument.presentationml.presentation" />
               )}
               {activeTool === "testplagiarism" && (
-                <AiTool tool="testplagiarism" title="پشکنینی پلاجیاریزم" description="دەق بنووسە یان فایل دابنێ، ڕێژەی پلاجیاریزم پێشبینی دەکرێت."
-                  placeholder="دەقی ڤەکۆلینەوەکەت لێرە دابنێ..."
-                  buttonLabel="پشکنین بکە" withFile showPercentage
+                <AiTool tool="testplagiarism" title="پشکنینا پلاجیاریزمێ" description="دەقی بنڤیسە یان فایلی دایننە، ڕێژا پلاجیاریزمێ تێ پێشبینیکرن."
+                  placeholder="دەقێ ڤەکولینا خۆ ل ڤێرێ دایننە..."
+                  buttonLabel="پشکنینێ بکە" withFile showPercentage
                   fileAccept="image/*,application/pdf,.docx,.pptx,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/vnd.openxmlformats-officedocument.presentationml.presentation" />
               )}
             </div>
@@ -259,15 +259,15 @@ function Index() {
       {/* Features */}
       <section id="features" className="px-4 md:px-6 py-20 bg-secondary/40 border-y border-border">
         <div className="max-w-5xl mx-auto">
-          <h2 className="text-3xl md:text-4xl font-extrabold text-center mb-3">بۆچی ئێمە؟</h2>
+          <h2 className="text-3xl md:text-4xl font-extrabold text-center mb-3">بوچی ئەم؟</h2>
           <p className="text-center text-muted-foreground mb-12 max-w-xl mx-auto">
-            تەکنەلۆجیای پێشکەوتوو بۆ یارمەتی خوێندکارانی کوردی.
+            تەکنەلۆژیا پێشکەفتی بو هاریکاریا خواندکارێن کورد.
           </p>
           <div className="grid md:grid-cols-3 gap-5">
             {[
-              { icon: Zap, title: "خێرایی بەرز", desc: "لە کەمتر لە چەند چرکەیەکدا پوختەکە ئامادە دەبێت." },
-              { icon: FileText, title: "OCR زیرەک", desc: "دەق دەردەهێنێت لە وێنە و PDFی سکانکراو بە کوردی و ئینگلیزی." },
-              { icon: BookOpen, title: "ڕێکخستنی ڕێکوپێک", desc: "خاڵە سەرەکی، پێناسە، ڕێکەوت و فۆرمول جیاکراوەتەوە." },
+              { icon: Zap, title: "لەزا بلند", desc: "د چەند چرکەیەکێ کێمدا کورتە ئامادە دبیت." },
+              { icon: FileText, title: "OCR یێ زیرەک", desc: "دەقی ژ وێنە و PDFێن سکانکری دەردێخیت ب کوردی و ئینگلیزی." },
+              { icon: BookOpen, title: "ڕێکخستنەکا ڕێکوپێک", desc: "خالێن سەرەکی، پێناسە، دەم و فۆرمول هاتینە جیاکرن." },
             ].map((f, i) => (
               <div
                 key={i}
@@ -291,15 +291,15 @@ function Index() {
       {/* Pricing */}
       <section id="pricing" className="px-4 md:px-6 py-20">
         <div className="max-w-5xl mx-auto">
-          <h2 className="text-3xl md:text-4xl font-extrabold text-center mb-3">پلانەکانی نرخ</h2>
-          <p className="text-center text-muted-foreground mb-12">پلانێک هەڵبژێرە کە لەگەڵ پێداویستیتدا بگونجێت.</p>
+          <h2 className="text-3xl md:text-4xl font-extrabold text-center mb-3">پلانێن بهایی</h2>
+          <p className="text-center text-muted-foreground mb-12">پلانەکێ هەلبژێرە کو دگەل پێداڤیێن تە دگونجیت.</p>
 
           <div className="grid md:grid-cols-2 gap-6 max-w-3xl mx-auto">
             {/* Free */}
             <div className="rounded-3xl p-7 bg-card border border-border flex flex-col">
               <div className="mb-6">
-                <h3 className="text-xl font-bold mb-1">پلانی خۆڕایی</h3>
-                <p className="text-muted-foreground text-sm">بۆ تاقیکردنەوە و بەکارهێنانی کەم</p>
+                <h3 className="text-xl font-bold mb-1">پلانێ بەلاش</h3>
+                <p className="text-muted-foreground text-sm">بو تاقیکرن و بکارئینانا کێم</p>
               </div>
               <div className="mb-6">
                 <span className="text-5xl font-extrabold">٠</span>
@@ -307,10 +307,10 @@ function Index() {
               </div>
               <ul className="space-y-3 mb-8 flex-1">
                 {[
-                  "١٠ پوختە لە ڕۆژێکدا",
-                  "زۆرترین ٥٠ پەڕە بۆ هەر فایلێک",
-                  "پشتگیری PDF و وێنە",
-                  "خاڵە سەرەکی و پێناسە",
+                  "١٠ کورتە د ڕۆژەکێدا",
+                  "پترین ٥٠ پەڕە بو هەر فایلەکێ",
+                  "پشتەڤانیا PDF و وێنە",
+                  "خالێن سەرەکی و پێناسە",
                 ].map((t) => (
                   <li key={t} className="flex items-center gap-2 text-sm">
                     <Check className="w-4 h-4 text-success shrink-0" />
@@ -322,7 +322,7 @@ function Index() {
                 href="#upload"
                 className="block text-center rounded-xl border-2 border-border bg-background px-5 py-3 font-semibold hover:bg-secondary transition"
               >
-                دەست پێبکە
+                دەستپێبکە
               </a>
             </div>
 
@@ -332,23 +332,23 @@ function Index() {
               style={{ background: "var(--gradient-hero)", boxShadow: "var(--shadow-glow)" }}
             >
               <div className="absolute top-4 left-4 inline-flex items-center gap-1 rounded-full bg-primary-foreground/95 text-primary px-3 py-1 text-xs font-bold">
-                <Crown className="w-3.5 h-3.5" /> باشترین
+                <Crown className="w-3.5 h-3.5" /> یا باشترین
               </div>
               <div className="mb-6">
-                <h3 className="text-xl font-bold mb-1">پلانی VIP</h3>
-                <p className="text-primary-foreground/80 text-sm">بۆ خوێندکارانی جیددی</p>
+                <h3 className="text-xl font-bold mb-1">پلانێ VIP</h3>
+                <p className="text-primary-foreground/80 text-sm">بو خواندکارێن جددی</p>
               </div>
               <div className="mb-6">
                 <span className="text-5xl font-extrabold">٥,٠٠٠</span>
-                <span className="text-primary-foreground/80"> دینار / مانگ</span>
+                <span className="text-primary-foreground/80"> دینار / مانگی</span>
               </div>
               <ul className="space-y-3 mb-8 flex-1">
                 {[
-                  "پوختەی بێسنوور",
-                  "پشتگیری ١٥٠ پەڕە بۆ هەر فایلێک",
-                  "خێرایی بەرزتر",
-                  "پشتگیری تایبەت ٢٤/٧",
-                  "هەموو تایبەتمەندیە داهاتووەکان",
+                  "کورتەیا بێ سنور",
+                  "پشتەڤانیا ١٥٠ پەڕی بو هەر فایلەکێ",
+                  "لەزا بلندتر",
+                  "پشتەڤانیا تایبەت ٢٤/٧",
+                  "هەمی تایبەتمەندیێن داهاتی",
                 ].map((t) => (
                   <li key={t} className="flex items-center gap-2 text-sm">
                     <Check className="w-4 h-4 shrink-0" />
@@ -363,7 +363,7 @@ function Index() {
                 className="flex items-center justify-center gap-2 rounded-xl bg-primary-foreground text-primary px-5 py-3 font-bold hover:opacity-95 transition"
               >
                 <MessageCircle className="w-5 h-5" />
-                چالاککردن لە واتساپ
+                چالاککرن ل واتساپێ
               </a>
             </div>
           </div>
@@ -373,8 +373,8 @@ function Index() {
       {/* About */}
       <section id="about" className="px-4 md:px-6 py-20 bg-secondary/40 border-t border-border">
         <div className="max-w-5xl mx-auto">
-          <h2 className="text-3xl md:text-4xl font-extrabold text-center mb-3">دەربارەی ئێمە</h2>
-          <p className="text-center text-muted-foreground mb-12">ئەو کەسەی لە پشتی ئەم پڕۆژەیەوەیە</p>
+          <h2 className="text-3xl md:text-4xl font-extrabold text-center mb-3">دەربارا مە</h2>
+          <p className="text-center text-muted-foreground mb-12">ئەو کەسێ ل پشتا ڤێ پڕۆژێیە</p>
 
           <div className="grid md:grid-cols-2 gap-10 items-center max-w-4xl mx-auto">
             <div className="relative flex justify-center md:justify-end">
@@ -388,7 +388,7 @@ function Index() {
               >
                 <img
                   src={sangarAsset.url}
-                  alt="سەنگەر محمد حسن"
+                  alt="سەنگەر محمد حەسەن"
                   className="w-full h-full object-cover"
                   loading="lazy"
                 />
@@ -398,15 +398,15 @@ function Index() {
             <div className="text-right">
               <div className="inline-flex items-center gap-2 rounded-full bg-accent/60 px-3 py-1 text-xs font-semibold text-accent-foreground mb-4">
                 <GraduationCap className="w-3.5 h-3.5" />
-                <span>دامەزرێنەر</span>
+                <span>دامەزرینەر</span>
               </div>
-              <h3 className="text-2xl md:text-3xl font-extrabold mb-2">سەنگەر محمد حسن</h3>
+              <h3 className="text-2xl md:text-3xl font-extrabold mb-2">سەنگەر محمد حەسەن</h3>
               <p className="text-muted-foreground font-semibold mb-5">
-                باوەرنامەی ماستەر لە زانستی بیرکاری
+                بڕوانامێ ماستەرێ د زانستێ بیرکاریدا
               </p>
               <p className="text-base md:text-lg leading-relaxed text-foreground/90 mb-5">
-                ئامانجی من پێشخستنی خوێندنە بە یارمەتی زیرەکی دەستکرد، تاوەکو خوێندکارانی
-                کورد بتوانن بە ئاسانی و خێرایی فێربن و دەرفەتی باشتر بەدەست بهێنن.
+                ئارمانجا من پێشخستنا خواندنێیە ب هاریکاریا زیرەکیا دەستکرد، تاکو خواندکارێن
+                کورد بشێن ب ئاسانی و لەزا فێربن و دەرفەتێن باشتر بدەست ڤە بینن.
               </p>
               <a
                 href="mailto:sangarduhok@gmail.com"
@@ -460,9 +460,9 @@ function Index() {
             >
               <Brain className="w-4 h-4 text-primary-foreground" />
             </div>
-            <span className="font-bold text-foreground">پوختەی AI</span>
+            <span className="font-bold text-foreground">کورتەیا AI</span>
           </div>
-          <p>© {new Date().getFullYear()} — هەموو مافەکان پارێزراون.</p>
+          <p>© {new Date().getFullYear()} — هەمی ماف پاراستینە.</p>
         </div>
       </footer>
     </div>

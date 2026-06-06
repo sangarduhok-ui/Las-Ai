@@ -91,10 +91,10 @@ export function AiTool({ tool, title, description, placeholder, buttonLabel, ltr
         body: JSON.stringify(payload),
       });
       const data = await r.json();
-      if (!r.ok) throw new Error(data.error || "هەڵە");
+      if (!r.ok) throw new Error(data.error || "چەوتی");
       setOutput((data.output || "").replace(/\*\*/g, ""));
     } catch (e) {
-      setError(e instanceof Error ? e.message : "هەڵە");
+      setError(e instanceof Error ? e.message : "چەوتی");
     } finally {
       setLoading(false);
     }
@@ -108,7 +108,7 @@ export function AiTool({ tool, title, description, placeholder, buttonLabel, ltr
 
   const speak = () => {
     if (typeof window === "undefined" || !window.speechSynthesis) {
-      setError("براوزەرەکەت پشتگیری دەنگ ناکات.");
+      setError("براوزەرێ تە پشتەڤانیا دەنگی ناکەت.");
       return;
     }
     const synth = window.speechSynthesis;
@@ -189,7 +189,7 @@ export function AiTool({ tool, title, description, placeholder, buttonLabel, ltr
               className="w-full rounded-xl border-2 border-dashed border-border hover:border-primary/60 p-4 flex items-center justify-center gap-2 text-sm text-muted-foreground hover:text-foreground transition"
             >
               <Upload className="w-4 h-4" />
-              فایل/وێنە دابنێ (PDF, Word, PowerPoint, وێنە)
+              فایل/وێنە دایننە (PDF, Word, PowerPoint, وێنە)
             </button>
           ) : (
             <div className="flex items-center justify-between rounded-xl bg-secondary px-4 py-3 text-sm">
@@ -210,7 +210,7 @@ export function AiTool({ tool, title, description, placeholder, buttonLabel, ltr
           className="inline-flex items-center gap-2 rounded-xl bg-primary text-primary-foreground px-5 py-2.5 text-sm font-semibold hover:opacity-90 disabled:opacity-50"
         >
           {loading ? <Loader2 className="w-4 h-4 animate-spin" /> : <Sparkles className="w-4 h-4" />}
-          {loading ? "پرۆسێسکردن..." : buttonLabel}
+          {loading ? "د پڕۆسێسکرنێدا..." : buttonLabel}
         </button>
       </div>
 
@@ -222,12 +222,12 @@ export function AiTool({ tool, title, description, placeholder, buttonLabel, ltr
             <div className="flex items-center gap-3">
               <button onClick={copy} className="inline-flex items-center gap-1.5 text-xs font-semibold text-muted-foreground hover:text-foreground">
                 {copied ? <Check className="w-3.5 h-3.5" /> : <Copy className="w-3.5 h-3.5" />}
-                {copied ? "کۆپی کرا" : "کۆپی"}
+                {copied ? "هاتە کۆپیکرن" : "کۆپی"}
               </button>
               {withTTS && (
                 <button onClick={speak} className="inline-flex items-center gap-1.5 text-xs font-semibold text-primary hover:opacity-80">
                   {speaking ? <Square className="w-3.5 h-3.5" /> : <Volume2 className="w-3.5 h-3.5" />}
-                  {speaking ? "ڕاگرتن" : "گوێ لێ بگرە"}
+                  {speaking ? "ڕاوەستاندن" : "گوهداری بکە"}
                 </button>
               )}
             </div>

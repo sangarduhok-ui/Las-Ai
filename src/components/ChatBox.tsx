@@ -7,7 +7,7 @@ export function ChatBox() {
   const [messages, setMessages] = useState<Msg[]>([
     {
       role: "assistant",
-      content: "سڵاو! 👋 من یاریدەدەری AIی تۆم. هەر پرسیارێکت هەیە لەسەر خوێندنەکەت بپرسە.",
+      content: "سلاڤ! 👋 ئەز هاریکارێ AI یێ تە مە. هەر پرسیارەکا تە هەبیت لسەر خواندنا خۆ، بپرسە.",
     },
   ]);
   const [input, setInput] = useState("");
@@ -37,7 +37,7 @@ export function ChatBox() {
 
       if (!resp.ok || !resp.body) {
         const j = await resp.json().catch(() => ({}));
-        throw new Error(j?.error || "هەڵە لە پەیوەندیکردن");
+        throw new Error(j?.error || "چەوتی د پەیوەندیکرنێدا");
       }
 
       const reader = resp.body.getReader();
@@ -77,7 +77,7 @@ export function ChatBox() {
         }
       }
     } catch (e) {
-      setError(e instanceof Error ? e.message : "هەڵە");
+      setError(e instanceof Error ? e.message : "چەوتی");
     } finally {
       setLoading(false);
     }
@@ -88,10 +88,10 @@ export function ChatBox() {
       <div className="text-center mb-8">
         <div className="inline-flex items-center gap-2 rounded-full bg-accent/60 px-4 py-1.5 text-sm font-medium text-accent-foreground mb-4">
           <MessageCircle className="w-4 h-4" />
-          <span>گفتوگۆ لەگەڵ AI</span>
+          <span>ئاخفتن دگەل AI</span>
         </div>
-        <h2 className="text-3xl md:text-4xl font-extrabold mb-3">پرسیار بکە، وەڵامی زیرەک وەربگرە</h2>
-        <p className="text-muted-foreground">هەر شتێک لەسەر خوێندن، زانست یان بابەتەکانت بپرسە.</p>
+        <h2 className="text-3xl md:text-4xl font-extrabold mb-3">پرسیارێ بکە، بەرسڤا زیرەک وەربگرە</h2>
+        <p className="text-muted-foreground">هەر تشتەکێ لسەر خواندن، زانست یان بابەتێن خۆ بپرسە.</p>
       </div>
 
       <div
@@ -140,7 +140,7 @@ export function ChatBox() {
                 send();
               }
             }}
-            placeholder="پەیامەکەت بنووسە..."
+            placeholder="پەیاما خۆ بنڤیسە..."
             rows={1}
             className="flex-1 resize-none rounded-xl border border-border bg-background px-4 py-3 text-sm md:text-base focus:outline-none focus:border-primary max-h-32"
           />
