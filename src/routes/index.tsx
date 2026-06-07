@@ -40,7 +40,7 @@ function Index() {
   const navLinks = [
     { href: "#features", label: "تایبەتمەندی" },
     { href: "#upload", label: "کورتکرن" },
-    { href: "#chat", label: "ئاخفتن" },
+    { href: "#chat", label: "تایبەتمەندی" },
     { href: "#pricing", label: "بهایی" },
     { href: "#about", label: "دەربارا مە" },
   ];
@@ -158,19 +158,19 @@ function Index() {
         <div className="max-w-5xl mx-auto">
           {!activeTool && (
             <>
-              <h2 className="text-3xl md:text-4xl font-extrabold text-center mb-3">ئامرازان</h2>
+              <h2 className="text-3xl md:text-4xl font-extrabold text-center mb-3">تایبەتمەندی</h2>
               <p className="text-center text-muted-foreground mb-10">یەکێ هەلبژێرە بو دەستپێکرنێ</p>
               <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
                 {[
                   { id: "summary" as ToolId, icon: FileText, title: "کورتکرن", desc: "PDF یان وێنە بکە کورتە." },
-                  { id: "chat" as ToolId, icon: MessageCircle, title: "ئاخفتن", desc: "پرسیارێ ژ AI بکە ب کوردی." },
+                  { id: "chat" as ToolId, icon: MessageCircle, title: "ئاخفتن", desc: "پسیارێ ژ AI بکە ب کوردی." },
                   { id: "humanize" as ToolId, icon: Wand2, title: "Humanize Text", desc: "نڤیسینا AI بکە مرۆڤی." },
-                  { id: "ocr" as ToolId, icon: ScanLine, title: "دەستنڤیس بو دەقی", desc: "وێنا دەستنڤیسی بخوینە." },
+                  { id: "ocr" as ToolId, icon: ScanLine, title: "دەستنڤیس بو دەقی", desc: "وێنەیێ دەستنڤیسی بخوینە." },
                   { id: "planner" as ToolId, icon: CalendarCheck, title: "پلانێ خواندنێ", desc: "پلانێ خواندنا ڕۆژانە بو تە." },
-                  { id: "solver" as ToolId, icon: ListOrdered, title: "چارەسەری هەنگاڤ", desc: "مەسەلە هەنگاڤ ب هەنگاڤ." },
+                  { id: "solver" as ToolId, icon: ListOrdered, title: "چارەسەری پێنگاڤ", desc: "پسیار پێنگاڤ ب پێنگاڤ." },
                   { id: "math2word" as ToolId, icon: Sigma, title: "Math → Word", desc: "هاوکێشە بو Microsoft Word." },
                   { id: "tts" as ToolId, icon: Volume2, title: "کورتەیا دەنگی", desc: "کورتە بکە و گوهداری بکە." },
-                  { id: "grader" as ToolId, icon: ClipboardCheck, title: "نمرەدانا ڕاپۆرتێ", desc: "ڕاپۆرتا خۆ بپێوە و نمرە بگرە." },
+                  { id: "grader" as ToolId, icon: ClipboardCheck, title: "نمرەدانا ڕاپۆرتێ", desc: "ڕاپۆرتا خۆ ب پیڤە و نمرەیێ ببینە." },
                   { id: "glossary" as ToolId, icon: BookA, title: "فەرهەنگا زانستی", desc: "زاراڤێن ئەکادیمی." },
                   { id: "testai" as ToolId, icon: ShieldCheck, title: "Test AI", desc: "ڕێژا نڤیسینا AI بپشکنە." },
                   { id: "testplagiarism" as ToolId, icon: FileSearch, title: "Test Plagiarism", desc: "ڕێژا پلاجیاریزمێ بپشکنە." },
@@ -203,7 +203,7 @@ function Index() {
                 className="mb-6 inline-flex items-center gap-2 rounded-full bg-secondary px-4 py-2 text-sm font-semibold hover:bg-secondary/80 transition"
               >
                 <X className="w-4 h-4" />
-                ڤەگەڕان بو ئامرازان
+                ڤەگەڕان بو تایبەتمەندی
               </button>
               {activeTool === "summary" && <Uploader />}
               {activeTool === "chat" && <ChatBox />}
@@ -215,7 +215,7 @@ function Index() {
                   buttonLabel="پلانێ من بو دروست بکە" />
               )}
               {activeTool === "solver" && (
-                <AiTool tool="solver" title="چارەسەرکرن هەنگاڤ ب هەنگاڤ" description="مەسەلێ بنڤیسە یان وێنا پرسیارێ دایننە."
+                <AiTool tool="solver" title="چارەسەرکرن پێنگاڤ ب پێنگاڤ" description="پسیارێ بنڤیسە یان وێنەیێ پسیارێ دایننە."
                   placeholder="نموونە: ٢x² + ٥x − ٣ = ٠ چارەسەر بکە"
                   buttonLabel="چارەسەر بکە" withFile fileAccept="image/*,application/pdf" />
               )}

@@ -64,7 +64,7 @@ export function Handwriting() {
     <div className="rounded-2xl bg-card border border-border p-6 md:p-8" style={{ boxShadow: "var(--shadow-elegant)" }}>
       <div className="mb-4 text-right">
         <h3 className="text-xl font-extrabold mb-1">گهۆڕینا دەستنڤیسی بو دەقی</h3>
-        <p className="text-sm text-muted-foreground">وێنا دەستنڤیسی ئاپلود بکە، ئەم دەقی بو تە دەردێخینین.</p>
+        <p className="text-sm text-muted-foreground">وێنەیێ دەستنڤیسی ئاپلود بکە، ئەم دەقی بو تە دەردێخینین.</p>
       </div>
 
       <input ref={fileRef} type="file" accept="image/*" className="hidden" onChange={(e) => onFile(e.target.files?.[0])} />
