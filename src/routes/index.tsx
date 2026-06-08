@@ -373,8 +373,7 @@ function Index() {
       {/* About */}
       <section id="about" className="px-4 md:px-6 py-20 bg-secondary/40 border-t border-border">
         <div className="max-w-5xl mx-auto">
-          <h2 className="text-3xl md:text-4xl font-extrabold text-center mb-3">دەربارەی مە</h2>
-          <p className="text-center text-muted-foreground mb-12">ئەو کەسێ ل پشتا ڤێ پڕۆژێیە</p>
+          <h2 className="text-3xl md:text-4xl font-extrabold text-center mb-12">دەربارەی مە</h2>
 
           <div className="grid md:grid-cols-2 gap-10 items-center max-w-4xl mx-auto">
             <div className="relative flex justify-center md:justify-end">
