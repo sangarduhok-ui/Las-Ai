@@ -189,7 +189,7 @@ export function AiTool({ tool, title, description, placeholder, buttonLabel, ltr
               className="w-full rounded-xl border-2 border-dashed border-border hover:border-primary/60 p-4 flex items-center justify-center gap-2 text-sm text-muted-foreground hover:text-foreground transition"
             >
               <Upload className="w-4 h-4" />
-              فایل/وێنە دایننە (PDF, Word, PowerPoint, وێنە)
+              فایل/وێنە بدانە (PDF, Word, PowerPoint, وێنە)
             </button>
           ) : (
             <div className="flex items-center justify-between rounded-xl bg-secondary px-4 py-3 text-sm">

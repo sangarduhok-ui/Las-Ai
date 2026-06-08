@@ -24,7 +24,7 @@ export const Route = createFileRoute("/")({
       {
         name: "description",
         content:
-          "بەلگەنامە و وێنێن خۆ دایننە و کورتەیەکا ڕێکوپێک وەربگرە ب کوردیا بادینی و ئینگلیزی ب هاریکاریا زیرەکیا دەستکرد.",
+          "بەلگەنامە و وێنێن خۆ بدانە و کورتەیەکا ڕێکوپێک وەربگرە ب کوردیا بادینی و ئینگلیزی ب هاریکاریا زیرەکیا دەستکرد.",
       },
       { property: "og:title", content: "کورتەیا خواندنێ ب AI" },
       { property: "og:description", content: "ئامرازەکێ زیرەک بو کورتکرنا پەرتوک و مەلزەمان." },
@@ -42,7 +42,7 @@ function Index() {
     { href: "#upload", label: "کورتکرن" },
     { href: "#chat", label: "تایبەتمەندی" },
     { href: "#pricing", label: "بهایی" },
-    { href: "#about", label: "دەربارا مە" },
+    { href: "#about", label: "دەربارەی مە" },
   ];
 
   return (
@@ -142,7 +142,7 @@ function Index() {
             بکە
           </h1>
           <p className="mt-6 text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">
-            PDF یان وێنێن مەلزەمێن خۆ دایننە، د چەند چرکەیەکێدا کورتەیەکا ڕێکوپێک ب کوردی
+            PDF یان وێنێن مەلزەمێن خۆ بدانە، د چەند چرکەیەکێدا کورتەیەکا ڕێکوپێک ب کوردی
             وەردگری — خالێن سەرەکی، پێناسە و فۆرمول.
           </p>
           <div className="mt-8 flex flex-wrap justify-center gap-3 text-sm text-muted-foreground">
@@ -166,7 +166,7 @@ function Index() {
                   { id: "chat" as ToolId, icon: MessageCircle, title: "ئاخفتن", desc: "پسیارێ ژ AI بکە ب کوردی." },
                   { id: "humanize" as ToolId, icon: Wand2, title: "Humanize Text", desc: "نڤیسینا AI بکە مرۆڤی." },
                   { id: "ocr" as ToolId, icon: ScanLine, title: "دەستنڤیس بو دەقی", desc: "وێنەیێ دەستنڤیسی بخوینە." },
-                  { id: "planner" as ToolId, icon: CalendarCheck, title: "پلانێ خواندنێ", desc: "پلانێ خواندنا ڕۆژانە بو تە." },
+                  { id: "planner" as ToolId, icon: CalendarCheck, title: "پلانا خواندنێ", desc: "پلانێ خواندنا ڕۆژانە بو تە." },
                   { id: "solver" as ToolId, icon: ListOrdered, title: "چارەسەری پێنگاڤ", desc: "پسیار پێنگاڤ ب پێنگاڤ." },
                   { id: "math2word" as ToolId, icon: Sigma, title: "Math → Word", desc: "هاوکێشە بو Microsoft Word." },
                   { id: "tts" as ToolId, icon: Volume2, title: "کورتەیا دەنگی", desc: "کورتە بکە و گوهداری بکە." },
@@ -210,43 +210,43 @@ function Index() {
               {activeTool === "humanize" && <Humanizer />}
               {activeTool === "ocr" && <Handwriting />}
               {activeTool === "planner" && (
-                <AiTool tool="planner" title="پلانێ خواندنا AI" description="بابەت و دەمێ خواندنێ بنڤیسە، پلانەکێ ڕۆژانە وەردگری."
+                <AiTool tool="planner" title="پلانا خواندنا AI" description="بابەت و دەمێ خواندنێ بنڤیسە، پلانەکێ ڕۆژانە وەردگری."
                   placeholder="نموونە: ٧ ڕۆژ بو تاقیکرنا کیمیایێ، ٣ کاتژمێر د ڕۆژەکێدا"
-                  buttonLabel="پلانێ من بو دروست بکە" />
+                  buttonLabel="پلانا من بو دروست بکە" />
               )}
               {activeTool === "solver" && (
-                <AiTool tool="solver" title="چارەسەرکرن پێنگاڤ ب پێنگاڤ" description="پسیارێ بنڤیسە یان وێنەیێ پسیارێ دایننە."
+                <AiTool tool="solver" title="چارەسەرکرن پێنگاڤ ب پێنگاڤ" description="پسیارێ بنڤیسە یان وێنەیێ پسیارێ بدانە."
                   placeholder="نموونە: ٢x² + ٥x − ٣ = ٠ چارەسەر بکە"
                   buttonLabel="چارەسەر بکە" withFile fileAccept="image/*,application/pdf" />
               )}
               {activeTool === "math2word" && <Math2Word />}
               {activeTool === "tts" && (
-                <AiTool tool="tts" title="کورتەیا دەنگی" description="دەقی بنڤیسە یان فایلی دایننە، کورتە و گوهداری."
+                <AiTool tool="tts" title="کورتەیا دەنگی" description="دەقی بنڤیسە یان فایلی بدانە، کورتە و گوهداری."
                   placeholder="دەقێ خۆ یێ درێژ ل ڤێرێ بنڤیسە..."
                   buttonLabel="کورتە و گوهداری" withTTS withFile
                   fileAccept="image/*,application/pdf,.docx,.pptx,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/vnd.openxmlformats-officedocument.presentationml.presentation" />
               )}
               {activeTool === "grader" && (
-                <AiTool tool="grader" title="نمرەدانا ڕاپۆرت/وتارێ" description="ڕاپۆرتی بنڤیسە یان فایلی دایننە، نمرە و ڕاسپاردە وەردگری."
-                  placeholder="دەقێ ڕاپۆرتا خۆ ل ڤێرێ دایننە..."
+                <AiTool tool="grader" title="نمرەدانا ڕاپۆرت/وتارێ" description="ڕاپۆرتی بنڤیسە یان فایلی بدانە، نمرە و ڕاسپاردە وەردگری."
+                  placeholder="دەقێ ڕاپۆرتا خۆ ل ڤێرێ بدانە..."
                   buttonLabel="نمرە بدە" withFile
                   fileAccept="image/*,application/pdf,.docx,.pptx,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/vnd.openxmlformats-officedocument.presentationml.presentation" />
               )}
               {activeTool === "glossary" && (
-                <AiTool tool="glossary" title="فەرهەنگا زاراڤێن ئەکادیمی" description="بابەتی بنڤیسە یان فایلی دایننە، لیستا زاراڤان وەردگری."
+                <AiTool tool="glossary" title="فەرهەنگا زاراڤێن ئەکادیمی" description="بابەتی بنڤیسە یان فایلی بدانە، لیستا زاراڤان وەردگری."
                   placeholder="نموونە: Calculus، Quantum Physics، Linear Algebra"
                   buttonLabel="زاراڤان نیشان بدە" withFile
                   fileAccept="image/*,application/pdf,.docx,.pptx,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/vnd.openxmlformats-officedocument.presentationml.presentation" />
               )}
               {activeTool === "testai" && (
-                <AiTool tool="testai" title="پشکنینا نڤیسینا AI" description="دەقی بنڤیسە یان فایلی دایننە، ڕێژا AI تێ پێشبینیکرن."
-                  placeholder="دەقێ ڤەکولینا خۆ ل ڤێرێ دایننە..."
+                <AiTool tool="testai" title="پشکنینا نڤیسینا AI" description="دەقی بنڤیسە یان فایلی بدانە، ڕێژا AI تێ پێشبینیکرن."
+                  placeholder="دەقێ ڤەکولینا خۆ ل ڤێرێ بدانە..."
                   buttonLabel="پشکنینێ بکە" withFile showPercentage
                   fileAccept="image/*,application/pdf,.docx,.pptx,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/vnd.openxmlformats-officedocument.presentationml.presentation" />
               )}
               {activeTool === "testplagiarism" && (
-                <AiTool tool="testplagiarism" title="پشکنینا پلاجیاریزمێ" description="دەقی بنڤیسە یان فایلی دایننە، ڕێژا پلاجیاریزمێ تێ پێشبینیکرن."
-                  placeholder="دەقێ ڤەکولینا خۆ ل ڤێرێ دایننە..."
+                <AiTool tool="testplagiarism" title="پشکنینا پلاجیاریزمێ" description="دەقی بنڤیسە یان فایلی بدانە، ڕێژا پلاجیاریزمێ تێ پێشبینیکرن."
+                  placeholder="دەقێ ڤەکولینا خۆ ل ڤێرێ بدانە..."
                   buttonLabel="پشکنینێ بکە" withFile showPercentage
                   fileAccept="image/*,application/pdf,.docx,.pptx,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/vnd.openxmlformats-officedocument.presentationml.presentation" />
               )}
@@ -292,13 +292,13 @@ function Index() {
       <section id="pricing" className="px-4 md:px-6 py-20">
         <div className="max-w-5xl mx-auto">
           <h2 className="text-3xl md:text-4xl font-extrabold text-center mb-3">پلانێن بهایی</h2>
-          <p className="text-center text-muted-foreground mb-12">پلانەکێ هەلبژێرە کو دگەل پێداڤیێن تە دگونجیت.</p>
+          <p className="text-center text-muted-foreground mb-12">پلانەکێ هەلبژێرە.</p>
 
           <div className="grid md:grid-cols-2 gap-6 max-w-3xl mx-auto">
             {/* Free */}
             <div className="rounded-3xl p-7 bg-card border border-border flex flex-col">
               <div className="mb-6">
-                <h3 className="text-xl font-bold mb-1">پلانێ بەلاش</h3>
+                <h3 className="text-xl font-bold mb-1">پلانا بێ بەرامبەر</h3>
                 <p className="text-muted-foreground text-sm">بو تاقیکرن و بکارئینانا کێم</p>
               </div>
               <div className="mb-6">
@@ -335,19 +335,19 @@ function Index() {
                 <Crown className="w-3.5 h-3.5" /> یا باشترین
               </div>
               <div className="mb-6">
-                <h3 className="text-xl font-bold mb-1">پلانێ VIP</h3>
+                <h3 className="text-xl font-bold mb-1">پلانا VIP</h3>
                 <p className="text-primary-foreground/80 text-sm">بو خواندکارێن جددی</p>
               </div>
               <div className="mb-6">
                 <span className="text-5xl font-extrabold">٥,٠٠٠</span>
-                <span className="text-primary-foreground/80"> دینار / مانگی</span>
+                <span className="text-primary-foreground/80"> دینار / هەیڤ</span>
               </div>
               <ul className="space-y-3 mb-8 flex-1">
                 {[
                   "کورتەیا بێ سنور",
                   "پشتەڤانیا ١٥٠ پەڕی بو هەر فایلەکێ",
                   "لەزا بلندتر",
-                  "پشتەڤانیا تایبەت ٢٤/٧",
+                  "پشتەڤانیا هەمی فایلان",
                   "هەمی تایبەتمەندیێن داهاتی",
                 ].map((t) => (
                   <li key={t} className="flex items-center gap-2 text-sm">
@@ -373,7 +373,7 @@ function Index() {
       {/* About */}
       <section id="about" className="px-4 md:px-6 py-20 bg-secondary/40 border-t border-border">
         <div className="max-w-5xl mx-auto">
-          <h2 className="text-3xl md:text-4xl font-extrabold text-center mb-3">دەربارا مە</h2>
+          <h2 className="text-3xl md:text-4xl font-extrabold text-center mb-3">دەربارەی مە</h2>
           <p className="text-center text-muted-foreground mb-12">ئەو کەسێ ل پشتا ڤێ پڕۆژێیە</p>
 
           <div className="grid md:grid-cols-2 gap-10 items-center max-w-4xl mx-auto">
