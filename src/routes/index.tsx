@@ -38,7 +38,7 @@ function Index() {
   const [activeTool, setActiveTool] = useState<null | ToolId>(null);
 
   const navLinks = [
-    { href: "#features", label: "تایبەتمەندی" },
+    { href: "#features", label: "بوچی ئەم؟" },
     { href: "#upload", label: "کورتکرن" },
     { href: "#chat", label: "تایبەتمەندی" },
     { href: "#pricing", label: "بهایی" },
