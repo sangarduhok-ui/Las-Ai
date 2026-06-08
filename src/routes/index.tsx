@@ -401,11 +401,11 @@ function Index() {
               </div>
               <h3 className="text-2xl md:text-3xl font-extrabold mb-2">سەنگەر محمد حەسەن</h3>
               <p className="text-muted-foreground font-semibold mb-5">
-                بڕوانامێ ماستەرێ د زانستێ بیرکاریدا
+                باوەرنامەیا ماستەر ب زانستێن بیرکاری
               </p>
               <p className="text-base md:text-lg leading-relaxed text-foreground/90 mb-5">
-                ئارمانجا من پێشخستنا خواندنێیە ب هاریکاریا زیرەکیا دەستکرد، تاکو خواندکارێن
-                کورد بشێن ب ئاسانی و لەزا فێربن و دەرفەتێن باشتر بدەست ڤە بینن.
+                ئارمانجا من پێشخستنا خواندنێیە ب هاریکاریا زیرەکیا دەستکرد، داکو
+                قوتابیێن هێژا بشێن ب ساناهی و بلەز فێربن و دەرفەتێن باشتر بدەست ڤە بینن.
               </p>
               <a
                 href="mailto:sangarduhok@gmail.com"
