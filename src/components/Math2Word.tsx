@@ -73,7 +73,7 @@ export function Math2Word() {
     <div className="rounded-2xl bg-card border border-border p-6 md:p-8" style={{ boxShadow: "var(--shadow-elegant)" }}>
       <div className="mb-4 text-right">
         <h3 className="text-xl font-extrabold mb-1">هاوکێشە بو Microsoft Word</h3>
-        <p className="text-sm text-muted-foreground">هاوکێشێ بنڤیسە یان وێنە دایننە، فایلەکێ Word وەردگری کو تنێ هاوکێشە دناڤدا هەنە.</p>
+        <p className="text-sm text-muted-foreground">هاوکێشێ بنڤیسە یان وێنە بدانە، فایلەکێ Word وەردگری کو تنێ هاوکێشە دناڤدا هەنە.</p>
       </div>
 
       <textarea
@@ -98,7 +98,7 @@ export function Math2Word() {
             className="w-full rounded-xl border-2 border-dashed border-border hover:border-primary/60 p-4 flex items-center justify-center gap-2 text-sm text-muted-foreground hover:text-foreground transition"
           >
             <Upload className="w-4 h-4" />
-            وێنا هاوکێشێ دایننە
+            وێنا هاوکێشێ بدانە
           </button>
         ) : (
           <div className="flex items-center justify-between rounded-xl bg-secondary px-4 py-3 text-sm">
