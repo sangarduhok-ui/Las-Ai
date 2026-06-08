@@ -113,6 +113,55 @@ function Index() {
               </a>
             ))}
           </nav>
+
+          {/* About card in menu */}
+          <div className="mt-6 rounded-2xl border border-border bg-secondary/40 p-4 text-right">
+            <div className="flex items-center gap-3 justify-end mb-3">
+              <div className="flex-1 min-w-0">
+                <p className="font-extrabold text-sm truncate">سەنگەر محمد حەسەن</p>
+                <p className="text-xs text-muted-foreground truncate">دامەزرینەر · ماستەر ب بیرکاری</p>
+              </div>
+              <div className="w-12 h-12 rounded-full overflow-hidden border-2 border-card shrink-0" style={{ boxShadow: "var(--shadow-glow)" }}>
+                <img src={sangarAsset.url} alt="سەنگەر محمد حەسەن" className="w-full h-full object-cover" loading="lazy" />
+              </div>
+            </div>
+            <a
+              href="mailto:sangarduhok@gmail.com"
+              className="flex items-center gap-1.5 text-xs font-semibold text-primary hover:underline mb-3 justify-end"
+              dir="ltr"
+            >
+              <Mail className="w-3.5 h-3.5" />
+              sangarduhok@gmail.com
+            </a>
+            <div className="flex items-center gap-2 justify-end">
+              <a
+                href="https://www.instagram.com/sangar__98?igsh=NHgxbzY2bGQ5M2I0&utm_source=qr"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Instagram"
+                className="w-9 h-9 rounded-full bg-card border border-border flex items-center justify-center hover:bg-primary hover:text-primary-foreground hover:border-primary transition"
+              >
+                <Instagram className="w-4 h-4" />
+              </a>
+              <a
+                href="https://www.facebook.com/share/1DrTW5Z1ik/?mibextid=wwXIfr"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Facebook"
+                className="w-9 h-9 rounded-full bg-card border border-border flex items-center justify-center hover:bg-primary hover:text-primary-foreground hover:border-primary transition"
+              >
+                <Facebook className="w-4 h-4" />
+              </a>
+              <a
+                href="mailto:sangarduhok@gmail.com"
+                aria-label="Email"
+                className="w-9 h-9 rounded-full bg-card border border-border flex items-center justify-center hover:bg-primary hover:text-primary-foreground hover:border-primary transition"
+              >
+                <Mail className="w-4 h-4" />
+              </a>
+            </div>
+          </div>
+
           <div className="mt-auto pt-6 text-xs text-muted-foreground text-center">
             © {new Date().getFullYear()} کورتەیا AI
           </div>
