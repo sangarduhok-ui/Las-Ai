@@ -1,0 +1,34 @@
+[
+  {
+    "id": "1m",
+    "label": "1 هەیڤ",
+    "price": 5000,
+    "originalPrice": null,
+    "discountLabel": null,
+    "isActive": true
+  },
+  {
+    "id": "3m",
+    "label": "3 هەیڤ",
+    "price": 12000,
+    "originalPrice": 15000,
+    "discountLabel": "20% داشکاندن",
+    "isActive": true
+  },
+  {
+    "id": "6m",
+    "label": "6 هەیڤ",
+    "price": 22000,
+    "originalPrice": 30000,
+    "discountLabel": "25% داشکاندن",
+    "isActive": true
+  },
+  {
+    "id": "1y",
+    "label": "1 ساڵ",
+    "price": 40000,
+    "originalPrice": 60000,
+    "discountLabel": "35% باشترین داشکاندن",
+    "isActive": true
+  }
+]

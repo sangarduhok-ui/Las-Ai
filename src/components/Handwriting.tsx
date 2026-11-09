@@ -1,5 +1,6 @@
 import { useState, useRef } from "react";
 import { Upload, Image as ImageIcon, Copy, Check, Loader2, X } from "lucide-react";
+import { isTextLtr } from "@/lib/utils";
 
 export function Handwriting() {
   const [preview, setPreview] = useState<string | null>(null);
@@ -16,7 +17,7 @@ export function Handwriting() {
       return;
     }
     if (f.size > 8 * 1024 * 1024) {
-      setError("قەبارا وێنێ پر یە (پترین ٨MB).");
+      setError("قەبارا وێنێ پر یە (پترین 8MB).");
       return;
     }
     setError(null);
@@ -78,7 +79,7 @@ export function Handwriting() {
             <Upload className="w-7 h-7" />
           </div>
           <span className="font-semibold">کلیک بکە بو هەلبژارتنا وێنێ</span>
-          <span className="text-xs text-muted-foreground">PNG, JPG — تا ٨MB</span>
+          <span className="text-xs text-muted-foreground">PNG, JPG — تا 8MB</span>
         </button>
       ) : (
         <div className="space-y-4">
@@ -112,7 +113,14 @@ export function Handwriting() {
             </button>
             <span className="text-xs font-semibold text-muted-foreground">دەقێ دەرئێخستی</span>
           </div>
-          <p className="whitespace-pre-wrap text-sm leading-relaxed text-right">{output}</p>
+          <p
+            dir={isTextLtr(output) ? "ltr" : "rtl"}
+            className={`whitespace-pre-wrap text-sm leading-relaxed ${
+              isTextLtr(output) ? "text-left font-sans" : "text-right"
+            }`}
+          >
+            {output}
+          </p>
         </div>
       )}
     </div>

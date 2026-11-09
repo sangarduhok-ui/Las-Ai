@@ -1,3 +1,4 @@
+import React, { type ReactNode } from "react";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import {
   Outlet,
@@ -7,10 +8,12 @@ import {
   HeadContent,
   Scripts,
 } from "@tanstack/react-router";
-import { useEffect, type ReactNode } from "react";
+import { AuthProvider } from "@/context/AuthContext";
+import { AuthModal } from "@/components/AuthModal";
+import { ProPlanModal } from "@/components/ProPlanModal";
+import { LogoutConfirmModal } from "@/components/LogoutConfirmModal";
 
 import appCss from "../styles.css?url";
-import { reportLovableError } from "../lib/lovable-error-reporting";
 
 function NotFoundComponent() {
   return (
@@ -35,20 +38,15 @@ function NotFoundComponent() {
 }
 
 function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
-  console.error(error);
+  console.error("Root Route Caught Error:", error);
   const router = useRouter();
-  useEffect(() => {
-    reportLovableError(error, { boundary: "tanstack_root_error_component" });
-  }, [error]);
 
   return (
     <div className="flex min-h-screen items-center justify-center bg-background px-4">
       <div className="max-w-md text-center">
-        <h1 className="text-xl font-semibold tracking-tight text-foreground">
-          هەڵەیەک ڕوویدا
-        </h1>
+        <h1 className="text-xl font-semibold tracking-tight text-foreground">هەڵەیەک ڕوویدا</h1>
         <p className="mt-2 text-sm text-muted-foreground">
-          هەوڵبدە دیسان یان بگەڕێوە بۆ سەرەتا.
+          {error?.message || "هەوڵبدە دیسان یان بگەڕێوە بۆ سەرەتا."}
         </p>
         <div className="mt-6 flex flex-wrap justify-center gap-2">
           <button
@@ -56,11 +54,14 @@ function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
               router.invalidate();
               reset();
             }}
-            className="inline-flex items-center justify-center rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground"
+            className="inline-flex items-center justify-center rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground hover:opacity-90 transition"
           >
             هەوڵبدەرەوە
           </button>
-          <a href="/" className="inline-flex items-center justify-center rounded-md border border-input bg-background px-4 py-2 text-sm font-medium text-foreground">
+          <a
+            href="/"
+            className="inline-flex items-center justify-center rounded-md border border-input bg-background px-4 py-2 text-sm font-medium text-foreground hover:bg-secondary transition"
+          >
             سەرەتا
           </a>
         </div>
@@ -69,34 +70,50 @@ function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
   );
 }
 
+// لێرەدا shellComponent سڕایەوە چونکە بوونی نییە لە ڕێبەری سەرەکیدا
 export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()({
   head: () => ({
     meta: [
       { charSet: "utf-8" },
-      { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "B Test" },
-      { name: "description", content: "ئامرازێکی زیرەک بۆ پوختەکردنی بەڵگەنامە و وێنە بە کوردی و ئینگلیزی." },
-      { name: "author", content: "AI Study Summary" },
-      { property: "og:title", content: "B Test" },
-      { property: "og:description", content: "ئامرازێکی زیرەک بۆ پوختەکردنی بەڵگەنامە و وێنە بە کوردی و ئینگلیزی." },
+      { name: "viewport", content: "width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" },
+      { title: "Las AI — پلاتفۆرمی زیرەکی دەستکرد بۆ فێرخوازان و توێژەران" },
+      {
+        name: "description",
+        content: "Las AI: ئامرازێکی پێشکەوتووی زیرەکی دەستکرد بۆ پوختەکردن، شییکردنەوەی بەڵگەنامە و PDF، و ڕێبەری زانکۆ بۆ فێرخوازان.",
+      },
+      { name: "author", content: "Las AI" },
+      { property: "og:title", content: "Las AI — پلاتفۆرمی زیرەکی دەستکرد" },
+      {
+        property: "og:description",
+        content: "Las AI: ئامرازێکی پێشکەوتووی زیرەکی دەستکرد بۆ پوختەکردن، شییکردنەوەی بەڵگەنامە و PDF.",
+      },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:title", content: "B Test" },
-      { name: "twitter:description", content: "ئامرازێکی زیرەک بۆ پوختەکردنی بەڵگەنامە و وێنە بە کوردی و ئینگلیزی." },
-      { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/761d263f-eb10-49a9-9efa-ad3888bfb96f/id-preview-b8c2e6cf--f18669fc-cb69-419f-b9ea-1f4b5952bb00.lovable.app-1780098451705.png" },
-      { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/761d263f-eb10-49a9-9efa-ad3888bfb96f/id-preview-b8c2e6cf--f18669fc-cb69-419f-b9ea-1f4b5952bb00.lovable.app-1780098451705.png" },
+      { name: "twitter:title", content: "Las AI — پلاتفۆرمی زیرەکی دەستکرد" },
+      {
+        name: "twitter:description",
+        content: "ئامرازێکی پێشکەوتووی زیرەکی دەستکرد بۆ پوختەکردن، شییکردنەوەی بەڵگەنامە و PDF، و ڕێبەری زانکۆ بۆ فێرخوازان.",
+      },
+      {
+        property: "og:image",
+        content: "/sangar.jpg",
+      },
+      {
+        name: "twitter:image",
+        content: "/sangar.jpg",
+      },
     ],
     links: [
+      { rel: "icon", href: "/logo.png", type: "image/png" },
       { rel: "stylesheet", href: appCss },
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
       {
         rel: "stylesheet",
-        href: "https://fonts.googleapis.com/css2?family=Noto+Kufi+Arabic:wght@400;500;600;700;800&display=swap",
+        href: "https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@500;600;700;800;900&family=Noto+Kufi+Arabic:wght@400;500;600;700;800&family=Cairo:wght@500;700;900&family=Amiri:wght@400;700&display=swap",
       },
     ],
   }),
-  shellComponent: RootShell,
   component: RootComponent,
   notFoundComponent: NotFoundComponent,
   errorComponent: ErrorComponent,
@@ -104,7 +121,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
 
 function RootShell({ children }: { children: ReactNode }) {
   return (
-    <html lang="ckb" dir="rtl">
+    <html lang="ckb" dir="rtl" suppressHydrationWarning>
       <head>
         <HeadContent />
       </head>
@@ -118,9 +135,29 @@ function RootShell({ children }: { children: ReactNode }) {
 
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();
+
+  React.useEffect(() => {
+    try {
+      const storedTheme = localStorage.getItem("ai_pukhtana_theme");
+      const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+      if (storedTheme === "dark" || (!storedTheme && prefersDark)) {
+        document.documentElement.classList.add("dark");
+      } else {
+        document.documentElement.classList.remove("dark");
+      }
+    } catch (e) {}
+  }, []);
+
   return (
-    <QueryClientProvider client={queryClient}>
-      <Outlet />
-    </QueryClientProvider>
+    <RootShell>
+      <QueryClientProvider client={queryClient}>
+        <AuthProvider>
+          <Outlet />
+          <AuthModal />
+          <ProPlanModal />
+          <LogoutConfirmModal />
+        </AuthProvider>
+      </QueryClientProvider>
+    </RootShell>
   );
 }

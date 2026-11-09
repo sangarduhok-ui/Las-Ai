@@ -1,49 +1,73 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { fetchGemini } from "@/lib/gemini";
+import { checkRateLimit } from "@/lib/rate-limit";
 
-const GATEWAY_URL = "https://ai.gateway.lovable.dev/v1/chat/completions";
-
-const SYSTEM_PROMPT = `You are an expert English editor. Rewrite the user's AI-generated text so it reads naturally as if written by a real human. Keep the meaning identical, vary sentence length and rhythm, remove robotic phrasing and clichés, use contractions where natural, and keep a clear, professional but warm tone. Output ONLY the rewritten English text, with no preface, no explanation, no markdown.`;
+const SYSTEM_PROMPT = `You are an expert academic editor, humanizer, and paraphrase specialist.
+Rewrite the user's provided text (whether AI-generated or copied/flagged for plagiarism) so it reads completely naturally, authentically, and scholarly as if written by a real human author.
+GUIDELINES:
+1. Preserve the original language and core academic meaning:
+   - If the input is in Kurdish (Badini / Kurmanji or Sorani): Output strictly in pure, authentic Kurdish Badini (Kurmanji / بەهدینی). NEVER use Sorani.
+   - If the input is in English: Output in polished, natural academic English.
+   - If the input is in Arabic: Output in fluent, authentic Arabic.
+2. Vary sentence structures, rhythm, and transitions to eliminate robotic phrasing, verbatim plagiarism similarity, and AI clichés.
+3. Keep terminology and scientific facts intact.
+4. Output ONLY the rewritten text, with no preamble, no markdown asterisks (**), and no commentary.`;
 
 export const Route = createFileRoute("/api/humanize")({
   server: {
     handlers: {
       POST: async ({ request }) => {
-        try {
-          const apiKey = process.env.LOVABLE_API_KEY;
-          if (!apiKey) return Response.json({ error: "AI service unavailable." }, { status: 500 });
+        const rate = checkRateLimit(request, 25, 60 * 1000);
+        if (!rate.ok) {
+          return Response.json(
+            { error: "داواکاریێن تە ژ سنوری دەربازبوون. هیڤیە کێمەکێ چاڤەڕێ بە." },
+            { status: 429 },
+          );
+        }
 
+        try {
           const { text } = (await request.json()) as { text?: string };
           if (!text || typeof text !== "string" || text.trim().length === 0) {
-            return Response.json({ error: "دەقێک بنووسە." }, { status: 400 });
+            return Response.json({ error: "دەقەکی بنڤیسە." }, { status: 400 });
           }
           if (text.length > 8000) {
-            return Response.json({ error: "دەقەکە زۆر درێژە (٨٠٠٠ پیت زۆرترین)." }, { status: 400 });
+            return Response.json(
+              { error: "دەق گەلەک درێژە (8000 پیت زۆرترینە)." },
+              { status: 400 },
+            );
           }
 
-          const aiResp = await fetch(GATEWAY_URL, {
-            method: "POST",
-            headers: { Authorization: `Bearer ${apiKey}`, "Content-Type": "application/json" },
-            body: JSON.stringify({
-              model: "google/gemini-2.5-flash",
-              messages: [
-                { role: "system", content: SYSTEM_PROMPT },
-                { role: "user", content: text },
-              ],
-            }),
+          const aiResp = await fetchGemini({
+            model: "gemini-2.5-flash",
+            messages: [
+              { role: "system", content: SYSTEM_PROMPT },
+              { role: "user", content: text },
+            ],
           });
 
           if (!aiResp.ok) {
-            if (aiResp.status === 429) return Response.json({ error: "داواکاریەکان زۆرن، تکایە چاوەڕێبە." }, { status: 429 });
-            if (aiResp.status === 402) return Response.json({ error: "کرێدیتی AI تەواوبوو." }, { status: 402 });
-            return Response.json({ error: "هەڵە لە AI." }, { status: 500 });
+            if (aiResp.status === 429)
+              return Response.json(
+                { error: "داواکاری زۆرن، هیڤیە چاڤەڕێ بە." },
+                { status: 429 },
+              );
+            if (aiResp.status === 402)
+              return Response.json({ error: "کرێدیتا AI ب دوماهیک هات." }, { status: 402 });
+            return Response.json({ error: "خەلەتیەک د مۆدێلا AI دا چێبوو." }, { status: 500 });
           }
 
           const data = await aiResp.json();
-          const output = data?.choices?.[0]?.message?.content ?? "";
+          const raw = data?.choices?.[0]?.message?.content ?? "";
+          const output = raw
+            .replace(/[٠-٩]/g, (d: string) => String(d.charCodeAt(0) - 0x0660))
+            .replace(/[۰-۹]/g, (d: string) => String(d.charCodeAt(0) - 0x06F0));
           return Response.json({ output });
         } catch (e) {
           console.error("humanize error:", e);
-          return Response.json({ error: e instanceof Error ? e.message : "Unknown" }, { status: 500 });
+          return Response.json(
+            { error: e instanceof Error ? e.message : "Unknown" },
+            { status: 500 },
+          );
         }
       },
     },

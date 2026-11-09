@@ -1,7 +1,9 @@
 import { useState } from "react";
 import { Sparkles, Copy, Check, Loader2 } from "lucide-react";
+import { useAuth } from "@/context/AuthContext";
 
 export function Humanizer() {
+  const { isAuthenticated, openAuthModal, consumeToolQuota } = useAuth();
   const [input, setInput] = useState("");
   const [output, setOutput] = useState("");
   const [loading, setLoading] = useState(false);
@@ -10,6 +12,13 @@ export function Humanizer() {
 
   const run = async () => {
     if (!input.trim()) return;
+    if (!isAuthenticated) {
+      openAuthModal("login");
+      return;
+    }
+    const quota = consumeToolQuota("humanize", "Humanize Text");
+    if (!quota.allowed) return;
+
     setLoading(true);
     setError(null);
     setOutput("");
@@ -36,16 +45,26 @@ export function Humanizer() {
   };
 
   return (
-    <div className="rounded-2xl bg-card border border-border p-6 md:p-8" style={{ boxShadow: "var(--shadow-elegant)" }}>
+    <div
+      className="rounded-2xl bg-card border border-border p-6 md:p-8"
+      style={{ boxShadow: "var(--shadow-elegant)" }}
+    >
       <div className="mb-4 text-right">
-        <h3 className="text-xl font-extrabold mb-1">AI Text → Humanize Text</h3>
-        <p className="text-sm text-muted-foreground">دەقێ ب AI دروستکری بنڤیسە، ئەم دگهۆڕینە بو نڤیسینەکا مرۆڤی یا سروشتی ب ئینگلیزی.</p>
+        <h3 className="text-xl font-extrabold mb-1 flex items-center justify-start gap-2.5" dir="rtl">
+          <span>سەرلەنووی دارشتن</span>
+          <span className="text-base font-semibold text-muted-foreground font-sans" dir="ltr">
+            (Humanize & Paraphrase Text)
+          </span>
+        </h3>
+        <p className="text-sm text-muted-foreground">
+          دەقێ ب AI دروستکری یان پشکێن کۆپیکری بنڤیسە، دا کۆ ب شێوازەکێ مرۆڤی و ئەکادیمی سەرلەنووی بهێنە دارشتن.
+        </p>
       </div>
 
       <textarea
         value={input}
         onChange={(e) => setInput(e.target.value)}
-        dir="ltr"
+        dir="auto"
         placeholder="Paste your AI-generated English text here..."
         className="w-full min-h-[160px] rounded-xl border border-border bg-background p-4 text-sm focus:outline-none focus:ring-2 focus:ring-primary/50 resize-y"
       />
@@ -57,23 +76,36 @@ export function Humanizer() {
           disabled={loading || !input.trim()}
           className="inline-flex items-center gap-2 rounded-xl bg-primary text-primary-foreground px-5 py-2.5 text-sm font-semibold hover:opacity-90 disabled:opacity-50"
         >
-          {loading ? <Loader2 className="w-4 h-4 animate-spin" /> : <Sparkles className="w-4 h-4" />}
+          {loading ? (
+            <Loader2 className="w-4 h-4 animate-spin" />
+          ) : (
+            <Sparkles className="w-4 h-4" />
+          )}
           {loading ? "د گهۆڕینێدا..." : "بگهۆڕە بو مرۆڤی"}
         </button>
       </div>
 
-      {error && <div className="rounded-xl bg-destructive/10 text-destructive text-sm p-3 mb-3 text-right">{error}</div>}
+      {error && (
+        <div className="rounded-xl bg-destructive/10 text-destructive text-sm p-3 mb-3 text-right">
+          {error}
+        </div>
+      )}
 
       {output && (
         <div className="rounded-xl border border-border bg-background p-4">
           <div className="flex items-center justify-between mb-2">
-            <button onClick={copy} className="inline-flex items-center gap-1.5 text-xs font-semibold text-muted-foreground hover:text-foreground">
+            <button
+              onClick={copy}
+              className="inline-flex items-center gap-1.5 text-xs font-semibold text-muted-foreground hover:text-foreground"
+            >
               {copied ? <Check className="w-3.5 h-3.5" /> : <Copy className="w-3.5 h-3.5" />}
               {copied ? "هاتە کۆپیکرن" : "کۆپی"}
             </button>
             <span className="text-xs font-semibold text-muted-foreground">Humanized</span>
           </div>
-          <p dir="ltr" className="whitespace-pre-wrap text-sm leading-relaxed">{output}</p>
+          <p dir="auto" className="whitespace-pre-wrap text-sm leading-relaxed">
+            {output}
+          </p>
         </div>
       )}
     </div>

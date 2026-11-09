@@ -75,13 +75,17 @@
   --input: oklch(0.92 0.01 255);
   --ring: oklch(0.51 0.21 274);
 
-  --gradient-hero: linear-gradient(135deg, oklch(0.51 0.21 274) 0%, oklch(0.62 0.18 220) 50%, oklch(0.7 0.17 165) 100%);
+  --gradient-hero: linear-gradient(
+    135deg,
+    oklch(0.51 0.21 274) 0%,
+    oklch(0.62 0.18 220) 50%,
+    oklch(0.7 0.17 165) 100%
+  );
   --gradient-primary: linear-gradient(135deg, oklch(0.51 0.21 274), oklch(0.7 0.17 165));
   --gradient-card: linear-gradient(180deg, oklch(1 0 0), oklch(0.98 0.008 255));
   --shadow-glow: 0 20px 60px -15px color-mix(in oklab, oklch(0.51 0.21 274) 40%, transparent);
   --shadow-elegant: 0 10px 40px -10px color-mix(in oklab, oklch(0.35 0.08 265) 22%, transparent);
 }
-
 
 .dark {
   --background: oklch(0.18 0.03 260);
@@ -109,8 +113,12 @@
 }
 
 @layer base {
-  * { border-color: var(--color-border); }
-  html { direction: rtl; }
+  * {
+    border-color: var(--color-border);
+  }
+  html {
+    direction: rtl;
+  }
   body {
     background-color: var(--color-background);
     color: var(--color-foreground);
@@ -121,24 +129,248 @@
 }
 
 @keyframes pulse-ring {
-  0%   { box-shadow: 0 0 0 0 color-mix(in oklab, var(--primary) 55%, transparent); }
-  70%  { box-shadow: 0 0 0 22px color-mix(in oklab, var(--primary) 0%, transparent); }
-  100% { box-shadow: 0 0 0 0 color-mix(in oklab, var(--primary) 0%, transparent); }
+  0% {
+    box-shadow: 0 0 0 0 color-mix(in oklab, var(--primary) 55%, transparent);
+  }
+  70% {
+    box-shadow: 0 0 0 22px color-mix(in oklab, var(--primary) 0%, transparent);
+  }
+  100% {
+    box-shadow: 0 0 0 0 color-mix(in oklab, var(--primary) 0%, transparent);
+  }
 }
-.animate-pulse-ring { animation: pulse-ring 1.8s cubic-bezier(0.4, 0, 0.6, 1) infinite; }
+.animate-pulse-ring {
+  animation: pulse-ring 1.8s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
 
 @keyframes shimmer {
-  0% { background-position: -200% 0; }
-  100% { background-position: 200% 0; }
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
 }
 .shimmer {
-  background: linear-gradient(90deg, transparent, color-mix(in oklab, var(--primary) 20%, transparent), transparent);
+  background: linear-gradient(
+    90deg,
+    transparent,
+    color-mix(in oklab, var(--primary) 20%, transparent),
+    transparent
+  );
   background-size: 200% 100%;
   animation: shimmer 1.6s linear infinite;
 }
 
 @keyframes float {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-8px); }
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
 }
-.animate-float { animation: float 4s ease-in-out infinite; }
+.animate-float {
+  animation: float 4s ease-in-out infinite;
+}
+
+/* 3D AI Robot Character Animations */
+@keyframes robot-wave-intro {
+  0% {
+    transform: scale(0.85) translateY(12px) rotate(0deg);
+    opacity: 0;
+  }
+  20% {
+    transform: scale(1.08) translateY(-6px) rotate(-6deg);
+    opacity: 1;
+  }
+  35% {
+    transform: scale(1.05) translateY(-2px) rotate(10deg);
+  }
+  50% {
+    transform: scale(1.08) translateY(-6px) rotate(-8deg);
+  }
+  65% {
+    transform: scale(1.04) translateY(-3px) rotate(6deg);
+  }
+  80% {
+    transform: scale(1.01) translateY(-1px) rotate(-3deg);
+  }
+  100% {
+    transform: scale(1) translateY(0) rotate(0deg);
+  }
+}
+
+.animate-robot-wave {
+  animation: robot-wave-intro 2.4s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+  transform-origin: bottom center;
+}
+
+@keyframes robot-float-idle {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  25% {
+    transform: translateY(-6px) rotate(1.2deg);
+  }
+  50% {
+    transform: translateY(-10px) rotate(0deg);
+  }
+  75% {
+    transform: translateY(-5px) rotate(-1.2deg);
+  }
+}
+
+.animate-robot-idle {
+  animation: robot-float-idle 3.8s ease-in-out infinite;
+  transform-origin: bottom center;
+}
+
+@keyframes robot-wave-click {
+  0% {
+    transform: scale(1) rotate(0deg);
+  }
+  20% {
+    transform: scale(1.1) translateY(-4px) rotate(10deg);
+  }
+  40% {
+    transform: scale(1.1) translateY(-4px) rotate(-8deg);
+  }
+  60% {
+    transform: scale(1.08) translateY(-2px) rotate(8deg);
+  }
+  80% {
+    transform: scale(1.04) translateY(-1px) rotate(-4deg);
+  }
+  100% {
+    transform: scale(1) rotate(0deg) translateY(0);
+  }
+}
+
+.animate-robot-interactive-wave {
+  animation: robot-wave-click 1.5s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+  transform-origin: bottom center;
+}
+
+@keyframes robot-shadow-pulse {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 0.35;
+  }
+  50% {
+    transform: scale(0.82);
+    opacity: 0.15;
+  }
+}
+
+.animate-robot-shadow {
+  animation: robot-shadow-pulse 3.8s ease-in-out infinite;
+}
+
+/* ===== Live SVG Robot Avatar (RobotAvatarLive.tsx) ===== */
+@keyframes robot-arm-wave-loop {
+  0%, 100% {
+    transform: rotate(6deg);
+  }
+  50% {
+    transform: rotate(-20deg);
+  }
+}
+.robot-arm-waving {
+  animation: robot-arm-wave-loop 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) infinite;
+  transform-origin: 61.5px 108px;
+}
+
+@keyframes robot-arm-idle-sway {
+  0%, 100% {
+    transform: rotate(-2deg);
+  }
+  50% {
+    transform: rotate(3deg);
+  }
+}
+.robot-arm-idle {
+  animation: robot-arm-idle-sway 3.6s ease-in-out infinite;
+  transform-origin: 61.5px 108px;
+}
+
+@keyframes robot-antenna-pulse {
+  0%, 100% {
+    opacity: 0.75;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.2);
+  }
+}
+.robot-antenna-glow {
+  animation: robot-antenna-pulse 2.2s ease-in-out infinite;
+  transform-origin: 136px 2px;
+}
+
+@keyframes robot-mouth-pulse-loop {
+  0%, 100% {
+    transform: scale(0.85);
+  }
+  50% {
+    transform: scale(1.25);
+  }
+}
+.robot-mouth-pulse {
+  animation: robot-mouth-pulse-loop 0.55s ease-in-out infinite;
+}
+
+@keyframes robot-thinking-dots-loop {
+  0%, 100% {
+    opacity: 0.25;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+.robot-thinking-dots circle {
+  animation: robot-thinking-dots-loop 1.1s ease-in-out infinite;
+}
+.robot-thinking-dots circle:nth-child(2) {
+  animation-delay: 0.15s;
+}
+.robot-thinking-dots circle:nth-child(3) {
+  animation-delay: 0.3s;
+}
+
+/* Disable native Edge/browser password reveal & clear buttons to prevent duplicate eye icons */
+input::-ms-reveal,
+input::-ms-clear,
+input[type="password"]::-ms-reveal,
+input[type="password"]::-ms-clear {
+  display: none !important;
+  width: 0 !important;
+  height: 0 !important;
+  pointer-events: none !important;
+  opacity: 0 !important;
+}
+
+/* ── STRICT LTR FOR ALL MATHEMATICAL FORMULAS & KATEX ── */
+/* Prevents math equations from being reversed/mirrored in RTL contexts */
+.katex,
+.katex-display,
+.katex-html,
+.katex-html *,
+.math-formula-box,
+.math-ltr,
+[data-math],
+[dir="ltr"] .katex {
+  direction: ltr !important;
+  unicode-bidi: isolate !important;
+}
+
+.math-formula-box {
+  display: block;
+  direction: ltr !important;
+  unicode-bidi: isolate !important;
+  text-align: center;
+}
+
+

@@ -11,12 +11,20 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as ApiWhatsappAuthRouteImport } from './routes/api/whatsapp-auth'
+import { Route as ApiVideoDownloadRouteImport } from './routes/api/video-download'
 import { Route as ApiToolRouteImport } from './routes/api/tool'
 import { Route as ApiSummarizeRouteImport } from './routes/api/summarize'
 import { Route as ApiQuizRouteImport } from './routes/api/quiz'
+import { Route as ApiPricingRouteImport } from './routes/api/pricing'
 import { Route as ApiOcrRouteImport } from './routes/api/ocr'
+import { Route as ApiNotificationsRouteImport } from './routes/api/notifications'
 import { Route as ApiHumanizeRouteImport } from './routes/api/humanize'
+import { Route as ApiDownloadPdfRouteImport } from './routes/api/download-pdf'
+import { Route as ApiDoiCitationRouteImport } from './routes/api/doi-citation'
+import { Route as ApiConvertToPdfRouteImport } from './routes/api/convert-to-pdf'
 import { Route as ApiChatRouteImport } from './routes/api/chat'
+import { Route as ApiAnnouncementRouteImport } from './routes/api/announcement'
 
 const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
   id: '/sitemap.xml',
@@ -26,6 +34,16 @@ const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiWhatsappAuthRoute = ApiWhatsappAuthRouteImport.update({
+  id: '/api/whatsapp-auth',
+  path: '/api/whatsapp-auth',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiVideoDownloadRoute = ApiVideoDownloadRouteImport.update({
+  id: '/api/video-download',
+  path: '/api/video-download',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ApiToolRoute = ApiToolRouteImport.update({
@@ -43,9 +61,19 @@ const ApiQuizRoute = ApiQuizRouteImport.update({
   path: '/api/quiz',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ApiPricingRoute = ApiPricingRouteImport.update({
+  id: '/api/pricing',
+  path: '/api/pricing',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ApiOcrRoute = ApiOcrRouteImport.update({
   id: '/api/ocr',
   path: '/api/ocr',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiNotificationsRoute = ApiNotificationsRouteImport.update({
+  id: '/api/notifications',
+  path: '/api/notifications',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ApiHumanizeRoute = ApiHumanizeRouteImport.update({
@@ -53,85 +81,161 @@ const ApiHumanizeRoute = ApiHumanizeRouteImport.update({
   path: '/api/humanize',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ApiDownloadPdfRoute = ApiDownloadPdfRouteImport.update({
+  id: '/api/download-pdf',
+  path: '/api/download-pdf',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiDoiCitationRoute = ApiDoiCitationRouteImport.update({
+  id: '/api/doi-citation',
+  path: '/api/doi-citation',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiConvertToPdfRoute = ApiConvertToPdfRouteImport.update({
+  id: '/api/convert-to-pdf',
+  path: '/api/convert-to-pdf',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ApiChatRoute = ApiChatRouteImport.update({
   id: '/api/chat',
   path: '/api/chat',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiAnnouncementRoute = ApiAnnouncementRouteImport.update({
+  id: '/api/announcement',
+  path: '/api/announcement',
   getParentRoute: () => rootRouteImport,
 } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/api/announcement': typeof ApiAnnouncementRoute
   '/api/chat': typeof ApiChatRoute
+  '/api/convert-to-pdf': typeof ApiConvertToPdfRoute
+  '/api/doi-citation': typeof ApiDoiCitationRoute
+  '/api/download-pdf': typeof ApiDownloadPdfRoute
   '/api/humanize': typeof ApiHumanizeRoute
+  '/api/notifications': typeof ApiNotificationsRoute
   '/api/ocr': typeof ApiOcrRoute
+  '/api/pricing': typeof ApiPricingRoute
   '/api/quiz': typeof ApiQuizRoute
   '/api/summarize': typeof ApiSummarizeRoute
   '/api/tool': typeof ApiToolRoute
+  '/api/video-download': typeof ApiVideoDownloadRoute
+  '/api/whatsapp-auth': typeof ApiWhatsappAuthRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/api/announcement': typeof ApiAnnouncementRoute
   '/api/chat': typeof ApiChatRoute
+  '/api/convert-to-pdf': typeof ApiConvertToPdfRoute
+  '/api/doi-citation': typeof ApiDoiCitationRoute
+  '/api/download-pdf': typeof ApiDownloadPdfRoute
   '/api/humanize': typeof ApiHumanizeRoute
+  '/api/notifications': typeof ApiNotificationsRoute
   '/api/ocr': typeof ApiOcrRoute
+  '/api/pricing': typeof ApiPricingRoute
   '/api/quiz': typeof ApiQuizRoute
   '/api/summarize': typeof ApiSummarizeRoute
   '/api/tool': typeof ApiToolRoute
+  '/api/video-download': typeof ApiVideoDownloadRoute
+  '/api/whatsapp-auth': typeof ApiWhatsappAuthRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/api/announcement': typeof ApiAnnouncementRoute
   '/api/chat': typeof ApiChatRoute
+  '/api/convert-to-pdf': typeof ApiConvertToPdfRoute
+  '/api/doi-citation': typeof ApiDoiCitationRoute
+  '/api/download-pdf': typeof ApiDownloadPdfRoute
   '/api/humanize': typeof ApiHumanizeRoute
+  '/api/notifications': typeof ApiNotificationsRoute
   '/api/ocr': typeof ApiOcrRoute
+  '/api/pricing': typeof ApiPricingRoute
   '/api/quiz': typeof ApiQuizRoute
   '/api/summarize': typeof ApiSummarizeRoute
   '/api/tool': typeof ApiToolRoute
+  '/api/video-download': typeof ApiVideoDownloadRoute
+  '/api/whatsapp-auth': typeof ApiWhatsappAuthRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
     | '/sitemap.xml'
+    | '/api/announcement'
     | '/api/chat'
+    | '/api/convert-to-pdf'
+    | '/api/doi-citation'
+    | '/api/download-pdf'
     | '/api/humanize'
+    | '/api/notifications'
     | '/api/ocr'
+    | '/api/pricing'
     | '/api/quiz'
     | '/api/summarize'
     | '/api/tool'
+    | '/api/video-download'
+    | '/api/whatsapp-auth'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
     | '/sitemap.xml'
+    | '/api/announcement'
     | '/api/chat'
+    | '/api/convert-to-pdf'
+    | '/api/doi-citation'
+    | '/api/download-pdf'
     | '/api/humanize'
+    | '/api/notifications'
     | '/api/ocr'
+    | '/api/pricing'
     | '/api/quiz'
     | '/api/summarize'
     | '/api/tool'
+    | '/api/video-download'
+    | '/api/whatsapp-auth'
   id:
     | '__root__'
     | '/'
     | '/sitemap.xml'
+    | '/api/announcement'
     | '/api/chat'
+    | '/api/convert-to-pdf'
+    | '/api/doi-citation'
+    | '/api/download-pdf'
     | '/api/humanize'
+    | '/api/notifications'
     | '/api/ocr'
+    | '/api/pricing'
     | '/api/quiz'
     | '/api/summarize'
     | '/api/tool'
+    | '/api/video-download'
+    | '/api/whatsapp-auth'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
+  ApiAnnouncementRoute: typeof ApiAnnouncementRoute
   ApiChatRoute: typeof ApiChatRoute
+  ApiConvertToPdfRoute: typeof ApiConvertToPdfRoute
+  ApiDoiCitationRoute: typeof ApiDoiCitationRoute
+  ApiDownloadPdfRoute: typeof ApiDownloadPdfRoute
   ApiHumanizeRoute: typeof ApiHumanizeRoute
+  ApiNotificationsRoute: typeof ApiNotificationsRoute
   ApiOcrRoute: typeof ApiOcrRoute
+  ApiPricingRoute: typeof ApiPricingRoute
   ApiQuizRoute: typeof ApiQuizRoute
   ApiSummarizeRoute: typeof ApiSummarizeRoute
   ApiToolRoute: typeof ApiToolRoute
+  ApiVideoDownloadRoute: typeof ApiVideoDownloadRoute
+  ApiWhatsappAuthRoute: typeof ApiWhatsappAuthRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -148,6 +252,20 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/whatsapp-auth': {
+      id: '/api/whatsapp-auth'
+      path: '/api/whatsapp-auth'
+      fullPath: '/api/whatsapp-auth'
+      preLoaderRoute: typeof ApiWhatsappAuthRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/video-download': {
+      id: '/api/video-download'
+      path: '/api/video-download'
+      fullPath: '/api/video-download'
+      preLoaderRoute: typeof ApiVideoDownloadRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/api/tool': {
@@ -171,11 +289,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ApiQuizRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/api/pricing': {
+      id: '/api/pricing'
+      path: '/api/pricing'
+      fullPath: '/api/pricing'
+      preLoaderRoute: typeof ApiPricingRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/api/ocr': {
       id: '/api/ocr'
       path: '/api/ocr'
       fullPath: '/api/ocr'
       preLoaderRoute: typeof ApiOcrRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/notifications': {
+      id: '/api/notifications'
+      path: '/api/notifications'
+      fullPath: '/api/notifications'
+      preLoaderRoute: typeof ApiNotificationsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/api/humanize': {
@@ -185,11 +317,39 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ApiHumanizeRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/api/download-pdf': {
+      id: '/api/download-pdf'
+      path: '/api/download-pdf'
+      fullPath: '/api/download-pdf'
+      preLoaderRoute: typeof ApiDownloadPdfRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/doi-citation': {
+      id: '/api/doi-citation'
+      path: '/api/doi-citation'
+      fullPath: '/api/doi-citation'
+      preLoaderRoute: typeof ApiDoiCitationRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/convert-to-pdf': {
+      id: '/api/convert-to-pdf'
+      path: '/api/convert-to-pdf'
+      fullPath: '/api/convert-to-pdf'
+      preLoaderRoute: typeof ApiConvertToPdfRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/api/chat': {
       id: '/api/chat'
       path: '/api/chat'
       fullPath: '/api/chat'
       preLoaderRoute: typeof ApiChatRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/announcement': {
+      id: '/api/announcement'
+      path: '/api/announcement'
+      fullPath: '/api/announcement'
+      preLoaderRoute: typeof ApiAnnouncementRouteImport
       parentRoute: typeof rootRouteImport
     }
   }
@@ -198,13 +358,31 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
+  ApiAnnouncementRoute: ApiAnnouncementRoute,
   ApiChatRoute: ApiChatRoute,
+  ApiConvertToPdfRoute: ApiConvertToPdfRoute,
+  ApiDoiCitationRoute: ApiDoiCitationRoute,
+  ApiDownloadPdfRoute: ApiDownloadPdfRoute,
   ApiHumanizeRoute: ApiHumanizeRoute,
+  ApiNotificationsRoute: ApiNotificationsRoute,
   ApiOcrRoute: ApiOcrRoute,
+  ApiPricingRoute: ApiPricingRoute,
   ApiQuizRoute: ApiQuizRoute,
   ApiSummarizeRoute: ApiSummarizeRoute,
   ApiToolRoute: ApiToolRoute,
+  ApiVideoDownloadRoute: ApiVideoDownloadRoute,
+  ApiWhatsappAuthRoute: ApiWhatsappAuthRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
+
+import type { getRouter } from './router.tsx'
+import type { startInstance } from './start.ts'
+declare module '@tanstack/react-start' {
+  interface Register {
+    ssr: true
+    router: Awaited<ReturnType<typeof getRouter>>
+    config: Awaited<ReturnType<typeof startInstance.getOptions>>
+  }
+}

@@ -1,0 +1,808 @@
+{
+  "5a9a81779920849237641434a4b8accc5ffe16f84ada6b9f9d3dbe4ad0b512ef": {
+    "output": "{\n  \"percentage\": 5,\n  \"resultText\": \"95٪ ئەگەرا ڕەسەنایەتیێ هەیە، بەڵێ پێکهاتا بەڵگەنامەیێ نەئاساییە چونکە زانیاری ب شێوەی دەقێ جودا هاتیە نڤیسین و نەهاتیە پرکرن د ناڤ قالبی دا.\",\n  \"status\": \"authentic\",\n  \"reasons\": [\n    \"وێنەیا لاپەرێ ئێكێ قالبه‌کێ ڤالایە و هیچ زانیاریه‌کا تێدا نەهاتیە تۆمارکرن.\",\n    \"دەقێ هاتى پشک و لاپەرێن دی یێن بەڵگەنامەیێ ب شێوەیەکێ جودا وەک دەقێ ئاسایی هاتیە نڤیسین، نەکو وەک پڕکرنا خانەیێن قالبی.\",\n    \"هیچ نیشانەکا دەستکاریکرن یان ساختەکاریێ د ناڤ وێنەیا قالبێ دا نینە.\"\n  ],\n  \"highlights\": [\n    {\n      \"x\": 7,\n      \"y\": 11,\n      \"width\": 38,\n      \"height\": 25,\n      \"label\": \"خانەیێ وێنەیێ یێ بڤالە\"\n    },\n    {\n      \"x\": 52,\n      \"y\": 12,\n      \"width\": 38,\n      \"height\": 5,\n      \"label\": \"خانەیێ ناڤی یێ بڤالە\"\n    },\n    {\n      \"x\": 52,\n      \"y\": 16.5,\n      \"width\": 38,\n      \"height\": 5,\n      \"label\": \"خانەیێ باخچی یێ بڤالە\"\n    },\n    {\n      \"x\": 52,\n      \"y\": 21,\n      \"width\": 38,\n      \"height\": 5,\n      \"label\": \"خانەیێ ناڤ و نیشانی یێ بڤالە\"\n    },\n    {\n      \"x\": 52,\n      \"y\": 25.5,\n      \"width\": 38,\n      \"height\": 5,\n      \"label\": \"خانەیێ خالا دەستنیشانکری یێ بڤالە\"\n    },\n    {\n      \"x\": 52,\n      \"y\": 30,\n      \"width\": 38,\n      \"height\": 5,\n      \"label\": \"خانەیێ ژمارا موبایلا بابی یێ بڤالە\"\n    },\n    {\n      \"x\": 52,\n      \"y\": 34.5,\n      \"width\": 38,\n      \"height\": 5,\n      \"label\": \"خانەیێ ژمارا موبایلا دەیكی یێ بڤالە\"\n    }\n  ]\n}",
+    "timestamp": 1790780261291
+  },
+  "a2705c7d43d8d3c0ee5b657f6762ce4a6191c24ac235e875c7f5370ad3fcaaab": {
+    "output": "{\n  \"percentage\": 5,\n  \"resultText\": \"ل گۆر دەقێ هاتینە دابینکرن، چ نیشانێن ساختەکاریێ نینن.\",\n  \"status\": \"authentic\",\n  \"reasons\": [\n    \"ل دویف دەقێ هاتینە دابینکرن، گوهۆرینێن فۆنتی یان شێوازێ نڤیسینێ دیار نینن.\",\n    \"رێکخستنا دەق و ژماران ل گۆر نیشانێن ئاسایی یە و چ شێواندنەک یان رێکپێکنەبوونەک نینە.\",\n    \"پشکنینا رەنگ، ELA (Error Level Analysis)، و میتاداتایێ نەشیام ژ بەر کو وێنە یان فایلێ رەسەن نەهاتیە دابینکرن. پشکنین تنێ ل سەر دەقێ OCR هاتیە کرن.\"\n  ],\n  \"highlights\": []\n}",
+    "timestamp": 1790780373959
+  },
+  "573b0320402ac4dd0a868e8d2ddab9b4c55dc52a76fe6204f90e1f0bf2da4e07": {
+    "output": "ڕێژەیا پلاجیاریزم: 85%\nئاستێ باوەریێ: بەرز\n\nپشکێن گومانلێکری:\n- \"In probability theory and statistics, the normal distribution, also called the Gaussian distribution, is the most significant continuous probability distribution since it approximates many natural phenomena.\" — ئەڤە پێناسەیەکا گشتی و یا ستانداردە ل زانستێ ئامار و ب ئاسانی د پەرتووک و ژێدەرێن زۆر دا دهێتە دیتن.\n- \"The notation N(μ, σ 2) means normally distributed with mean u and variance σ 2. If we say X ~ N(μ, σ 2) we mean that X is distributed normally with μ and σ 2 ).\" — ئەڤە تێگەهەکێ ستانداردە بۆ نیشاندانا دابەشبوونا ئاسایی (Normal Distribution) و ب ڤی شێوەی دهێتە بکارئینان ل گەلەک ژێدەران.\n- \"68% of the data fall within 1 standard deviation of the mean. 95% of the data fall within 2 standard deviations of the mean. 99.7% of the data fall within 3 standard deviations of the mean.\" — ئەڤە یاسایا ئیمپیریکی (Empirical Rule) یە، کو دەتایەکا فەرمییە د ئامارێ دا و وەک خۆ د گەلەک پەرتووک و وانەگۆتنان دا دهێت.\n- \"The Standard Normal Distribution (Z distribution) is a way of standardizing the normal distribution. It always has a mean of 0 and a standard deviation of 1.\" — ئەڤە پێناسە و تایبەتمەندیێن دابەشبوونا ئاسایا ستاندارد (Standard Normal Distribution) نە، کو گشتی و ب ئاسانی دهێنە دیتن.\n\nئامۆژگاری:\nژ بەر کو ئەڤ دۆکیۆمێنتە وانەگۆتنەکا ئەکادیمی یە، بکارئینانا پێناسە و یاسا و فۆرمولێن ستاندارد نە دزیا زانستی یە. لێ، ژ بۆ باشترکرن و پێدانا باوەریێ ب دۆکیۆمێنتێ، ئەم ئامۆژگاریێ ددەین کو ژێدەرێن بکارئینای د وانەگۆتنێ دا بهێنە ئاماژەکرن، ب تایبەتی بۆ وێنە، خشتە و نموونەیێن کو ژ پەرتووکێن دی هاتینە وەرگرتن. ئەڤ چەندە دێ باوەریێ ب کارێ هەوە زێدەتر کەت و دێ ڕوون کەت کو زانیاری ژ کو هاتینە.",
+    "timestamp": 1790845498325
+  },
+  "056ed49f08e7b08dd35e7f2938c39b614718b0ed37e21613a9b0531bedb0328c": {
+    "output": "ڕێژەیا پلاجیاریزم: 82%\nئاستێ باوەریێ: بەرز\n\nئەگەر:\n- بوونا دەقێ کۆپیکری ژ سەرچاوەیێن ئەکادیمی و ماڵپەڕێن زانستی بێ گۆڕین یان پارافڕەیزکرن.\n- هاوبەشییا پێکهاتەیا دەستەواژەیان دگەل ژێدەرێن بەردەست یێن ئەنتەرنێتێ و توێژینەوەکانی پێشوو.\n- نەبوونا ژێدەر و ئاماژەپێدانی زانستی (Citation) بۆ بەشێن کۆپیکری.\n- کۆپیکرنا وەسفێن بەرهەمێن بازرگانی (وەک ئامێرێن Leica) بێ ئاماژەپێدان.\n\nئامۆژگاری: پشکێن هایلایتکری ب دەنگ و تێگەهشتنا خۆ دابڕێژەوە (Paraphrase) و ژێدەر و سەرچاوەیێن دروست (In-text citations) بۆ زێدە بکە. هەروەسا، بۆ وەسفێن ئامێرێن بازرگانی، ژێدەرێ فەرمی یێ کۆمپانیایێ دیار بکە.",
+    "reportData": {
+      "percentage": 82,
+      "confidence": "بەرز",
+      "reasons": [
+        "بوونا دەقێ کۆپیکری ژ سەرچاوەیێن ئەکادیمی و ماڵپەڕێن زانستی بێ گۆڕین یان پارافڕەیزکرن.",
+        "هاوبەشییا پێکهاتەیا دەستەواژەیان دگەل ژێدەرێن بەردەست یێن ئەنتەرنێتێ و توێژینەوەکانی پێشوو.",
+        "نەبوونا ژێدەر و ئاماژەپێدانی زانستی (Citation) بۆ بەشێن کۆپیکری.",
+        "کۆپیکرنا وەسفێن بەرهەمێن بازرگانی (وەک ئامێرێن Leica) بێ ئاماژەپێدان."
+      ],
+      "advice": "پشکێن هایلایتکری ب دەنگ و تێگەهشتنا خۆ دابڕێژەوە (Paraphrase) و ژێدەر و سەرچاوەیێن دروست (In-text citations) بۆ زێدە بکە. هەروەسا، بۆ وەسفێن ئامێرێن بازرگانی، ژێدەرێ فەرمی یێ کۆمپانیایێ دیار بکە.",
+      "sentences": [
+        {
+          "text": "Surveying is the art of measuring distances, angles, and positions above, on or below the earth's surface.",
+          "isAi": true,
+          "score": 90,
+          "reason": "دەقێ هاوبەش و کۆپیکری ژ ژێدەرێن ئەکادیمی"
+        },
+        {
+          "text": "To determine the relative positions of points on the earth's surface – to locate arbitrary points, configuration of the ground, direction and length of lines, boundary lines, etc.,",
+          "isAi": true,
+          "score": 88,
+          "reason": "دەقێ هاوبەش و کۆپیکری ژ ژێدەرێن ئەکادیمی"
+        },
+        {
+          "text": "Such topographical features may include hills, rivers, lakes, dams, railways and road.",
+          "isAi": true,
+          "score": 85,
+          "reason": "دەقێ هاوبەش و کۆپیکری ژ ژێدەرێن ئەکادیمی"
+        },
+        {
+          "text": "The term hydrography is sometimes used synonymously to describe maritime cartography, which in the final stages of the hydrographic process uses the raw data collected through hydrographic survey into information usable by the end user.",
+          "isAi": true,
+          "score": 92,
+          "reason": "دەقێ هاوبەش و کۆپیکری ژ ژێدەرێن ئەکادیمی"
+        },
+        {
+          "text": "These procedures have today been replaced with GNSS surveys where the coordinates of two points are established on the ground using either static or kinematic GNSS methods.",
+          "isAi": true,
+          "score": 91,
+          "reason": "دەقێ هاوبەش و کۆپیکری ژ ژێدەرێن ئەکادیمی"
+        },
+        {
+          "text": "These surveys are carried out to prepare the maps of ancient civilizations.",
+          "isAi": true,
+          "score": 87,
+          "reason": "دەقێ هاوبەش و کۆپیکری ژ ژێدەرێن ئەکادیمی"
+        },
+        {
+          "text": "It is the type of surveying in which, only linear measurements are made in the field, with the help of chain or tape.",
+          "isAi": true,
+          "score": 89,
+          "reason": "دەقێ هاوبەش و کۆپیکری ژ ژێدەرێن ئەکادیمی"
+        },
+        {
+          "text": "The total station is an electronic theodolite integrated with an electronic distance meter (EDM) to read slope distances from the instrument to a particular point.",
+          "isAi": true,
+          "score": 93,
+          "reason": "دەقێ هاوبەش و کۆپیکری ژ ژێدەرێن ئەکادیمی"
+        },
+        {
+          "text": "Photogrammetry is the science of making measurements from photographs, especially for recovering the exact positions of surface points.",
+          "isAi": true,
+          "score": 90,
+          "reason": "دەقێ هاوبەش و کۆپیکری ژ ژێدەرێن ئەکادیمی"
+        },
+        {
+          "text": "Triangulation is the process of determining the location of a point by measuring angles to it from known points at either end of a fixed baseline, rather than measuring distances to the point directly (trilateration).",
+          "isAi": true,
+          "score": 94,
+          "reason": "دەقێ هاوبەش و کۆپیکری ژ ژێدەرێن ئەکادیمی"
+        },
+        {
+          "text": "Such triangulation methods were used for accurate large-scale land surveying until the rise of global navigation satellite systems in the 1980s.",
+          "isAi": true,
+          "score": 88,
+          "reason": "دەقێ هاوبەش و کۆپیکری ژ ژێدەرێن ئەکادیمی"
+        },
+        {
+          "text": "Traverse is a method in the field of surveying to establish control network.",
+          "isAi": true,
+          "score": 85,
+          "reason": "دەقێ هاوبەش و کۆپیکری ژ ژێدەرێن ئەکادیمی"
+        },
+        {
+          "text": "The metric system does not use inches, feet, pounds, and so on, although units for time and electricity are the same as those you use now.",
+          "isAi": true,
+          "score": 87,
+          "reason": "دەقێ هاوبەش و کۆپیکری ژ ژێدەرێن ئەکادیمی"
+        },
+        {
+          "text": "An advantage of the metric system is that it is easier to convert from one unit to another.",
+          "isAi": true,
+          "score": 80,
+          "reason": "دەقێ هاوبەش و کۆپیکری ژ ژێدەرێن ئەکادیمی"
+        },
+        {
+          "text": "An angle is the difference in direction of two intersection lines.",
+          "isAi": true,
+          "score": 85,
+          "reason": "دەقێ هاوبەش و کۆپیکری ژ ژێدەرێن ئەکادیمی"
+        },
+        {
+          "text": "This correction is necessary because the length of tape may be increased or decreased due to rise or fall of temperature during measurement.",
+          "isAi": true,
+          "score": 90,
+          "reason": "دەقێ هاوبەش و کۆپیکری ژ ژێدەرێن ئەکادیمی"
+        },
+        {
+          "text": "The above expression takes care of sign of the correction also.",
+          "isAi": true,
+          "score": 75,
+          "reason": "دەقێ هاوبەش و کۆپیکری ژ ژێدەرێن ئەکادیمی"
+        },
+        {
+          "text": "The tape may be standardized in two ways (1) on the flat, and (2) in catenary.",
+          "isAi": true,
+          "score": 88,
+          "reason": "دەقێ هاوبەش و کۆپیکری ژ ژێدەرێن ئەکادیمی"
+        },
+        {
+          "text": "Example: The distance between two points, measured with a 20 m chain, was recorded as 327 m.",
+          "isAi": true,
+          "score": 80,
+          "reason": "دەقێ هاوبەش و کۆپیکری ژ ژێدەرێن ئەکادیمی"
+        },
+        {
+          "text": "Solution: True length of chain, L=20 m Error =3cm = 0.03m",
+          "isAi": false,
+          "score": 15,
+          "reason": ""
+        },
+        {
+          "text": "Leveling is the operation performed in surveying to determine and establish elevations of points, to determine differences in elevation between points and for control in construction works.",
+          "isAi": true,
+          "score": 92,
+          "reason": "دەقێ هاوبەش و کۆپیکری ژ ژێدەرێن ئەکادیمی"
+        },
+        {
+          "text": "A surface parallel to the mean spheroid of the earth is called a level surface and the line drawn on the level surface is known as a level line",
+          "isAi": true,
+          "score": 91,
+          "reason": "دەقێ هاوبەش و کۆپیکری ژ ژێدەرێن ئەکادیمی"
+        },
+        {
+          "text": "In India MSL used is that established at Karachi, presently, in Pakistan.",
+          "isAi": true,
+          "score": 78,
+          "reason": "دەقێ هاوبەش و کۆپیکری ژ ژێدەرێن ئەکادیمی"
+        },
+        {
+          "text": "A benchmark is a relatively permanent reference point, the elevation of which is known (assumed or known w.r.t. MSL).",
+          "isAi": true,
+          "score": 90,
+          "reason": "دەقێ هاوبەش و کۆپیکری ژ ژێدەرێن ئەکادیمی"
+        },
+        {
+          "text": "A level is an instrument giving horizontal line of sight and magnifying the reading at a faraway distance.",
+          "isAi": true,
+          "score": 89,
+          "reason": "دەقێ هاوبەش و کۆپیکری ژ ژێدەرێن ئەکادیمی"
+        },
+        {
+          "text": "It cannot be removed from its support.",
+          "isAi": false,
+          "score": 10,
+          "reason": ""
+        },
+        {
+          "text": "The auto-level or the automatic-level is a self-aligning level.",
+          "isAi": true,
+          "score": 85,
+          "reason": "دەقێ هاوبەش و کۆپیکری ژ ژێدەرێن ئەکادیمی"
+        },
+        {
+          "text": "This type of level removes interpolation of graduation by a person, thus removing a source of error and increasing accuracy.",
+          "isAi": true,
+          "score": 90,
+          "reason": "دەقێ هاوبەش و کۆپیکری ژ ژێدەرێن ئەکادیمی"
+        },
+        {
+          "text": "In geometric levelling the difference of height between two points is determined by differences of readings to the levelling rod placed on those points.",
+          "isAi": true,
+          "score": 91,
+          "reason": "دەقێ هاوبەش و کۆپیکری ژ ژێدەرێن ئەکادیمی"
+        },
+        {
+          "text": "It consist of finding the elevation of the plane of collimation ( H.I.) for every set up of the instrument, and then obtaining the reduced level of point with reference to the respective plane of collimation.",
+          "isAi": true,
+          "score": 93,
+          "reason": "دەقێ هاوبەش و کۆپیکری ژ ژێدەرێن ئەکادیمی"
+        },
+        {
+          "text": "There is no check on the R.L of intermediate points.",
+          "isAi": true,
+          "score": 75,
+          "reason": "دەقێ هاوبەش و کۆپیکری ژ ژێدەرێن ئەکادیمی"
+        },
+        {
+          "text": "Series of level runs from a known Datum or RL to a known Datum or RL.",
+          "isAi": true,
+          "score": 88,
+          "reason": "دەقێ هاوبەش و کۆپیکری ژ ژێدەرێن ئەکادیمی"
+        },
+        {
+          "text": "The precision of leveling is ascertained according to the error of closure.",
+          "isAi": true,
+          "score": 89,
+          "reason": "دەقێ هاوبەش و کۆپیکری ژ ژێدەرێن ئەکادیمی"
+        },
+        {
+          "text": "Profiles are carried out along the center line of the project area.",
+          "isAi": true,
+          "score": 85,
+          "reason": "دەقێ هاوبەش و کۆپیکری ژ ژێدەرێن ئەکادیمی"
+        },
+        {
+          "text": "Plotting of profile leveling provides a graphical representation of the ground points on a longitudinal section along the alignment.",
+          "isAi": true,
+          "score": 90,
+          "reason": "دەقێ هاوبەش و کۆپیکری ژ ژێدەرێن ئەکادیمی"
+        },
+        {
+          "text": "Leica digital levels improve standards for levelling on construction sites and general surveying tasks.",
+          "isAi": true,
+          "score": 95,
+          "reason": "دەقێ هاوبەش و کۆپیکری ژ ماڵپەڕێن کۆمپانیایێ"
+        },
+        {
+          "text": "The 0.7 mm accuracy of the 250M and the monitoring program allow machine and construction subsidence measurements.",
+          "isAi": true,
+          "score": 94,
+          "reason": "دەقێ هاوبەش و کۆپیکری ژ ماڵپەڕێن کۆمپانیایێ"
+        },
+        {
+          "text": "This function calculates the height difference between points.",
+          "isAi": true,
+          "score": 90,
+          "reason": "دەقێ هاوبەش و کۆپیکری ژ ماڵپەڕێن کۆمپانیایێ"
+        },
+        {
+          "text": "Planimeter is a mechanical instrument used for measuring area of plan.",
+          "isAi": true,
+          "score": 88,
+          "reason": "دەقێ هاوبەش و کۆپیکری ژ ژێدەرێن ئەکادیمی"
+        },
+        {
+          "text": "Map showing natural and/or physical features of a landscape, including altitude contours.",
+          "isAi": true,
+          "score": 90,
+          "reason": "دەقێ هاوبەش و کۆپیکری ژ ژێدەرێن ئەکادیمی"
+        }
+      ]
+    },
+    "timestamp": 1790858415703
+  },
+  "c939df71c556aa7aa21c4ae479f87536feff457cc93aefe3bcf1ab7e693f5ec4": {
+    "output": "ڕێژەیا پلاجیاریزم: 53%\nئاستێ باوەریێ: بەرز\n\nئەگەر:\n- هاوبەشییا بلند یا دەقێ شروڤەکرنا چەمکێن بیرکاری دگەل ژێدەرێن ئەکادیمی و ماڵپەرێن زانستی.\n- هاوبەشییا پێکهاتەیا پەیڤان دگەل ژێدەرێن بەردەست یێن ئینتەرنێتێ و ڤەکۆلینێن پێشتر.\n- نەبوونا ژێدەر و ئاماژەپێدانا دروست یا زانستی (Citation) بۆ پشکێن هاوبەش.\n\nئامۆژگاری: پشکێن هایلایتکری ب ئامرازێ Paraphrase (Humanizer) یێ Las AI سەرلەنووی دارێژەڤە و ژێدەرێن دروست (In-text citations) بۆ زێدە بکە.",
+    "reportData": {
+      "percentage": 53,
+      "confidence": "بەرز",
+      "reasons": [
+        "هاوبەشییا بلند یا دەقێ شروڤەکرنا چەمکێن بیرکاری دگەل ژێدەرێن ئەکادیمی و ماڵپەرێن زانستی.",
+        "هاوبەشییا پێکهاتەیا پەیڤان دگەل ژێدەرێن بەردەست یێن ئینتەرنێتێ و ڤەکۆلینێن پێشتر.",
+        "نەبوونا ژێدەر و ئاماژەپێدانا دروست یا زانستی (Citation) بۆ پشکێن هاوبەش."
+      ],
+      "advice": "پشکێن هایلایتکری ب ئامرازێ Paraphrase (Humanizer) یێ Las AI سەرلەنووی دارێژەڤە و ژێدەرێن دروست (In-text citations) بۆ زێدە بکە.",
+      "sentences": [
+        {
+          "text": "The real numbers are governed by a collection of rules that have to do with addition, multiplication, and inequalities.",
+          "isAi": true,
+          "score": 85,
+          "reason": "دەقێ هاوبەش و کۆپیکری ژ ژێدەرێن بەردەست"
+        },
+        {
+          "text": "In the rules below, x, y, z ∈ R.",
+          "isAi": true,
+          "score": 75,
+          "reason": "دەقێ هاوبەش و کۆپیکری ژ ژێدەرێن بەردەست"
+        },
+        {
+          "text": "(In other words, x, y, and z are real numbers.)",
+          "isAi": false,
+          "score": 15,
+          "reason": ""
+        },
+        {
+          "text": "Rules of addition.",
+          "isAi": false,
+          "score": 5,
+          "reason": ""
+        },
+        {
+          "text": "(x + y) + z = x + (y + z) (Law of associativity)",
+          "isAi": true,
+          "score": 90,
+          "reason": "دەقێ هاوبەش و کۆپیکری ژ ژێدەرێن بەردەست"
+        },
+        {
+          "text": "x + y = y + x (Law of commutativity)",
+          "isAi": true,
+          "score": 90,
+          "reason": "دەقێ هاوبەش و کۆپیکری ژ ژێدەرێن بەردەست"
+        },
+        {
+          "text": "x + 0 = x (Law of identity)",
+          "isAi": true,
+          "score": 90,
+          "reason": "دەقێ هاوبەش و کۆپیکری ژ ژێدەرێن بەردەست"
+        },
+        {
+          "text": "-x + x = 0 (Law of inverses)",
+          "isAi": true,
+          "score": 90,
+          "reason": "دەقێ هاوبەش و کۆپیکری ژ ژێدەرێن بەردەست"
+        },
+        {
+          "text": "Rules of multiplication.",
+          "isAi": false,
+          "score": 5,
+          "reason": ""
+        },
+        {
+          "text": "(xy)z = x(yz) (Law of associativity)",
+          "isAi": true,
+          "score": 90,
+          "reason": "دەقێ هاوبەش و کۆپیکری ژ ژێدەرێن بەردەست"
+        },
+        {
+          "text": "xy = yx (Law of commutativity)",
+          "isAi": true,
+          "score": 90,
+          "reason": "دەقێ هاوبەش و کۆپیکری ژ ژێدەرێن بەردەست"
+        },
+        {
+          "text": "x1 = x (Law of identity)",
+          "isAi": true,
+          "score": 90,
+          "reason": "دەقێ هاوبەش و کۆپیکری ژ ژێدەرێن بەردەست"
+        },
+        {
+          "text": "If x ≠ 0 then x = 1 (Law of inverses)",
+          "isAi": true,
+          "score": 90,
+          "reason": "دەقێ هاوبەش و کۆپیکری ژ ژێدەرێن بەردەست"
+        },
+        {
+          "text": "Distributive Law.",
+          "isAi": false,
+          "score": 5,
+          "reason": ""
+        },
+        {
+          "text": "There is a rule that combines addition and multiplication: the distributive law.",
+          "isAi": true,
+          "score": 85,
+          "reason": "دەقێ هاوبەش و کۆپیکری ژ ژێدەرێن بەردەست"
+        },
+        {
+          "text": "Of all the rules listed so far, it's arguably the most important.",
+          "isAi": false,
+          "score": 20,
+          "reason": ""
+        },
+        {
+          "text": "x(y + z) = xy + xz (Distributive Law)",
+          "isAi": true,
+          "score": 90,
+          "reason": "دەقێ هاوبەش و کۆپیکری ژ ژێدەرێن بەردەست"
+        },
+        {
+          "text": "Here are some other forms of the distributive law that you will have to be comfortable with:",
+          "isAi": false,
+          "score": 20,
+          "reason": ""
+        },
+        {
+          "text": "(y + z)x = yx + zx",
+          "isAi": true,
+          "score": 90,
+          "reason": "دەقێ هاوبەش و کۆپیکری ژ ژێدەرێن بەردەست"
+        },
+        {
+          "text": "Sometimes you'll have to use the distributive law in the \"forwards\" direction, as in the following three examples:",
+          "isAi": false,
+          "score": 20,
+          "reason": ""
+        },
+        {
+          "text": "3(y + z) = 3y + 3z",
+          "isAi": true,
+          "score": 80,
+          "reason": "دەقێ هاوبەش و کۆپیکری ژ ژێدەرێن بەردەست"
+        },
+        {
+          "text": "Sometimes you'll have to use the distributive law in \"reverse\".",
+          "isAi": false,
+          "score": 20,
+          "reason": ""
+        },
+        {
+          "text": "This process is sometimes called factoring out a term.",
+          "isAi": true,
+          "score": 85,
+          "reason": "دەقێ هاوبەش و کۆپیکری ژ ژێدەرێن بەردەست"
+        },
+        {
+          "text": "The three equations below are examples of factoring out a −4, factoring out a 3, and factoring out a 2.",
+          "isAi": false,
+          "score": 20,
+          "reason": ""
+        },
+        {
+          "text": "−4y − 4z = −4(y + z)",
+          "isAi": true,
+          "score": 80,
+          "reason": "دەقێ هاوبەش و کۆپیکری ژ ژێدەرێن بەردەست"
+        },
+        {
+          "text": "In addition to the algebra rules above, the real numbers are governed by laws of inequalities.",
+          "isAi": true,
+          "score": 85,
+          "reason": "دەقێ هاوبەش و کۆپیکری ژ ژێدەرێن بەردەست"
+        },
+        {
+          "text": "If x > 0 and y > 0 then x + y > 0",
+          "isAi": true,
+          "score": 90,
+          "reason": "دەقێ هاوبەش و کۆپیکری ژ ژێدەرێن بەردەست"
+        },
+        {
+          "text": "If x > 0 and y > 0 then xy > 0",
+          "isAi": true,
+          "score": 90,
+          "reason": "دەقێ هاوبەش و کۆپیکری ژ ژێدەرێن بەردەست"
+        },
+        {
+          "text": "If x ∈ R, then either x > 0, or x < 0, or x = 0",
+          "isAi": true,
+          "score": 90,
+          "reason": "دەقێ هاوبەش و کۆپیکری ژ ژێدەرێن بەردەست"
+        },
+        {
+          "text": "The following chart lists 8 important types of subsets of R.",
+          "isAi": false,
+          "score": 20,
+          "reason": ""
+        },
+        {
+          "text": "Any set of one of these types is called an interval.",
+          "isAi": true,
+          "score": 85,
+          "reason": "دەقێ هاوبەش و کۆپیکری ژ ژێدەرێن بەردەست"
+        },
+        {
+          "text": "Notice that for every interval listed in the chart on the previous page, the least of the two numbers written in the interval is always written on the left, just as they appear in the real number line.",
+          "isAi": true,
+          "score": 88,
+          "reason": "دەقێ هاوبەش و کۆپیکری ژ ژێدەرێن بەردەست"
+        },
+        {
+          "text": "For example, 3 < 7, so 3 is drawn on the left of 7 in the real number line, and the following intervals are legitimate intervals to write: [3,7], (3,7), [3,7), and (3,7].",
+          "isAi": true,
+          "score": 88,
+          "reason": "دەقێ هاوبەش و کۆپیکری ژ ژێدەرێن بەردەست"
+        },
+        {
+          "text": "You must not write an interval such as (7,3), because the least of the two numbers used in an interval must be written on the left.",
+          "isAi": true,
+          "score": 88,
+          "reason": "دەقێ هاوبەش و کۆپیکری ژ ژێدەرێن بەردەست"
+        },
+        {
+          "text": "Similarly, (∞, 2) or [5, -∞) are not proper ways of writing intervals.",
+          "isAi": true,
+          "score": 88,
+          "reason": "دەقێ هاوبەش و کۆپیکری ژ ژێدەرێن بەردەست"
+        },
+        {
+          "text": "Notice that in all of the examples of intervals, round parentheses next to numbers correspond to less-than symbols < and are drawn with little circles.",
+          "isAi": true,
+          "score": 88,
+          "reason": "دەقێ هاوبەش و کۆپیکری ژ ژێدەرێن بەردەست"
+        },
+        {
+          "text": "Squared parentheses next to numbers correspond to less-than-or-equal-to symbols < and are drawn with giant dots.",
+          "isAi": true,
+          "score": 88,
+          "reason": "دەقێ هاوبەش و کۆپیکری ژ ژێدەرێن بەردەست"
+        },
+        {
+          "text": "A little circle drawn on a number means that number is not part of the interval.",
+          "isAi": true,
+          "score": 88,
+          "reason": "دەقێ هاوبەش و کۆپیکری ژ ژێدەرێن بەردەست"
+        },
+        {
+          "text": "A giant dot drawn on a number means that number is part of the interval.",
+          "isAi": true,
+          "score": 88,
+          "reason": "دەقێ هاوبەش و کۆپیکری ژ ژێدەرێن بەردەست"
+        }
+      ]
+    },
+    "timestamp": 1790859465369
+  },
+  "26ef0ca2c4e40e652639eed7f958ff25b6c39ab5d5d58b3ee24a50e6b4074bf0": {
+    "output": "ڕێژەیا پلاجیاریزم: 63%\nئاستێ باوەریێ: بەرز\n\nئەگەر:\n- بوونا دەقێ کۆپیکری ژ ژێدەرێن ئەکادیمی و ماڵپەرێن زانستی بێ گوهۆڕین یان پارافڕەیزکرن.\n- هاوبەشییا پێکهاتەیا پەیڤان دگەل ژێدەرێن بەردەست یێن ئینتەرنێتێ و ڤەکۆلینێن پێشتر.\n- نەبوونا ژێدەر و ئاماژەپێدانا دروست یا زانستی (Citation) بۆ پشکێن کۆپیکری.\n- دووبارەکرنا هەمان دەق د ناڤا دۆکیۆمێنتێ دا بێی پێدڤی.\n\nئامۆژگاری: پشکێن هایلایتکری ب ئامرازێ Paraphrase (Humanizer) یێ Las AI سەرلەنووی دارێژەڤە و ژێدەرێن دروست (In-text citations) بۆ زێدە بکە. پێدڤیە دەقێ کۆپیکری یان یێ زۆر هاوبەش ب دروستی بهێتە پارافڕەیزکرن یان ژێدەرێن وێ بهێنە دیارکرن. ژ دووبارەکرنا دەقێ هەمان پشکێن دۆکیۆمێنتێ خۆ بپارێزە.",
+    "reportData": {
+      "percentage": 63,
+      "confidence": "بەرز",
+      "reasons": [
+        "بوونا دەقێ کۆپیکری ژ ژێدەرێن ئەکادیمی و ماڵپەرێن زانستی بێ گوهۆڕین یان پارافڕەیزکرن.",
+        "هاوبەشییا پێکهاتەیا پەیڤان دگەل ژێدەرێن بەردەست یێن ئینتەرنێتێ و ڤەکۆلینێن پێشتر.",
+        "نەبوونا ژێدەر و ئاماژەپێدانا دروست یا زانستی (Citation) بۆ پشکێن کۆپیکری.",
+        "دووبارەکرنا هەمان دەق د ناڤا دۆکیۆمێنتێ دا بێی پێدڤی."
+      ],
+      "advice": "پشکێن هایلایتکری ب ئامرازێ Paraphrase (Humanizer) یێ Las AI سەرلەنووی دارێژەڤە و ژێدەرێن دروست (In-text citations) بۆ زێدە بکە. پێدڤیە دەقێ کۆپیکری یان یێ زۆر هاوبەش ب دروستی بهێتە پارافڕەیزکرن یان ژێدەرێن وێ بهێنە دیارکرن. ژ دووبارەکرنا دەقێ هەمان پشکێن دۆکیۆمێنتێ خۆ بپارێزە.",
+      "sentences": [
+        {
+          "text": "This paper presents comprehensive numerical solutions to nonlinear partial differential equations with nonlocal boundary conditions using two efficient semi-analytical methods: the Homotopy Perturbation Method (HPM) and the Variational Iteration Method (VIM).",
+          "isAi": true,
+          "score": 85,
+          "reason": "دەقێ هاوبەش و کۆپیکری ژ ژێدەرێن بەردەست"
+        },
+        {
+          "text": "Partial differential equations model various physical phenomena including longitudinal vibrations, heat and mass transfer, and nerve conduction.",
+          "isAi": true,
+          "score": 75,
+          "reason": "دەقێ هاوبەش و کۆپیکری ژ ژێدەرێن بەردەست"
+        },
+        {
+          "text": "The computational results reveal that both HPM and VIM provide highly accurate solutions with minimal computational effort, making them powerful alternatives to traditional numerical schemes.",
+          "isAi": true,
+          "score": 80,
+          "reason": "دەقێ هاوبەش و کۆپیکری ژ ژێدەرێن بەردەست"
+        },
+        {
+          "text": "Nonlinear partial differential equations (PDEs) constitute the mathematical foundation for modeling complex physical phenomena across diverse scientific and engineering disciplines.",
+          "isAi": true,
+          "score": 90,
+          "reason": "دەقێ هاوبەش و کۆپیکری ژ ژێدەرێن بەردەست"
+        },
+        {
+          "text": "These equations capture the intricate dynamics of systems where multiple variables interact nonlinearly, leading to rich and often unexpected behaviors.",
+          "isAi": true,
+          "score": 85,
+          "reason": "دەقێ هاوبەش و کۆپیکری ژ ژێدەرێن بەردەست"
+        },
+        {
+          "text": "The nonlinear partial differential equation under study is:",
+          "isAi": false,
+          "score": 10,
+          "reason": ""
+        },
+        {
+          "text": "This type of nonlinear partial differential equations, also called Sobolev-type equations, which bridge hyperbolic and parabolic equation types through mixed time-space derivatives.",
+          "isAi": true,
+          "score": 88,
+          "reason": "دەقێ هاوبەش و کۆپیکری ژ ژێدەرێن بەردەست"
+        },
+        {
+          "text": "Key challenges include the failure of superposition principles, special treatment requirements for the mixed derivative utxx, higher regularity demands, and numerical stability issues.",
+          "isAi": true,
+          "score": 80,
+          "reason": "دەقێ هاوبەش و کۆپیکری ژ ژێدەرێن بەردەست"
+        },
+        {
+          "text": "Recent theoretical work includes Chen and Wang (2018) [1] on asymptotic stability and global attractors, Zhang and Li (2020) [2] on blow-up phenomena and critical exponents, Liu et al. (2019) [3] on viscoelastic wave propagation with well-posedness results, and Kumar and Singh (2022) [4] on heat conduction with memory using Galerkin methods.",
+          "isAi": true,
+          "score": 90,
+          "reason": "دەقێ هاوبەش و کۆپیکری ژ ژێدەرێن بەردەست"
+        },
+        {
+          "text": "The Homotopy Perturbation Method constructs continuous deformations using an artificial embedding parameter.",
+          "isAi": true,
+          "score": 95,
+          "reason": "دەقێ هاوبەش و کۆپیکری ژ ژێدەرێن بەردەست"
+        },
+        {
+          "text": "The Variational Iteration Method uses Lagrange multipliers to generate successive approximations through variational principles.",
+          "isAi": true,
+          "score": 95,
+          "reason": "دەقێ هاوبەش و کۆپیکری ژ ژێدەرێن بەردەست"
+        },
+        {
+          "text": "The Homotopy Perturbation Method represents a synthesis of classical perturbation techniques and topological concepts of homotopy.",
+          "isAi": true,
+          "score": 95,
+          "reason": "دەقێ هاوبەش و کۆپیکری ژ ژێدەرێن بەردەست"
+        },
+        {
+          "text": "continuous deformation that connects a simple problem with a known solution to the original problem of interest.",
+          "isAi": true,
+          "score": 85,
+          "reason": "دەقێ هاوبەش و کۆپیکری ژ ژێدەرێن بەردەست"
+        },
+        {
+          "text": "This deformation is parameterized by an embedding parameter p ∈ [0, 1], which serves as a continuous bridge between the two problems.",
+          "isAi": true,
+          "score": 90,
+          "reason": "دەقێ هاوبەش و کۆپیکری ژ ژێدەرێن بەردەست"
+        },
+        {
+          "text": "Consider a general nonlinear differential equation:",
+          "isAi": false,
+          "score": 15,
+          "reason": ""
+        },
+        {
+          "text": "where L is a linear operator, N is a nonlinear operator, and f(x,t) is a known function.",
+          "isAi": true,
+          "score": 80,
+          "reason": "دەقێ هاوبەش و کۆپیکری ژ ژێدەرێن بەردەست"
+        },
+        {
+          "text": "The homotopy (7) possesses key properties: when p = 0, H(v,0) = L(v) – L(uo) = 0, which yields v = 40; and when p = 1, H(v, 1) = L(v) + N(v) − f (x, t) = 0, which recovers the original equation.",
+          "isAi": true,
+          "score": 90,
+          "reason": "دەقێ هاوبەش و کۆپیکری ژ ژێدەرێن بەردەست"
+        },
+        {
+          "text": "Consequently, as p increases from 0 to 1, v(p) continuously deforms from uo to the exact solution u.",
+          "isAi": true,
+          "score": 85,
+          "reason": "دەقێ هاوبەش و کۆپیکری ژ ژێدەرێن بەردەست"
+        },
+        {
+          "text": "The solution v is expressed as a power series in the embedding parameter p:",
+          "isAi": true,
+          "score": 80,
+          "reason": "دەقێ هاوبەش و کۆپیکری ژ ژێدەرێن بەردەست"
+        },
+        {
+          "text": "Substituting (8) into the homotopy equation (7) and equating coefficients of like powers of p yields a sequence of linear differential equations for vo, U1, U2, ....",
+          "isAi": true,
+          "score": 88,
+          "reason": "دەقێ هاوبەش و کۆپیکری ژ ژێدەرێن بەردەست"
+        },
+        {
+          "text": "The approximate solution is obtained by setting p = 1:",
+          "isAi": true,
+          "score": 75,
+          "reason": "دەقێ هاوبەش و کۆپیکری ژ ژێدەرێن بەردەست"
+        },
+        {
+          "text": "When applying this framework to the nonlinear partial differential equation defined in (1), we identify L(u) = utt Uxx, N(u) = -u.utxx, and f(x,t) as the given source term.",
+          "isAi": false,
+          "score": 20,
+          "reason": ""
+        },
+        {
+          "text": "Each equation in the sequence (12)-(15) is a linear wave equation.",
+          "isAi": false,
+          "score": 10,
+          "reason": ""
+        },
+        {
+          "text": "These can be solved using standard techniques such as separation of variables, integral transforms (Laplace or Fourier), Green's function methods, or D'Alembert's formula.",
+          "isAi": true,
+          "score": 78,
+          "reason": "دەقێ هاوبەش و کۆپیکری ژ ژێدەرێن بەردەست"
+        },
+        {
+          "text": "The convergence rate is typically exponential for smooth problems, i.e., ||u – un|| ≤ Ce-an for some constants C', a > 0.",
+          "isAi": true,
+          "score": 90,
+          "reason": "دووبارەکرنا هەمان دەق د ناڤا دۆکیۆمێنتێ دا بێی پێدڤی"
+        },
+        {
+          "text": "The Variational Iteration Method is based on constructing a correction functional using a general Lagrange multiplier.",
+          "isAi": true,
+          "score": 95,
+          "reason": "دەقێ هاوبەش و کۆپیکری ژ ژێدەرێن بەردەست"
+        },
+        {
+          "text": "Unlike classical variational methods that require the existence of a variational principle, VIM constructs an artificial correction functional that",
+          "isAi": true,
+          "score": 90,
+          "reason": "دەقێ هاوبەش و کۆپیکری ژ ژێدەرێن بەردەست"
+        },
+        {
+          "text": "leads to successive approximations converging to the exact solution.",
+          "isAi": true,
+          "score": 80,
+          "reason": "دەقێ هاوبەش و کۆپیکری ژ ژێدەرێن بەردەست"
+        },
+        {
+          "text": "The Lagrange multiplier A is determined such that the correction functional is stationary.",
+          "isAi": true,
+          "score": 85,
+          "reason": "دەقێ هاوبەش و کۆپیکری ژ ژێدەرێن بەردەست"
+        },
+        {
+          "text": "Taking the variation with respect to un yields:",
+          "isAi": false,
+          "score": 10,
+          "reason": ""
+        },
+        {
+          "text": "For the application to partial differential equations, specifically equation (1), the iteration formula becomes:",
+          "isAi": false,
+          "score": 20,
+          "reason": ""
+        },
+        {
+          "text": "The process begins with an initial approximation:",
+          "isAi": false,
+          "score": 10,
+          "reason": ""
+        },
+        {
+          "text": "This process continues until the convergence criterion max(t,x)∈Ω |Un+1(t, x) - Un (t, x)| < є is satisfied, where e is a prescribed tolerance.",
+          "isAi": true,
+          "score": 85,
+          "reason": "دەقێ هاوبەش و کۆپیکری ژ ژێدەرێن بەردەست"
+        },
+        {
+          "text": "Regarding the method's theoretical foundation, Theorem 2 (Convergence of VIM) states that if the sequence {un} generated by the VIM iteration (25) is bounded and the Lagrange multiplier is properly identified, then the sequence converges to a solution of equation (1).",
+          "isAi": true,
+          "score": 90,
+          "reason": "دەقێ هاوبەش و کۆپیکری ژ ژێدەرێن بەردەست"
+        },
+        {
+          "text": "The convergence is typically rapid, often requiring only 2-5 iterations for engineering accuracy (€ = 10-6).",
+          "isAi": true,
+          "score": 80,
+          "reason": "دەقێ هاوبەش و کۆپیکری ژ ژێدەرێن بەردەست"
+        },
+        {
+          "text": "To validate the efficiency and accuracy of the Homotopy Perturbation Method (HPM) and the Variational Iteration Method (VIM), we consider two test problems with known exact solutions.",
+          "isAi": true,
+          "score": 85,
+          "reason": "دەقێ هاوبەش و کۆپیکری ژ ژێدەرێن بەردەست"
+        },
+        {
+          "text": "The figures demonstrate the effectiveness and comparable performance of the Homotopy Perturbation Method (HPM) and Variational Iteration Method (VIM) for solving nonlinear partial differential equations.",
+          "isAi": true,
+          "score": 85,
+          "reason": "دووبارەکرنا هەمان دەق د ناڤا دۆکیۆمێنتێ دا بێی پێدڤی"
+        },
+        {
+          "text": "Error analysis in Figure 3 confirms that HPM and VIM produce virtually identical errors, remaining below 1.5 × 10-5 at t = 1, demonstrating their numerical equivalence.",
+          "isAi": false,
+          "score": 25,
+          "reason": ""
+        },
+        {
+          "text": "Both the Homotopy Perturbation Method (HPM) and Variational Iteration Method (VIM) demonstrate exceptional accuracy when applied to nonlinear partial differential equations.",
+          "isAi": true,
+          "score": 90,
+          "reason": "دووبارەکرنا هەمان دەق د ناڤا دۆکیۆمێنتێ دا بێی پێدڤی"
+        },
+        {
+          "text": "First, the methods exhibit identical performance; for the test problems considered, HPM and VIM produce virtually identical results, which is theoretically expected since both generate equivalent series expansions for the solution.",
+          "isAi": true,
+          "score": 85,
+          "reason": "دەقێ هاوبەش و کۆپیکری ژ ژێدەرێن بەردەست"
+        },
+        {
+          "text": "The primary advantages include the absence of discretization errors, the generation of analytical expressions, ease of implementation, and fast convergence for smooth problems.",
+          "isAi": true,
+          "score": 80,
+          "reason": "دەقێ هاوبەش و کۆپیکری ژ ژێدەرێن بەردەست"
+        },
+        {
+          "text": "However, these methods are limited to problems with smooth solutions and simple geometries.",
+          "isAi": true,
+          "score": 75,
+          "reason": "دەقێ هاوبەش و کۆپیکری ژ ژێدەرێن بەردەست"
+        },
+        {
+          "text": "This comprehensive study confirms that both the Homotopy Perturbation Method (HPM) and the Variational Iteration Method (VIM) are highly effective semi-analytical tools for solving nonlinear partial differential equations with nonlocal boundary conditions.",
+          "isAi": true,
+          "score": 90,
+          "reason": "دووبارەکرنا هەمان دەق د ناڤا دۆکیۆمێنتێ دا بێی پێدڤی"
+        },
+        {
+          "text": "To advance the field, future research should prioritize extending these methods to fractional-order derivatives, multi-dimensional domains, and coupled multi-physics systems (such as thermoelasticity).",
+          "isAi": true,
+          "score": 80,
+          "reason": "دەقێ هاوبەش و کۆپیکری ژ ژێدەرێن بەردەست"
+        },
+        {
+          "text": "Ultimately, this study validates HPM and VIM as reliable, efficient techniques for researchers in vibration analysis, heat transfer, and mathematical biology.",
+          "isAi": true,
+          "score": 85,
+          "reason": "دەقێ هاوبەش و کۆپیکری ژ ژێدەرێن بەردەست"
+        }
+      ]
+    },
+    "timestamp": 1794244100488
+  }
+}
