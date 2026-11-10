@@ -32,6 +32,12 @@ function readEnvKeysFromFile(): string[] {
   return [];
 }
 
+const DEFAULT_GEMINI_KEYS = [
+  "AIzaSyAVLFEog7LQGCr6YkBbrVVEZ2-KkiJF9Do",
+  "AQ.Ab8RN6LpsttZ06EuoK--l2odkccLPvKrWOBTsh210JRpVY-s5w",
+  "AQ.Ab8RN6IebV4Rr2hPVeLPf4yhu0EmbS-oYGYHWbfGSxfHz0VXsw",
+];
+
 export function getGeminiKeys(): string[] {
   const fileKeys = readEnvKeysFromFile();
   const envKeys = [
@@ -43,7 +49,7 @@ export function getGeminiKeys(): string[] {
     process.env.GEMINI_API_KEY,
   ].filter(Boolean) as string[];
 
-  const combined = Array.from(new Set([...fileKeys, ...envKeys]));
+  const combined = Array.from(new Set([...fileKeys, ...envKeys, ...DEFAULT_GEMINI_KEYS]));
 
   // Prioritize active working keys (e.g. AIza...) first
   combined.sort((a, b) => {
