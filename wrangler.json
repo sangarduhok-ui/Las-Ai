@@ -1,8 +1,15 @@
 {
     "$schema": "node_modules/wrangler/config-schema.json",
     "name": "las-ai",
-    "main": "@tanstack/react-start/server-entry",
+    "main": "dist/server/index.js",
     "compatibility_date": "2026-11-09",
+    "compatibility_flags": [
+        "nodejs_compat"
+    ],
+    "assets": {
+        "directory": "dist/client",
+        "binding": "ASSETS"
+    },
     "observability": {
         "enabled": true
     }
