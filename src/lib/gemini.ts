@@ -32,11 +32,7 @@ function readEnvKeysFromFile(): string[] {
   return [];
 }
 
-const DEFAULT_GEMINI_KEYS = [
-  "AIzaSyAVLFEog7LQGCr6YkBbrVVEZ2-KkiJF9Do",
-  "AQ.Ab8RN6LpsttZ06EuoK--l2odkccLPvKrWOBTsh210JRpVY-s5w",
-  "AQ.Ab8RN6IebV4Rr2hPVeLPf4yhu0EmbS-oYGYHWbfGSxfHz0VXsw",
-];
+const DEFAULT_GEMINI_KEYS: string[] = [];
 
 export function getGeminiKeys(): string[] {
   const fileKeys = readEnvKeysFromFile();
@@ -47,7 +43,7 @@ export function getGeminiKeys(): string[] {
     process.env.GEMINI_API_KEY_4,
     process.env.GEMINI_API_KEY_5,
     process.env.GEMINI_API_KEY,
-  ].filter(Boolean) as string[];
+  ].filter((k): k is string => Boolean(k && k.trim()));
 
   const combined = Array.from(new Set([...fileKeys, ...envKeys, ...DEFAULT_GEMINI_KEYS]));
 
@@ -61,13 +57,20 @@ export function getGeminiKeys(): string[] {
   return combined;
 }
 
+function noKeyResponse(): Response {
+  return new Response(
+    JSON.stringify({
+      error: "کلیلێ زیرەکیا دەستکرد (GEMINI_API_KEY_1) نەهاتیە دانان یان کار ناکەت. تکایە د ڕێکخستنێن Cloudflare دا کلیلەکا دروست زێدە بکە.",
+    }),
+    { status: 503, headers: { "Content-Type": "application/json" } },
+  );
+}
+
 export async function fetchGemini(body: Record<string, unknown>): Promise<Response> {
   const keys = getGeminiKeys();
 
   if (keys.length === 0) {
-    throw new Error(
-      "No AI API key found. Please configure GEMINI_API_KEY in your .env file.",
-    );
+    return noKeyResponse();
   }
 
   const requestedModel = (body.model as string) || "gemini-3.5-flash-lite";
@@ -82,10 +85,12 @@ export async function fetchGemini(body: Record<string, unknown>): Promise<Respon
   );
 
   let lastError: unknown = null;
+  const deadKeys = new Set<string>();
 
   for (const model of modelCandidates) {
     for (let i = 0; i < keys.length; i++) {
       const key = keys[i];
+      if (deadKeys.has(key)) continue;
       const url = "https://generativelanguage.googleapis.com/v1beta/openai/chat/completions";
       const { seed, ...sanitizedBody } = body;
       const reqBody = { ...sanitizedBody, model };
@@ -125,11 +130,15 @@ export async function fetchGemini(body: Record<string, unknown>): Promise<Respon
         const text = await resp.text();
         console.warn(`Gemini Direct request (${model}) key index ${i + 1} failed: status=${status}, body=${text.slice(0, 150)}`);
         lastError = { status, text };
+        if (status === 401 || status === 403) {
+          deadKeys.add(key);
+        }
       } catch (e) {
         console.error(`Gemini request (${model}) key index ${i + 1} threw network error:`, e);
         lastError = e;
       }
     }
+    if (deadKeys.size === keys.length) break;
   }
 
   // All keys and model candidates failed
@@ -164,7 +173,7 @@ export async function fetchGeminiForGrapher(
   const keys = getGeminiKeys();
 
   if (keys.length === 0) {
-    throw new Error("No AI API key found.");
+    return noKeyResponse();
   }
 
   const url = "https://generativelanguage.googleapis.com/v1beta/openai/chat/completions";
@@ -213,9 +222,7 @@ export async function fetchGeminiNative(body: Record<string, unknown>): Promise<
   const keys = getGeminiKeys();
 
   if (keys.length === 0) {
-    throw new Error(
-      "No AI API key found. Please configure GEMINI_API_KEY in your .env file.",
-    );
+    return noKeyResponse();
   }
 
   let lastError: unknown = null;

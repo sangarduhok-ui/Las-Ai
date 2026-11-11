@@ -593,7 +593,8 @@ function matchKeywords(normText: string, rawText: string, keywords: string[]): b
 
 function extractToolRecommendations(
   combinedText: string,
-  lang: AssistantLanguage
+  lang: AssistantLanguage,
+  includeDefaultFallback = true
 ): ToolRecommendation[] {
   const norm = normalizeText(combinedText);
   const rawLower = (combinedText || "").toLowerCase();
@@ -954,11 +955,93 @@ function extractToolRecommendations(
   }
 
   // Default Fallback
+  if (!includeDefaultFallback) {
+    return [];
+  }
   add("solver");
   add("summary");
   add("pdf_to_word");
   add("testai");
   return recs.slice(0, 4);
+}
+
+function buildSmartFallbackReply(
+  query: string,
+  lang: AssistantLanguage,
+  matchedRecs: ToolRecommendation[],
+  errorReason?: string
+): { text: string; recommendations: ToolRecommendation[] } {
+  const raw = (query || "").trim().toLowerCase();
+  const norm = normalizeText(query);
+
+  const isGreeting =
+    /^(سلاڤ|سڵاڤ|سلام|slaw|slav|hi|hello|hey|مرحبا|أهلا|اهلا|merhaba|selam)[\s!?.،؟]*$/i.test(
+      raw
+    ) ||
+    raw === "سلاڤ" ||
+    raw === "سڵاڤ";
+
+  const isHowAreYou =
+    norm.includes("چدکەی") ||
+    norm.includes("چاوانی") ||
+    norm.includes("چۆنی") ||
+    norm.includes("چەوایی") ||
+    norm.includes("باشی") ||
+    raw.includes("how are you") ||
+    raw.includes("كيف حالك") ||
+    raw.includes("شلونك") ||
+    raw.includes("nasılsın");
+
+  if (isGreeting) {
+    const text =
+      lang === "en"
+        ? "Hello! 👋 Welcome to Las AI. Tell me what you're working on (math, PDF, research, translation, or studying) and I'll help you right away."
+        : lang === "ar"
+        ? "مرحباً بك في Las AI! 👋 كيف يمكنني مساعدتك اليوم؟ يمكنك طرح سؤالك أو اختيار إحدى الأدوات أدناه."
+        : lang === "tr"
+        ? "Merhaba! 👋 Las AI'ye hoş geldiniz. Size nasıl yardımcı olabilirim?"
+        : "سڵاڤ ل سەرچاڤان! 👋 ب خێر بێی بۆ پلاتفۆرما Las AI. تە دڤێت چ بکەی یان چ پرسیار ل سەر خواندن و فەکۆلینێ هەیە؟";
+    return {
+      text,
+      recommendations: matchedRecs.length > 0 ? matchedRecs : extractToolRecommendations("", lang, true),
+    };
+  }
+
+  if (isHowAreYou) {
+    const text =
+      lang === "en"
+        ? "I'm doing great and ready to help you! 😊 What task or question would you like help with today?"
+        : lang === "ar"
+        ? "أنا بخير تماماً ومستعد لمساعدتك! 😊 ما الذي ترغب في العمل عليه اليوم؟"
+        : lang === "tr"
+        ? "Harikayım, size yardımcı olmaya hazırım! 😊 Bugün ne üzerinde çalışmak istersiniz?"
+        : "سوپاس، ئەز گەلەک باشم و ئامادەمە هاریکاریا تە بکەم! 😊 تە دڤێت ئەڤڕۆ چ کار یان خواندنێ ب ڕێڤە ببەین؟";
+    return { text, recommendations: matchedRecs };
+  }
+
+  if (matchedRecs.length > 0) {
+    const names = matchedRecs.map((r) => r.label).join("، ");
+    const text =
+      lang === "en"
+        ? `For "${query}", these tools on Las AI match best: ${names}. Click any tool below to open it directly.`
+        : lang === "ar"
+        ? `بخصوص طلبك، هذه أنسب الأدوات المتوفرة في المنصة: ${names}. اضغط على أي أداة لفتحها مباشرة.`
+        : lang === "tr"
+        ? `İsteğiniz için en uygun araçlar şunlardır: ${names}. Açmak için aşağıdan bir araca tıklayın.`
+        : `بۆ داخوازییا تە («${query}»)، ئەڤ ئامرازێن ژێر د گونجاینە: ${names}. کلیک ل سەر هەر ئامرازەکێ بکە دا ڕاستەوخۆ ڤەبیت:`;
+    return { text, recommendations: matchedRecs };
+  }
+
+  const reasonNote = errorReason ? ` (${errorReason})` : "";
+  const text =
+    lang === "en"
+      ? `The AI chat service is currently unavailable${reasonNote}. Please make sure a valid GEMINI_API_KEY_1 is configured in Cloudflare environment variables, or choose a tool below.`
+      : lang === "ar"
+      ? `خدمة المحادثة بالذكاء الاصطناعي غير متوفرة حالياً${reasonNote}. يرجى التأكد من إضافة مفتاح GEMINI_API_KEY_1 صالح في إعدادات Cloudflare، أو استخدام الأدوات مباشرة.`
+      : lang === "tr"
+      ? `Yapay zeka sohbet servisi şu anda kullanılamıyor${reasonNote}. Lütfen Cloudflare ayarlarında geçerli bir GEMINI_API_KEY_1 tanımlı olduğundan emin olun.`
+      : `ببورە، خزمەتگوزاریا بەرسڤدانا ڕاستەوخۆ یا AI نۆکە بێ کلیلێ دروست کار ناکەت${reasonNote}. تکایە د ڕێکخستنێن Cloudflare (Variables) دا GEMINI_API_KEY_1 یا نوێ زێدە بکە، یان ئامرازەکێ ژ ژێر هەلبژێرە:`;
+  return { text, recommendations: extractToolRecommendations("", lang, true) };
 }
 
 function isFounderQuery(q: string): boolean {
@@ -1183,7 +1266,11 @@ export function AiWelcomeAssistant({
 
     const query = userInput.trim();
     const detectedLang = detectUserLanguage(query);
-    const initialRecs = extractToolRecommendations(query, detectedLang);
+    const matchedRecs = extractToolRecommendations(query, detectedLang, false);
+    const initialRecs =
+      matchedRecs.length > 0
+        ? matchedRecs
+        : extractToolRecommendations(query, detectedLang, true);
 
     const userMsg: AssistantMessage = {
       id: `u_${Date.now()}`,
@@ -1292,6 +1379,11 @@ export function AiWelcomeAssistant({
           }
         }
 
+        if (!acc.trim()) {
+          setChatMessages((prev) => prev.filter((msg) => msg.id !== aiMsgId));
+          throw new Error("Empty AI response");
+        }
+
         // Once the AI streaming response is finished, re-extract recommendations dynamically
         // prioritizing the category intent of the request
         const finalRecs = extractToolRecommendations(query + "\n" + acc, detectedLang);
@@ -1303,45 +1395,20 @@ export function AiWelcomeAssistant({
           )
         );
       } else {
-        throw new Error("Chat response status not OK");
+        const errBody = await resp.json().catch(() => ({}));
+        throw new Error(errBody?.error || `HTTP ${resp.status}`);
       }
-    } catch (_) {
-      // Intelligent Multilingual Instant Fallback Response
-      let fallbackReply = "";
-      if (detectedLang === "en") {
-        fallbackReply =
-          initialRecs.length > 0
-            ? "I can help you with our advanced tools! Here is the best tool suited for your request:"
-            : "I am your AI study and productivity guide, ready to introduce you to all our platform tools!";
-      } else if (detectedLang === "ar") {
-        fallbackReply =
-          initialRecs.length > 0
-            ? "أنا هنا لمساعدتك من خلال أدواتنا المتطورة! إليك الأداة المناسبة لطلبك مباشرة:"
-            : "أنا دليلك الذكي للتعرف على كافة أدوات منصة بوختەیا AI واستخدامها بكل سهولة.";
-      } else if (detectedLang === "tr") {
-        fallbackReply =
-          initialRecs.length > 0
-            ? "Gelişmiş araçlarımızla size yardımcı olabilirim! İhtiyacınıza en uygun araç aşağıdadır:"
-            : "Platformumuzun tüm yapay zeka araçlarını keşfetmeniz ve kullanmanız için buradayım.";
-      } else {
-        fallbackReply =
-          initialRecs.length > 0
-            ? "ئەز دشێم هاریکاریا تە بکەم ب ئامرازێن مە یێن زۆر پێشکەفتی! ئەڤە باشترین ئامرازە بۆ داخوازییا تە:"
-            : "ئەز ڕێبەرێ تەیێ زیرەکم بۆ ناساندن و بکارئینانا هەمی ئامرازێن پێشکەفتی یێن پلاتفۆرمێ مە!";
-      }
-
-      const fallbackRecs = extractToolRecommendations(
-        query + "\n" + fallbackReply,
-        detectedLang
-      );
+    } catch (err) {
+      const errMsg = err instanceof Error ? err.message : undefined;
+      const fallback = buildSmartFallbackReply(query, detectedLang, matchedRecs, errMsg);
 
       setChatMessages((prev) => [
         ...prev,
         {
           id: `ai_${Date.now()}`,
           sender: "ai",
-          text: fallbackReply,
-          recommendations: fallbackRecs,
+          text: fallback.text,
+          recommendations: fallback.recommendations,
           time: new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" }),
         },
       ]);
