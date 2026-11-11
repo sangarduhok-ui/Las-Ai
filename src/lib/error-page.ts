@@ -1,5 +1,17 @@
-export function renderErrorPage(): string {
-  return `<!doctype html>
+function formatErrorHint(error?: unknown): string {
+  if (!error) return "";
+  const raw =
+    error instanceof Error
+      ? `${error.name}: ${error.message}`
+      : typeof error === "string"
+        ? error
+        : JSON.stringify(error);
+  const safe = String(raw || "").replace(/--!?>/g, "").replace(/[<>]/g, "").slice(0, 500);
+  return safe ? `\n  <!-- err: ${safe} -->` : "";
+}
+
+export function renderErrorPage(error?: unknown): string {
+  return `<!doctype html>${formatErrorHint(error)}
 <html lang="en">
   <head>
     <meta charset="utf-8" />

@@ -17,5 +17,23 @@ export default defineConfig({
     alias: {
       puppeteer: "unenv/mock/proxy",
     },
+    cloudflare: {
+      nodeCompat: true,
+      pages: {
+        defaultRoutes: false,
+        routes: {
+          include: ["/*"],
+          exclude: [
+            "/assets/*",
+            "/ai-assistant-3d.png",
+            "/las-ai-logo.jpg",
+            "/logo.png",
+            "/pdf.worker.min.mjs",
+            "/robots.txt",
+            "/sangar.jpg",
+          ],
+        },
+      },
+    },
   },
 });

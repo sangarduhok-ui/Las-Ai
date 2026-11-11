@@ -9,16 +9,13 @@ interface RateLimitRecord {
 
 const ipMap = new Map<string, RateLimitRecord>();
 
-// Cleanup stale records every 5 minutes
-if (typeof setInterval !== "undefined") {
-  setInterval(() => {
-    const now = Date.now();
-    for (const [ip, record] of ipMap.entries()) {
-      if (now > record.resetTime) {
-        ipMap.delete(ip);
-      }
+function cleanupStaleRecords(now: number) {
+  if (ipMap.size < 200) return;
+  for (const [ip, record] of ipMap.entries()) {
+    if (now > record.resetTime) {
+      ipMap.delete(ip);
     }
-  }, 5 * 60 * 1000);
+  }
 }
 
 export function getClientIp(request: Request): string {
@@ -49,6 +46,7 @@ export function checkRateLimit(
 ): { ok: boolean; remaining: number; resetInMs: number } {
   const ip = getClientIp(request);
   const now = Date.now();
+  cleanupStaleRecords(now);
 
   const record = ipMap.get(ip);
 

@@ -10,15 +10,14 @@ interface OtpEntry {
 
 const otpMemoryStore = new Map<string, OtpEntry>();
 
-// Clean up expired OTPs periodically
-setInterval(() => {
+function cleanupExpiredOtps() {
   const now = Date.now();
   for (const [phone, entry] of otpMemoryStore.entries()) {
     if (entry.expiresAt < now) {
       otpMemoryStore.delete(phone);
     }
   }
-}, 60 * 1000);
+}
 
 export function normalizePhoneNumber(input: string): string {
   let cleaned = input.replace(/\D/g, ""); // keep only digits
@@ -45,6 +44,7 @@ export const Route = createFileRoute("/api/whatsapp-auth")({
   server: {
     handlers: {
       POST: async ({ request }) => {
+        cleanupExpiredOtps();
         const rate = checkRateLimit(request, 20, 60 * 1000);
         if (!rate.ok) {
           return Response.json(

@@ -13,7 +13,6 @@ const DEFAULT_ANNOUNCEMENT: PlatformAnnouncement = {
   text: "ب خێر بێن بۆ پلاتفۆڕما Las AI! نووکاری بۆ پشکا بیرکاری و زانست هاتنە چالاککرن.",
   active: true,
   type: "promo",
-  updatedAt: new Date().toISOString(),
 };
 
 // In-memory cache
@@ -55,9 +54,6 @@ function saveAnnouncement(ann: PlatformAnnouncement): boolean {
     return false;
   }
 }
-
-// Initial load
-loadAnnouncement();
 
 export const Route = createFileRoute("/api/announcement")({
   server: {

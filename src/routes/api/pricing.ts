@@ -57,9 +57,6 @@ function savePricing(config: PricingPlanDuration[]): boolean {
   }
 }
 
-// Initial load
-loadPricing();
-
 export const Route = createFileRoute("/api/pricing")({
   server: {
     handlers: {

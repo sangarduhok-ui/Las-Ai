@@ -268,14 +268,14 @@ const initialSampleUsers: UserProfile[] = [
 const defaultProfiles: Record<string, UserProfile> = {
   admin: adminProfile,
   guest: {
-    id: "usr_guest_" + Math.random().toString(36).substring(7),
+    id: "usr_guest_default",
     name: "فێرخوازی میوان",
     email: "guest@las-ai.edu",
     role: "student",
     roleLabel: "فێرخواز",
     membership: "free",
     membershipLabel: "بێبەرامبەر (Free)",
-    joinedDate: new Date().toLocaleDateString("en-GB"),
+    joinedDate: "2024/01/01",
     savedToolsCount: 3,
     isGuest: true,
     isAdmin: false,
@@ -1220,6 +1220,9 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   // deducts 1 credit from the shared pool. Resets automatically at midnight.
 
   const getDailyCreditsData = (): { date: string; credits: number } => {
+    if (typeof window === "undefined" || typeof localStorage === "undefined") {
+      return { date: getTodayDateString(), credits: FREE_DAILY_CREDITS };
+    }
     try {
       const raw = localStorage.getItem(DAILY_CREDITS_STORAGE_KEY);
       if (raw) {
@@ -1236,6 +1239,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   };
 
   const saveDailyCreditsData = (credits: number) => {
+    if (typeof window === "undefined" || typeof localStorage === "undefined") return;
     try {
       const clamped = Math.max(0, Math.min(FREE_DAILY_CREDITS, credits));
       localStorage.setItem(
@@ -1250,6 +1254,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
   // ─── Referral / Bonus Credits (persistent, not daily-reset) ─────────────
   const getBonusCredits = (): number => {
+    if (typeof window === "undefined" || typeof localStorage === "undefined") return 0;
     try {
       const raw = localStorage.getItem(REFERRAL_CREDITS_STORAGE_KEY);
       if (raw) return Math.max(0, parseInt(raw, 10) || 0);
@@ -1258,6 +1263,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   };
 
   const addBonusCredits = (amount: number) => {
+    if (typeof window === "undefined" || typeof localStorage === "undefined") return;
     try {
       const current = getBonusCredits();
       const next = current + amount;
@@ -1267,6 +1273,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   };
 
   const getReferralUsedBy = (): string[] => {
+    if (typeof window === "undefined" || typeof localStorage === "undefined") return [];
     try {
       const raw = localStorage.getItem(REFERRAL_USED_BY_STORAGE_KEY);
       if (raw) return JSON.parse(raw) as string[];
@@ -1278,6 +1285,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
   // Check if current user or device has already redeemed ANY referral code once
   const checkHasRedeemedReferral = (): boolean => {
+    if (typeof window === "undefined" || typeof localStorage === "undefined") return false;
     try {
       if (localStorage.getItem(DEVICE_REFERRAL_FLAG) === "true") return true;
       const usedBy = getReferralUsedBy();
