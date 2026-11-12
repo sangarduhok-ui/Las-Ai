@@ -85,6 +85,7 @@ export function AuthModal() {
     register,
     sendPhoneOtp,
     loginWithPhoneOtp,
+    resetUserPassword,
     logout,
     updateProfile,
     useReferralCode,
@@ -347,7 +348,7 @@ export function AuthModal() {
     }
 
     setIsSubmitting(true);
-    const res = await loginWithPhoneOtp(formattedTargetPhone || getFullPhoneNumber(), otpCode, name, email);
+    const res = await loginWithPhoneOtp(formattedTargetPhone || getFullPhoneNumber(), otpCode, name, email, password);
     setIsSubmitting(false);
 
     if (!res.success) {
@@ -450,8 +451,13 @@ export function AuthModal() {
     }
 
     setIsSubmitting(true);
-    await new Promise((r) => setTimeout(r, 600));
+    const res = await resetUserPassword(getForgotFullPhoneNumber(), forgotNewPass);
     setIsSubmitting(false);
+
+    if (!res.success) {
+      setError(res.error || "نەهاتە گوهۆڕین.");
+      return;
+    }
 
     setForgotStep("done");
     setSuccessMsg("وشەی نهێنی نوێ بە سەرکەوتوویی پاشەکەوتکرا!");

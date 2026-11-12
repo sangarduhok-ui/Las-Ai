@@ -115,7 +115,8 @@ interface AuthContextType {
   login: (email: string, password?: string) => Promise<{ success: boolean; error?: string }>;
   register: (data: { name: string; email: string; phone?: string; password?: string; role?: string }) => Promise<{ success: boolean; error?: string }>;
   sendPhoneOtp: (phone: string) => Promise<{ success: boolean; error?: string; message?: string }>;
-  loginWithPhoneOtp: (phone: string, code: string, name?: string, email?: string) => Promise<{ success: boolean; error?: string }>;
+  loginWithPhoneOtp: (phone: string, code: string, name?: string, email?: string, password?: string) => Promise<{ success: boolean; error?: string }>;
+  resetUserPassword: (phone: string, newPassword: string) => Promise<{ success: boolean; error?: string }>;
   isLogoutConfirmOpen: boolean;
   requestLogout: () => void;
   cancelLogout: () => void;
@@ -748,11 +749,62 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     setIsAuthModalOpen(false);
   };
 
-  const login = async (identifier: string, _password?: string) => {
+  const PASSWORDS_STORAGE_KEY = "ai_pukhtana_auth_passwords_v1";
+
+  const hashPassword = async (plain: string): Promise<string> => {
+    const data = new TextEncoder().encode(`las_ai_salt_${plain}`);
+    if (typeof crypto !== "undefined" && crypto.subtle) {
+      const buf = await crypto.subtle.digest("SHA-256", data);
+      return Array.from(new Uint8Array(buf))
+        .map((b) => b.toString(16).padStart(2, "0"))
+        .join("");
+    }
+    return btoa(unescape(encodeURIComponent(`las_ai_salt_${plain}`)));
+  };
+
+  const readPasswordMap = (): Record<string, string> => {
+    try {
+      const raw = localStorage.getItem(PASSWORDS_STORAGE_KEY);
+      return raw ? JSON.parse(raw) : {};
+    } catch {
+      return {};
+    }
+  };
+
+  const setStoredPasswordHash = async (u: Pick<UserProfile, "id" | "email" | "phone">, plain: string) => {
+    const hash = await hashPassword(plain);
+    const map = readPasswordMap();
+    if (u.id) map[u.id] = hash;
+    if (u.email) map[u.email.toLowerCase()] = hash;
+    if (u.phone) {
+      const digits = u.phone.replace(/\D/g, "");
+      if (digits.length >= 7) map[digits.slice(-9)] = hash;
+    }
+    try {
+      localStorage.setItem(PASSWORDS_STORAGE_KEY, JSON.stringify(map));
+    } catch {}
+  };
+
+  const getStoredPasswordHash = (u: Pick<UserProfile, "id" | "email" | "phone">): string | undefined => {
+    const map = readPasswordMap();
+    if (u.id && map[u.id]) return map[u.id];
+    if (u.email && map[u.email.toLowerCase()]) return map[u.email.toLowerCase()];
+    if (u.phone) {
+      const digits = u.phone.replace(/\D/g, "");
+      if (digits.length >= 7 && map[digits.slice(-9)]) return map[digits.slice(-9)];
+    }
+    return undefined;
+  };
+
+  const login = async (identifier: string, password?: string) => {
     await new Promise((res) => setTimeout(res, 500));
 
     if (!identifier || identifier.trim().length < 3) {
       return { success: false, error: "تکایە ئیمەیڵ یان ژمارەی مۆبایل بنووسە." };
+    }
+
+    if (!password || password.trim().length === 0) {
+      return { success: false, error: "تکایە پەیڤا نهێنی بنڤیسە." };
     }
 
     const trimmed = identifier.trim().toLowerCase();
@@ -762,9 +814,6 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     if (!isEmail && !isPhone) {
       return { success: false, error: "تکایە ئیمەیڵێکی دروست یان ژمارەی مۆبایل بنووسە." };
     }
-
-    // Check if admin email
-    const isAdminUser = trimmed === ADMIN_EMAIL.toLowerCase() || trimmed.includes("sangarduhok") || trimmed === "sangar";
 
     const cleanInputDigits = trimmed.replace(/\D/g, "");
     const existingUser = allUsers.find((u) => {
@@ -778,36 +827,37 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       return false;
     });
 
+    if (!existingUser) {
+      return {
+        success: false,
+        error: "ئەڤ هەژمارە تۆمارنەکریە! تکایە ل دەستپێکێ ل پشکا «چێکرنا هەژمارێ» خۆ تۆمار بکە.",
+      };
+    }
+
+    if (existingUser.status === "banned") {
+      return { success: false, error: "ئەڤ هەژمارە هاتیە ڕاگرتن." };
+    }
+
+    const storedHash = getStoredPasswordHash(existingUser);
+    if (!storedHash) {
+      return {
+        success: false,
+        error: "پەیڤا نهێنی بۆ ئەڤێ هەژمارێ نەهاتیە دانان، تکایە ب ڕێکا «تە پەیڤا نهێنی ژبیرکریە؟» پەیڤا نهێنی یا نوو دابنێ.",
+      };
+    }
+
+    const enteredHash = await hashPassword(password);
+    if (enteredHash !== storedHash) {
+      return { success: false, error: "پەیڤا نهێنی خەلەتە! تکایە دووبارە تاقی بکە." };
+    }
+
+    const isAdminUser = existingUser.email.toLowerCase() === ADMIN_EMAIL.toLowerCase();
     const loggedUser: UserProfile = isAdminUser
-      ? adminProfile
-      : existingUser
-      ? {
-          ...existingUser,
-          status: "active",
-        }
-      : {
-          id: "usr_" + Math.random().toString(36).substring(7),
-          name: isEmail ? trimmed.split("@")[0] : `بەکارهێنەر (${trimmed})`,
-          email: isEmail ? trimmed : `${trimmed.replace(/\D/g, "")}@phone.user`,
-          phone: isPhone ? trimmed : undefined,
-          role: "student" as const,
-          roleLabel: "فێرخواز",
-          membership: "free" as const,
-          membershipLabel: "بێبەرامبەر (Free)",
-          joinedDate: new Date().toLocaleDateString("en-GB"),
-          savedToolsCount: 4,
-          isAdmin: false,
-          status: "active",
-        };
+      ? { ...adminProfile, status: "active" }
+      : { ...existingUser, status: "active" };
 
     saveUser(loggedUser);
-
-    // Also add or update in allUsers list
-    if (!allUsers.some((u) => u.email.toLowerCase() === loggedUser.email.toLowerCase())) {
-      saveUsersList([loggedUser, ...allUsers]);
-    } else {
-      saveUsersList(allUsers.map((u) => (u.email.toLowerCase() === loggedUser.email.toLowerCase() ? loggedUser : u)));
-    }
+    saveUsersList(allUsers.map((u) => (u.email.toLowerCase() === loggedUser.email.toLowerCase() ? loggedUser : u)));
 
     if (!isAdminUser) {
       logAdminNotification(
@@ -858,6 +908,10 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       status: "active",
     };
 
+    if (data.password) {
+      await setStoredPasswordHash(newUser, data.password);
+    }
+
     saveUser(newUser);
     saveUsersList([newUser, ...allUsers.filter((u) => u.email.toLowerCase() !== newUser.email.toLowerCase())]);
 
@@ -890,7 +944,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     }
   };
 
-  const loginWithPhoneOtp = async (phone: string, code: string, name?: string, email?: string) => {
+  const loginWithPhoneOtp = async (phone: string, code: string, name?: string, email?: string, password?: string) => {
     try {
       const res = await fetch("/api/whatsapp-auth", {
         method: "POST",
@@ -910,7 +964,19 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         verifiedUser.membershipLabel = "دەسەڵاتی تەواو (Super Admin)";
       }
 
+      if (password && password.trim().length > 0) {
+        await setStoredPasswordHash(verifiedUser, password);
+      }
+
       saveUser(verifiedUser);
+      saveUsersList([
+        verifiedUser,
+        ...allUsers.filter(
+          (u) =>
+            u.id !== verifiedUser.id &&
+            u.email.toLowerCase() !== (verifiedUser.email || "").toLowerCase(),
+        ),
+      ]);
       if (!verifiedUser.isAdmin) {
         logAdminNotification(
           "📱 چوونەژوورڤە ب ڕێکا واتساپێ / مۆبایل",
@@ -923,6 +989,20 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     } catch (e: any) {
       return { success: false, error: "کێشەیەک ڕوویدا لە کاتی پشتڕاستکردنەوە." };
     }
+  };
+
+  const resetUserPassword = async (phone: string, newPassword: string) => {
+    const cleanDigits = phone.replace(/\D/g, "");
+    const targetUser = allUsers.find((u) => {
+      if (!u.phone) return false;
+      const uDigits = u.phone.replace(/\D/g, "");
+      return cleanDigits.length >= 7 && (uDigits.endsWith(cleanDigits) || cleanDigits.endsWith(uDigits));
+    });
+    if (!targetUser) {
+      return { success: false, error: "هیچ هەژمارەک ب ئەڤێ ژمارەیا مۆبایلێ نەهاتە دیتن." };
+    }
+    await setStoredPasswordHash(targetUser, newPassword);
+    return { success: true };
   };
 
   const loginAsGuest = () => {
@@ -1495,6 +1575,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         register,
         sendPhoneOtp,
         loginWithPhoneOtp,
+        resetUserPassword,
         isLogoutConfirmOpen,
         requestLogout,
         cancelLogout,
