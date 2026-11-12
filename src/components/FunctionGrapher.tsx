@@ -370,7 +370,8 @@ export function FunctionGrapher() {
                       value={fn.expression}
                       onChange={(e) => updateExpression(fn.id, e.target.value)}
                       placeholder="e.g. y = sin(x) or y = 2x + 1"
-                      className="w-full px-3 py-2 rounded-xl bg-background border border-border text-xs font-mono focus:outline-none focus:ring-2 focus:ring-teal-500/40 text-left dir-ltr"
+                      dir="ltr"
+                      className="w-full px-3 py-2 rounded-xl bg-background border border-border text-xs font-mono focus:outline-none focus:ring-2 focus:ring-teal-500/40 text-left"
                     />
                   </div>
                 ))}
