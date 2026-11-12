@@ -83,7 +83,6 @@ import {
   Settings,
   Gift,
 } from "lucide-react";
-import sangarAsset from "@/assets/sangar.jpg.asset.json";
 import { UserNavButton } from "@/components/UserNavButton";
 import { NotificationBell } from "@/components/NotificationBell";
 import { useAuth } from "@/context/AuthContext";
@@ -420,7 +419,7 @@ function Index() {
     return () => window.removeEventListener("lasai_open_tool", handler);
   }, []);
 
-  const sangarImgUrl = import.meta.env.DEV ? "/sangar.jpg" : sangarAsset.url || "/sangar.jpg";
+  const sangarImgUrl = "/sangar.jpg";
 
   const navLinks = [
     { href: "#features", label: "بوچی ئەم؟" },
