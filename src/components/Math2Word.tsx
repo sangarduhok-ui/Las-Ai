@@ -311,9 +311,10 @@ export function Math2Word() {
     setTimeout(() => setCopied(null), 2000);
   };
 
-  // Download clean DOCX with Cambria Math equations only
+  // Download clean DOCX with native Word Equations (OMML)
   const downloadDocx = async () => {
-    const { Document, Packer, Paragraph, TextRun, AlignmentType } = await import("docx");
+    const { Document, Packer, Paragraph, AlignmentType } = await import("docx");
+    const { latexLineToDocxMath } = await import("../lib/latexToDocxMath");
     const content = output || input;
     const lines = content.split(/\r?\n/).filter((l) => l.trim().length > 0);
 
@@ -324,14 +325,7 @@ export function Math2Word() {
           children: lines.map(
             (line) =>
               new Paragraph({
-                children: [
-                  new TextRun({
-                    text: line,
-                    font: "Cambria Math",
-                    size: 28,
-                    bold: true,
-                  }),
-                ],
+                children: [latexLineToDocxMath(line)],
                 alignment: AlignmentType.CENTER,
                 spacing: { before: 200, after: 200 },
               }),
