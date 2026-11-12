@@ -47,16 +47,13 @@ export function LogoutConfirmModal() {
 
         {/* Texts */}
         <div className="space-y-2">
-          <h3 className="text-lg sm:text-xl font-black text-foreground">
-            تۆ پشتڕاستی دێ دەرکەڤی؟
-          </h3>
-          <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed">
+          <p className="text-sm sm:text-base font-bold text-foreground leading-relaxed">
             {user ? (
               <>
-                ئەرێ تو پشتڕاستی دڤێت ژ هەژمارا <span className="font-bold text-foreground font-mono">({user.name})</span> دەرکەڤی؟ داتایێن تە د پاراستی نە.
+                ئەرێ تو پشتڕاستی دڤێت ژ هەژمارا <span className="font-black font-mono">({user.name})</span> دەرکەڤی؟
               </>
             ) : (
-              "ئەرێ تو پشتڕاستی دڤێت ژ هەژمارا خۆ دەرکەڤی؟ هەمی پێزانینێن تە د پاراستی نە."
+              "ئەرێ تو پشتڕاستی دڤێت ژ هەژمارا خۆ دەرکەڤی؟"
             )}
           </p>
         </div>
